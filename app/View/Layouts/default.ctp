@@ -10,6 +10,9 @@
     echo $this->Html->meta('icon');
 
     echo $this->Html->css('style');
+    echo $this->Html->css('bootstrap');
+    echo $this->Html->css('bootstrap-theme');
+    echo $this->Html->css('style');
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
