@@ -1,13 +1,5 @@
-<h1>Suche nach Kunden mit <?php echo $string; ?></h1>
-
+<h1>Kunden mit <i>'<?php echo $string; ?>'</i></h1>
 <?php
-echo $this->Html->link('Zurück', array(
-	'controller' => 'customer',
-	'action' => 'index'
-));
-echo "<br>";
-echo "<br>";
-
 foreach ($results as $key => $result) {
 	echo $this->Html->link($result['Customer']['name'], array(
 		'controller' => 'customer', 
@@ -15,7 +7,6 @@ foreach ($results as $key => $result) {
 		)
 	)."<br>";
 }
-
 ?>
 
 
