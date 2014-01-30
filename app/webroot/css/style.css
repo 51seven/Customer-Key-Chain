@@ -92,6 +92,44 @@ text-align: left;
 padding-right: 10px;
 }
 
+h1.with-options {
+display: inline;	
+}
+
+.optionbar {
+margin-left: 50px;
+vertical-align: top;
+}
+
+a.custom {
+background-size: 100%;
+background-color: transparent;
+background-repeat: no-repeat;
+background-position: center;	
+border: none;
+outline: none;
+opacity: 0.4;
+}
+
+a.custom:hover {
+opacity: 0.9;
+}
+
+a.delete {
+background-image: url('../img/delete.png');
+height: 16px;
+width: 16px;
+}
+
+a.edit {
+background-image: url('../img/edit.png');
+height: 16px;
+width: 16px;
+}
+
+span.spacer {
+margin-left: 10px;
+}
 
 
 

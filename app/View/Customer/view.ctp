@@ -1,4 +1,25 @@
-<h1><?php echo $customer['Customer']['name']; ?></h1>
+<h1 class="with-options"><?php echo $customer['Customer']['name']; ?></h1>
+	<span class="optionbar">
+		<?php echo $this->Html->link('', array(
+			'controller' => 'customer', 
+			'action' => 'delete', $customer['Customer']['customer_id']
+			),
+		    array('class' => 'custom edit'), 
+		    'Möchstest du den Kunden wirklich löschen?'
+		); ?>
+
+		<?php echo $this->Html->link('', array(
+			'type' => 'button', 
+			'class' => 'custom edit', 
+			'alt' => 'Bearbeiten'
+		)); ?>
+		<span class="spacer"> </span>
+		<?php echo $this->Form->button('', array(
+			'type' => 'button', 
+			'class' => 'custom delete', 
+			'alt' => 'Löschen'
+		)); ?>
+	</span>
 <?php
 foreach ($combinations as $key => $combination) {
 	echo '<h3>'.$combination['Type']['name'].'</h3>';
