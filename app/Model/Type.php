@@ -20,7 +20,10 @@ class Type extends AppModel {
 
     // Varlidation Rules for this Model
     public $validate = array(
-        
+        'name' => array(
+            'notEmpty' => true,
+        ),
     );
 }
+
 ?>
