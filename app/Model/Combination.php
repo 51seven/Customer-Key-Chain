@@ -21,7 +21,12 @@ class Combination extends AppModel {
 
     // Varlidation Rules for this Model
     public $validate = array(
-        
+        'customer_id' => array(
+            'notEmpty' => true,
+        ),
+        'type_id' => array(
+            'notEmpty' => true,
+        ),
     );
 
 }
