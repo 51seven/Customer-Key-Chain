@@ -1,32 +1,25 @@
 <div class='navigation'>
-<?php
-echo $this->Html->link('Alle Kunden', array(
-  'controller' => 'customer',
-  'action' => 'index'
-));
-echo " | ";
-echo $this->Html->link('Neuer Kunde', array(
-  'controller' => 'customer',
-  'action' => 'create'
-));
-echo " | ";
-echo $this->Html->link('Neue Kombination', array(
-  'controller' => 'combination',
-  'action' => 'create'
-));
-
-// Suchformular
-echo $this->Form->create(null, array(
-    'url' => array(
-      'controller' => 'customer', 
-      'action' => 'search'
-    ),
-    'type' => 'get'
-));
-echo $this->Form->input('string', array(
-  'label' => 'Kunden durchsuchen: ',
-));
-echo $this->Form->end('suchen');
-echo "<hr>";
-?>
+<ul>
+  <li>
+    <?php echo $this->Html->link('Alle Kunden', array('controller' => 'customer', 'action' => 'index')); ?>
+  </li>
+  <li>
+    <?php echo $this->Html->link('Neuer Kunde', array('controller' => 'customer', 'action' => 'create')); ?>
+  </li>
+  <li>
+    <?php echo $this->Html->link('Neue Kombination', array('controller' => 'combination', 'action' => 'create')); ?>
+  </li>
+  <li>
+  <span class='search'>
+    <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
+      'type' => 'get',  
+      'inputDefaults' => array(
+        'div' => false,
+      )
+    )); ?>
+    <?php echo $this->Form->input('string', array('label' => 'Suche: ')); ?>
+    <?php echo $this->Form->end(array('div'=>false,'text'=>'Search')); ?>
+    </span>
+  </li>
+</ul>
 </div>
