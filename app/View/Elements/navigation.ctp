@@ -19,6 +19,7 @@
     )); ?>
     <?php echo $this->Form->input('string', array('label' => 'Suche: ')); ?>
     <?php echo $this->Form->end(array('div'=>false,'text'=>'Search')); ?>
+    <!-- some test comment for commit -->
     </span>
   </li>
 </ul>
