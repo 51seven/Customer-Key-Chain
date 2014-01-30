@@ -66,6 +66,12 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 	);
 
+/*	public $default = array(
+        'datasource' => 'Database/Sqlite',
+        'persistent' => false,
+        'database' => 'ckc.sqlite',
+	);*/
+
 	/*public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,

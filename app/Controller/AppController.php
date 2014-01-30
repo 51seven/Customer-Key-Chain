@@ -58,7 +58,9 @@ class AppController extends Controller {
      * @return void
      */
     public function beforeRender() {
-        $this->set('all_customers', $this->Customer->find('list', array('order' => 'Customer.name ASC')));
+        $this->set('all_customers', $this->Customer->find('list', array(
+            'order' => 'Customer.name ASC'
+        )));
     }
     
 
