@@ -21,10 +21,12 @@
 </head>
 <body>
   <?php echo $this->element('navigation'); ?>
-  <?php echo $this->Session->flash(); ?>
+  <?php echo $this->element('left-sidebar'); ?>
   <div class='content'>
+    <?php echo $this->Session->flash(); ?>
     <?php echo $this->fetch('content'); ?>
   </div>
-  <?php //echo $this->element('sql_dump'); ?>
+  <div style="clear: both; width: 100%; border-top: 1px solid #CCC;"></div>
+  <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

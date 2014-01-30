@@ -3,14 +3,14 @@ class CustomerController extends AppController {
 
     public $uses = array(
         'Customer',
-        'Combination'
+        'Combination',
     );
     public $helpers = array(
         'Time',
     ); 
 
     public function index() {
-    	$this->set('customers', $this->Customer->find('all', array('order' => 'Customer.name ASC')));
+    	//$this->set('customers', $this->Customer->find('list', array('order' => 'Customer.name ASC')));
     }
 
     public function view($cid = null) {
@@ -58,6 +58,25 @@ class CustomerController extends AppController {
                 'conditions' => array('Customer.name LIKE' => '%'.$string.'%')
             )));
             $this->set('string', $string);
+        }
+    }
+
+    public function delete($cid) {
+        $customer = $this->Customer->findByCustomer_id($cid);
+
+        if($customer) {
+            if($this->Customer->delete($cid)) {
+                $this->Session->setFlash('Kunde erfolgreich gelöscht.');
+                $this->redirect('/');
+            }
+            else {
+                $this->Session->setFlash('Kunde konnte nicht gelöscht werden.');
+                $this->redirect('/');
+            }
+        }
+        else {
+            $this->Session->setFlash('Kunde nicht gefunden');
+            $this->redirect('/');
         }
     }
 

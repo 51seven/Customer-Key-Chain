@@ -14,6 +14,10 @@ class Type extends AppModel {
         ),
     );
     
+    public $order = array(
+        'Type.name ASC'
+    );
+
     // Varlidation Rules for this Model
     public $validate = array(
         

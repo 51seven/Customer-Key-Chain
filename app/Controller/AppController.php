@@ -41,11 +41,28 @@ class AppController extends Controller {
             'loginAction' => array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
         ),
-        'DebugKit.Toolbar',
+        //'DebugKit.Toolbar',
+    );
+
+    public $uses = array(
+        'Customer'
     );
 
  	public function beforeFilter() {
         $this->Auth->deny();
     }
 
+    /**
+     * beforeRender callback
+     *
+     * @return void
+     */
+    public function beforeRender() {
+        $this->set('all_customers', $this->Customer->find('list', array('order' => 'Customer.name ASC')));
+    }
+    
+
 }
+
+
+

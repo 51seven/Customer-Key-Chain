@@ -1,10 +1,5 @@
 <h1><?php echo $customer['Customer']['name']; ?></h1>
 <?php
-echo $this->Html->link('Zurück', array(
-	'controller' => 'customer',
-	'action' => 'index'
-));
-
 foreach ($combinations as $key => $combination) {
 	echo '<h3>'.$combination['Type']['name'].'</h3>';
 	echo '<b>Benutzername:</b> '.$combination['Combination']['username']."<br>";

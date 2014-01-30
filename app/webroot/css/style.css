@@ -3,21 +3,30 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin: 0px;
   padding: 0px;
+  height: 100%;
 }
 
+html {
+height: 100%;
+}
 
 .navigation {
 width: 100%;
-height: 51px;
-margin-bottom: 50px;
+height: 50px;
 border-bottom: 1px solid #CCC;
+margin-top: -10px; /* i have no fucking idea why i have to force this! */
 }
 
-.navigation ul{
-margin: 0 auto;
-display: block;
-width: 800px;
+.navigation li:first-child {
+width: 209px;
+line-height: 50px;
+vertical-align: middle;
 }
+
+/*.navigation ul{
+margin-left: 209px;
+}
+*/
 
 .navigation ul li {
 float: left;
@@ -41,4 +50,25 @@ border-right: 1px solid #CCC;
 padding: 12px 10px 0px 10px;
 }
 
+.left-sidebar {
+width: 250px;
+height: 100%;
+padding: 20px;
+border-right: 1px solid #CCC;
+float: left;	
+}
+
+.left-sidebar ul {
+padding: 0px;
+}
+
+.left-sidebar li {
+list-style: none;
+}
+
+.content {
+float: left;
+padding: 20px 35px;
+height: 100%;
+}
 

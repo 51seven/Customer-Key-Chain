@@ -1,7 +1,7 @@
 <div class='navigation'>
 <ul>
   <li>
-    <?php echo $this->Html->link('Alle Kunden', array('controller' => 'customer', 'action' => 'index')); ?>
+    Customer Key Chain
   </li>
   <li>
     <?php echo $this->Html->link('Neuer Kunde', array('controller' => 'customer', 'action' => 'create')); ?>
@@ -19,7 +19,6 @@
     )); ?>
     <?php echo $this->Form->input('string', array('label' => 'Suche: ')); ?>
     <?php echo $this->Form->end(array('div'=>false,'text'=>'Search')); ?>
-    <!-- some test comment for commit -->
     </span>
   </li>
 </ul>

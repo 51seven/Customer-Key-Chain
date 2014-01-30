@@ -18,7 +18,7 @@ echo $this->Form->input('password', array(
 	'type' => 'password',
 ));
 echo $this->Form->input('comment', array(
-	'label' => 'Zusätzliche Informationen; ',
+	'label' => 'Zusätzliche Informationen: ',
 ));
 echo $this->Form->end('Kombination speichern'); 
 ?>

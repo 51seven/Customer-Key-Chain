@@ -6,6 +6,10 @@ class Customer extends AppModel {
     public $useTable = 'customers'; 
     public $primaryKey = 'customer_id'; 
 
+    public $order = array(
+        'Customer.name ASC'
+    );
+
     // Varlidation Rules for this Model
     public $validate = array(
         /*'prename' => array(

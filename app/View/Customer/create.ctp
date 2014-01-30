@@ -1,6 +1,4 @@
 <h1>Neuen Kunden anlegen</h1>
-
-
 <?php
 echo $this->Form->create('Customer', array(
 	'type' => 'post'
