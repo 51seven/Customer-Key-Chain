@@ -40,9 +40,13 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'user', 'action' => 'login'),
             'loginAction' => array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
+            'flash' => array(
+                'element' => 'flash_bt_warning',
+                'key' => 'auth',
+                'params' => array(1)
+            )
         ),
         //'DebugKit.Toolbar',
-        // authError als flash_bt_info sollte sein
     );
 
     public $uses = array(
