@@ -42,6 +42,7 @@ class AppController extends Controller {
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
         ),
         //'DebugKit.Toolbar',
+        // authError als flash_bt_info sollte sein
     );
 
     public $uses = array(

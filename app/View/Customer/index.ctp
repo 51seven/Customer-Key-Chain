@@ -1,5 +1,6 @@
-
-<h2>Hi, sup?</h2>
+<div class="page-header">
+	<h1>Hi! <small>sup?</small></h1>
+</div>
 
 <?php
 /*foreach ($customers as $key => $customer) {

@@ -1,7 +1,15 @@
-body {
-	font-family: 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 0;
+@import "compass/css3/transition";
+
+body { padding-top: 70px; }
+
+.ckc-alert {
+	width: auto;
+	position: relative;
 }
 
-@import "navigation";
+.site-search {
+	@include transition(all .3s);
+	&.active {
+		min-width: 250px;
+	}
+}

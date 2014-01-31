@@ -93,10 +93,10 @@ class UserController extends AppController {
             unset($this->request->data['User']['password_confirm']);
 
             if($this->User->save($this->request->data, $validate = true)) {
-                $this->Session->setFlash('Profil erfolgreich aktualisiert.');
+                $this->Session->setFlash('Profil erfolgreich aktualisiert.', 'flash_bt_good');
             }
             else {
-                $this->Session->setFlash('Profil konnte nicht aktualisiert werden.');   
+                $this->Session->setFlash('Profil konnte nicht aktualisiert werden.', 'flash_bt_bad');   
             }
 
             $this->redirect('/user/settings');
@@ -119,7 +119,7 @@ class UserController extends AppController {
             );
 
             if(!$user) {
-                $this->Session->setFlash('Login fehlgeschlagen.');
+                $this->Session->setFlash('Login fehlgeschlagen.', 'flash_bt_warning');
                 $this->redirect($this->Auth->loginAction);
             }
             else { 
@@ -153,7 +153,7 @@ class UserController extends AppController {
 
     // Logout-Funktion
     public function logout() {
-        $this->Session->setFlash('Du wurdest erfolgreich ausgeloggt.');
+        $this->Session->setFlash('Du wurdest erfolgreich ausgeloggt.', 'flash_bt_info');
         $this->Session->delete('User');
         $this->Cookie->delete('autologin');
         $this->redirect($this->Auth->logout());

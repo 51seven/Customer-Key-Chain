@@ -17,7 +17,7 @@ class CustomerController extends AppController {
     	$customer = $this->Customer->findByCustomer_id($cid);
 
     	if(!$customer) {
-    		$this->Session->setFLash('Kunde wurde nicht gefudnen.');
+    		$this->Session->setFLash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
     		$this->render('index');
     	}
     	else {
@@ -30,11 +30,11 @@ class CustomerController extends AppController {
     public function create() {
 		if($this->request->is('post')) {
             if($this->Customer->save($this->request->data)) {
-                $this->Session->setFlash('Kunde erfolgreich erstellt.');
+                $this->Session->setFlash('Kunde erfolgreich erstellt.', 'flash_bt_good');
                 $this->redirect(array('controller' => 'customer', 'action' => 'view/'.$this->Customer->getLastInsertId()));
             }
             else {
-                $this->Session->setFlash('Fehler beim erstellen eines neuen Kunden.');
+                $this->Session->setFlash('Fehler beim erstellen eines neuen Kunden.', 'flash_bt_bad');
             }
         }
     }
@@ -45,12 +45,12 @@ class CustomerController extends AppController {
             $string = $this->request->query['string'];
         }
         else {
-            $this->Session->setFlash('Kein Suchstring vorhanden.');
+            $this->Session->setFlash('Kein Suchstring vorhanden.', 'flash_bt_info');
             $this->redirect('index');
         }
 
         if(strlen($string) < 3) {
-            $this->Session->setFlash('Suche muss mindestens 3 Buchstaben enthalten.');
+            $this->Session->setFlash('Suche muss mindestens 3 Buchstaben enthalten.', 'flash_bt_info');
             $this->redirect('index');
         }
         else {
@@ -66,16 +66,16 @@ class CustomerController extends AppController {
 
         if($customer) {
             if($this->Customer->delete($cid)) {
-                $this->Session->setFlash('Kunde erfolgreich gelöscht.');
+                $this->Session->setFlash('Kunde erfolgreich gelöscht.', 'flash_bt_good');
                 $this->redirect('/');
             }
             else {
-                $this->Session->setFlash('Kunde konnte nicht gelöscht werden.');
+                $this->Session->setFlash('Kunde konnte nicht gelöscht werden.', 'flash_bt_bad');
                 $this->redirect('/');
             }
         }
         else {
-            $this->Session->setFlash('Kunde nicht gefunden');
+            $this->Session->setFlash('Kunde nicht gefunden', 'flash_bt_warning');
             $this->redirect('/');
         }
     }

@@ -1,149 +1,22 @@
-/* line 1, ../scss/style.scss */
+/* line 3, ../scss/style.scss */
 body {
-  font-family: 'Open Sans', sans-serif;
-  margin: 0px;
-  padding: 0px;
-  height: 100%;
+  padding-top: 70px;
 }
 
-html {
-height: 100%;
+/* line 5, ../scss/style.scss */
+.ckc-alert {
+  width: auto;
+  position: relative;
 }
 
-.navigation {
-width: 100%;
-height: 50px;
-border-bottom: 1px solid #CCC;
-margin-top: -10px; /* i have no fucking idea why i have to force this! */
+/* line 10, ../scss/style.scss */
+.site-search {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
-
-.navigation li:first-child {
-width: 209px;
-line-height: 50px;
-vertical-align: middle;
+/* line 12, ../scss/style.scss */
+.site-search.active {
+  min-width: 250px;
 }
-
-/*.navigation ul{
-margin-left: 209px;
-}
-*/
-
-.navigation ul li {
-float: left;
-list-style: none;
-}
-
-.navigation ul li a {
-height: 50px;
-line-height: 50px;
-vertical-align: middle;
-display: block;
-padding: 0px 10px 0px 10px;
-border-left: 1px solid #CCC;
-}
-
-.navigation .search {
-height: 50px;
-display: block;
-border-left: 1px solid #CCC;
-border-right: 1px solid #CCC;
-padding: 12px 10px 0px 10px;
-}
-
-.left-sidebar {
-width: 250px;
-height: 100%;
-padding: 20px;
-border-right: 1px solid #CCC;
-float: left;	
-}
-
-.left-sidebar ul {
-padding: 0px;
-}
-
-.left-sidebar li {
-list-style: none;
-}
-
-.content {
-float: left;
-padding: 20px 35px;
-height: 100%;
-max-width: 60%;
-}
-
-.default-table tr td:first-child{
-vertical-align: top;
-text-align: right;
-padding-right: 10px;
-}
-
-.default-table input[type=text], textarea{
-min-width: 300px;
-}
-
-.default-table tr:last-child {
-
-}
-
-.align-left tr td:first-child{
-text-align: left;
-padding-right: 10px;
-}
-
-h1.with-options {
-display: inline;	
-}
-
-.optionbar {
-margin-left: 50px;
-vertical-align: top;
-}
-
-a.custom {
-background-size: 100%;
-background-color: transparent;
-background-repeat: no-repeat;
-background-position: center;	
-border: none;
-outline: none;
-opacity: 0.4;
-}
-
-a.custom:hover {
-opacity: 0.9;
-}
-
-a.delete {
-background-image: url('../img/delete.png');
-height: 16px;
-width: 16px;
-}
-
-a.edit {
-background-image: url('../img/edit.png');
-height: 16px;
-width: 16px;
-}
-
-span.spacer {
-margin-left: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

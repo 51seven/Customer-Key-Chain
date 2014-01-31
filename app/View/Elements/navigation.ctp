@@ -1,28 +1,37 @@
-<div class='navigation'>
-<ul>
-  <li>
-    Customer Key Chain
-  </li>
-  <li>
-    <?php echo $this->Html->link('Neuer Kunde', array('controller' => 'customer', 'action' => 'create')); ?>
-  </li>
-  <li>
-    <?php echo $this->Html->link('Neue Kombination', array('controller' => 'combination', 'action' => 'create')); ?>
-  </li>
-  <li>
-    <?php echo $this->Html->link('Neuer Typ', array('controller' => 'type', 'action' => 'create')); ?>
-  </li>
-  <li>
-  <span class='search'>
-    <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
-      'type' => 'get',  
-      'inputDefaults' => array(
-        'div' => false,
-      )
-    )); ?>
-    <?php echo $this->Form->input('string', array('label' => 'Suche: ')); ?>
-    <?php echo $this->Form->end(array('div'=>false,'text'=>'Search')); ?>
-    </span>
-  </li>
-</ul>
-</div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/Customer-Key-Chain">Customer Key Chain</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <?php echo $this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create')); ?>
+        </li>
+        <li>
+          <?php echo $this->Html->link('Kombination anlegen', array('controller' => 'combination', 'action' => 'create')); ?>
+        </li>
+        <li>
+          <?php echo $this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create')); ?>
+        </li>
+      </ul>
+      <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
+        'type' => 'get',  
+        'inputDefaults' => array(
+          'div' => array('class' => 'form-group')
+        ),
+        'class' => 'navbar-form navbar-left',
+      )); ?>
+      <?php echo $this->Form->input('string', array('label' => false, 'placeholder' => 'Suchen...', 'class' => 'site-search form-control')); ?>
+      <?php echo $this->Form->button('Suchen', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+      <?php echo $this->Form->end(); ?>
+    </div>
+  </div>
+</nav>
