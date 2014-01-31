@@ -10,11 +10,20 @@ class Customer extends AppModel {
         'Customer.name ASC'
     );
 
+    public $hasMany = array(
+        'Combination' => array(
+            'className' => 'Combination',
+            'foreignKey' => 'combination_id'
+        )
+    );
+
     // Varlidation Rules for this Model
     public $validate = array(
         'name' => array(
-            'notEmpty' => true,
-        ),
+            'rule'     => 'notEmpty',
+            'required' => true,
+            'message' => 'Der Kunde muss einen Namen haben.'
+        )
     );
 }
 ?>

@@ -1,11 +1,7 @@
 <h1>Neue Kombination anlegen</h1>
 <table class='default-table'>
 <?php echo $this->Form->create('Combination', array('type' => 'post')); ?>
-<tr><?php echo $this->Form->input('customer_id', array('label' => 'Kunde: ',
-	'before' => '<td>',
-	'between' => '</td><td>',
-	'after' => '</td>'
-)); ?></tr>
+<?php echo $this->Form->hidden('customer_id'); ?>
 <tr><?php echo $this->Form->input('type_id', array('label' => 'Zugangsdatentyp: ',
 	'before' => '<td>',
 	'between' => '</td><td>',
@@ -23,6 +19,13 @@
 	'before' => '<td>',
 	'between' => '</td><td>',
 	'after' => '</td>'
+)); ?></tr>	
+<tr><?php echo $this->Form->input('loginurl', array(
+	'label' => 'Login URL: ', 
+	'type' => 'text',
+	'before' => '<td>',
+	'between' => '</td><td>',
+	'after' => '*</td>'
 )); ?></tr>	
 <tr><?php echo $this->Form->input('comment', array(
 	'label' => 'Zusätzliche Informationen: ',

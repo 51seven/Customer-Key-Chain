@@ -21,8 +21,10 @@ class Type extends AppModel {
     // Varlidation Rules for this Model
     public $validate = array(
         'name' => array(
-            'notEmpty' => true,
-        ),
+            'rule'     => 'notEmpty',
+            'required' => true,
+            'message' => 'Es muss ein Typ angegeben werden.'
+        )
     );
 }
 

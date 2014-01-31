@@ -12,15 +12,8 @@
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-          <?php echo $this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create')); ?>
-        </li>
-        <li>
-          <?php echo $this->Html->link('Kombination anlegen', array('controller' => 'combination', 'action' => 'create')); ?>
-        </li>
-        <li>
-          <?php echo $this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create')); ?>
-        </li>
+          <?php echo "<li>".$this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create'))."</li>"; ?>
+          <?php echo "<li>".$this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create'))."</li>"; ?>
       </ul>
       <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
         'type' => 'get',  

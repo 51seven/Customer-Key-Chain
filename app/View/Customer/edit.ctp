@@ -1,4 +1,4 @@
-<h1>Neuen Kunden anlegen</h1>
+<h1><?php echo $this->request->data['Customer']['name']; ?> bearbeiten</h1>
 <?php
 echo $this->Form->create('Customer', array(
 	'type' => 'post'
@@ -11,5 +11,5 @@ echo $this->Form->input('isfavorite', array(
 	'label' => 'als Favorit markieren',
 	'type' => 'checkbox'
 ));
-echo $this->Form->end('Kunde anlegen'); 
+echo $this->Form->end('speichern'); 
 ?>

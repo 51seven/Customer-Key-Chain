@@ -16,6 +16,13 @@
 	'between' => '</td><td>',
 	'after' => '</td>'
 )); ?></tr>	
+<tr><?php echo $this->Form->input('loginurl', array(
+	'label' => 'Login URL: ', 
+	'type' => 'text',
+	'before' => '<td>',
+	'between' => '</td><td>',
+	'after' => '*</td>'
+)); ?></tr>	
 <tr><?php echo $this->Form->input('comment', array(
 	'label' => 'Zusätzliche Informationen: ',
 	'before' => '<td>',

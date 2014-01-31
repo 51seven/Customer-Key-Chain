@@ -39,6 +39,34 @@ class CustomerController extends AppController {
         }
     }
 
+    public function edit($cid = null) {
+        // Speichern
+        if($this->request->is('post')) { 
+            $this->request->data['Customer']['customer_id'] = $cid;
+
+            if($this->Customer->save($this->request->data)) {
+                $this->Session->setFlash('Kunde erfolgreich aktualisiert', 'flash_bt_good');
+                $this->redirect('view/'.$cid);
+            }
+            else {
+                $this->Session->setFlash('Kunde konnte nicht aktualisiert werden.', 'flash_bt_bad');
+                $this->redirect('edit/'.$cid);
+            }
+        }
+        // Felder vorselektieren
+        else {
+            if($cid) {
+                $this->request->data = $this->Customer->findByCustomer_id($cid);
+            }
+            else {
+                $this->Session->setFlash('Ungültiger Kunde', 'flash_bt_warning');
+                $this->redirect('/');
+            }
+        }
+
+
+    }
+
     public function search() {
 
         if(isset($this->request->query['string'])) {
@@ -62,15 +90,19 @@ class CustomerController extends AppController {
     }
 
     public function delete($cid) {
-        $customer = $this->Customer->findByCustomer_id($cid);
-
-        if($customer) {
-            if($this->Customer->delete($cid)) {
-                $this->Session->setFlash('Kunde erfolgreich gelöscht.', 'flash_bt_good');
-                $this->redirect('/');
+        if($this->Customer->findByCustomer_id($cid)) {
+            if($this->Combination->deleteAll(array('Combination.customer_id' => $cid))) {
+                if($this->Customer->delete($cid, true)) {
+                    $this->Session->setFlash('Kunde erfolgreich gelöscht.', 'flash_bt_good');
+                    $this->redirect('/');
+                }
+                else {
+                    $this->Session->setFlash('Kunde konnte nicht gelöscht werden.', 'flash_bt_bad');
+                    $this->redirect('/');
+                }
             }
             else {
-                $this->Session->setFlash('Kunde konnte nicht gelöscht werden.', 'flash_bt_bad');
+                $this->Session->setFlash('Kundenkombinationen konnten nicht gelöscht werden.', 'flash_bt_bad');
                 $this->redirect('/');
             }
         }

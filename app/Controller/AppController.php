@@ -59,8 +59,11 @@ class AppController extends Controller {
      * @return void
      */
     public function beforeRender() {
+        $this->set('favorite_customers', $this->Customer->find('list', array(
+            'conditions' =>  array('isfavorite' => true),
+        )));
         $this->set('all_customers', $this->Customer->find('list', array(
-            'order' => 'Customer.name ASC'
+            'conditions' =>  array('isfavorite' => false),
         )));
     }
     

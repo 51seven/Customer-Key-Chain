@@ -10,21 +10,26 @@ class CombinationController extends AppController {
         'Time',
     ); 
 
-    public function create() {
+    public function create($customer_id = null) {
         // Neue Kombination speichern
         if($this->request->is('post')) {
-
             if($this->Combination->save($this->request->data)) {
                 $this->Session->setFlash('Kombination erfolgreich gespeichert.', 'flash_bt_good');
-                $this->redirect(array('controller' => 'combination', 'action' => 'view/'.$this->Combination->getLastInsertId()));
+                $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
             }
             else {
                 $this->Session->setFlash('Fehler beim speichern der Kombination.', 'flash_bt_bad');
             }
         }
         else {
-            $this->set('customers', $this->Combination->Customer->find('list'));
-            $this->set('types', $this->Combination->Type->find('list'));
+            if($this->Customer->findByCustomer_id($customer_id)) {
+                $this->request->data['Combination']['customer_id'] = $customer_id;
+                $this->set('types', $this->Combination->Type->find('list'));    
+            }
+            else {
+                $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');
+                $this->redirect('/');
+            }
         }
     }
 

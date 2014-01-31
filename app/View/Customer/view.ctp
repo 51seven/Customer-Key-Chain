@@ -1,23 +1,18 @@
 <h1 class="with-options"><?php echo $customer['Customer']['name']; ?></h1>
 	<span class="optionbar">
-		<?php echo $this->Html->link('', array(
-			'controller' => 'customer', 
-			'action' => 'delete', $customer['Customer']['customer_id']
-			),
-		    array('class' => 'custom edit'), 
-		    'Möchstest du den Kunden wirklich löschen?'
-		); ?>
-
-		<?php echo $this->Html->link('', array(
-			'type' => 'button', 
-			'class' => 'custom edit', 
-			'alt' => 'Bearbeiten'
+		<?php echo $this->Html->link('Neue Kombination', array(
+			'controller' => 'combination', 
+			'action' => 'create', $customer['Customer']['customer_id'],
 		)); ?>
-		<span class="spacer"> </span>
-		<?php echo $this->Form->button('', array(
-			'type' => 'button', 
-			'class' => 'custom delete', 
-			'alt' => 'Löschen'
+		<br>
+		<?php echo $this->Html->link('edit', array(
+			'controller' => 'customer', 
+			'action' => 'edit', $customer['Customer']['customer_id'],
+		)); ?>
+		<br>
+		<?php echo $this->Html->link('delete', array(
+			'controller' => 'customer', 
+			'action' => 'delete', $customer['Customer']['customer_id'],
 		)); ?>
 	</span>
 <?php
@@ -28,6 +23,13 @@ foreach ($combinations as $key => $combination) {
 	<?php
 	echo '<tr><td><b>Benutzername:</b></td><td>'.$combination['Combination']['username']."</td></tr>";
 	echo '<tr><td><b>Passwort:</b></td><td>'.$combination['Combination']['password']."</td></tr>";
+	if($combination['Combination']['loginurl'] != null) {
+		echo '<tr><td><b>Login URL:</b></td><td>'.$this->Html->link(
+			$combination['Combination']['loginurl'], 
+			'http://'.$combination['Combination']['loginurl'],
+			array('target' => '_blank')
+		)."</td></tr>";
+	}
 	echo '<tr><td><b>Kommentar:</b></td><td>'.$combination['Combination']['comment']."</td></tr>";
 
 	echo '<tr><td>'.$this->Html->link('Bearbeiten', array(
