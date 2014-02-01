@@ -34,8 +34,6 @@ class UserController extends AppController {
                 $this->User->recursive = -1;
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
-                debug($user);
-
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
