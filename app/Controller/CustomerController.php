@@ -9,15 +9,33 @@ class CustomerController extends AppController {
         'Time',
     ); 
 
-    // Used for controlling permisson on actions
-    public $permissions = array( 
-        'logout' => '*', 
-        'welcome' => '*' 
-    ); 
+    public function checkPermission() {
+        if(!$this->Auth->user('isadmin')) {
+            // nur erlaubte Kunden anzeigen
+            $permissions = $this->Permission->find('list', array(
+                'conditions' => array('user_id' => $this->Auth->user('user_id')),
+                'fields' => 'customer_id'
+            ));
 
+            if($this->action == 'view') {
+                if(in_array($this->request->pass[0], $permissions)) {
+                    return true;
+                }
+                else {
+                   throw new MethodNotAllowedException('You dont have permission to see this Customer.'); 
+                }
+            }
+            else if($this->action == 'search' OR $this->action == 'index') {
+                return true;
+            }
+            else {
+                throw new MethodNotAllowedException('Insufficient permissions.');
+            }
+        }
+    }
 
     public function index() {
-    	//$this->set('customers', $this->Customer->find('list', array('order' => 'Customer.name ASC')));
+        $this->set('user', $this->Auth->user());
     }
 
     public function view($cid = null) {
@@ -89,9 +107,28 @@ class CustomerController extends AppController {
             $this->redirect('index');
         }
         else {
-            $this->set('results', $this->Customer->find('all', array(
-                'conditions' => array('Customer.name LIKE' => '%'.$string.'%')
-            )));
+            $results = $this->Customer->find('list', array(
+                'conditions' => array('Customer.name LIKE' => '%'.$string.'%'),
+            ));
+
+            // Suchergebnisse filtern
+            if(!$this->Auth->user('isadmin')) {
+                $permissions = $this->Permission->find('list', array(
+                    'conditions' => array('user_id' => $this->Auth->user('user_id')),
+                    'fields' => 'customer_id'
+                ));   
+
+                foreach ($results as $key => $result) {
+                    if(in_array($key, $permissions)) {
+                        $this->log($result);
+                        $filtered_results[$key] = $result;
+                    }    
+                }
+
+                $results = $filtered_results;
+            }
+
+            $this->set('results', $results);
             $this->set('string', $string);
         }
     }

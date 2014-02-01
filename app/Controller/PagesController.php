@@ -40,6 +40,10 @@ class PagesController extends AppController {
 		'Combination',
 	);
 
+	public function checkPermission() {
+		return true;
+	}
+
 	public function index() {
 		
 		$this->render('index');

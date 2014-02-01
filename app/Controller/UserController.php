@@ -21,12 +21,11 @@ class UserController extends AppController {
         // (AJAXCall leitet zu POST weiter)
         //$this->Security->csrfCheck = false;
 
-        $this->Auth->flash = array(
-           'element' => 'flash_bt_warning'
-      );
+        $this->Auth->flash = array('element' => 'flash_bt_warning');
 
         // Welche Actions sind erlaubt?
         $this->Auth->allow('login', 'createsalt');
+        //$this->Auth->deny();
         
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
@@ -35,6 +34,8 @@ class UserController extends AppController {
             if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) { // Wenn cookie gültig
                 $this->User->recursive = -1;
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
+
+                debug($user);
 
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
@@ -101,7 +102,7 @@ class UserController extends AppController {
             $this->redirect('/user/settings');
         } 
         else {
-            $user = $this->User->findByUser_id($user_id, array('color'));
+            $user = $this->User->findByUser_id($user_id);
             $this->data = $user;
         }
     }
@@ -111,6 +112,18 @@ class UserController extends AppController {
      * Toggle the Customer favorite state
     */
     public function favorite($customer_id = null) {
+
+        // Falls kein Admin: Rechte vorhanden?
+        if(!$this->Auth->user('isadmin')) {
+            $permissions = $this->Permission->find('list', array(
+                'conditions' => array('user_id' => $this->Auth->user('user_id')),
+                'fields' => 'customer_id'
+            ));
+            if(!in_array($customer_id, $permissions)) {                
+                throw new MethodNotAllowedException('You dont have permission to see this Customer.'); 
+            }
+        }
+
         // Gültiger Kunde?
         $customer = $this->Customer->findByCustomer_id($customer_id);
         if($customer) {
@@ -154,7 +167,7 @@ class UserController extends AppController {
                         'username' => $this->request->data['User']['username'],
                         'password' => Security::hash($this->request->data['User']['password'], 'sha1', true),
                         'time' => $currentTime,
-                        'hash' => Security::hash($user['User']['username'].$currentTime) // Checksumme
+                        'hash' => Security::hash($this->request->data['User']['username'].$currentTime) // Checksumme
                     );
                     // Cookie Speichern
                     $this->Cookie->write('autologin', $cookie, true, '+1 year');

@@ -1,15 +1,17 @@
 <h1><?php echo $customer['Customer']['name']; ?></h1>
 <p>
   <?php
-    echo $this->Html->link('Account hinzufügen',
-      array(
-        'controller' => 'combination', 
-        'action' => 'create', $customer['Customer']['customer_id'],
-      ),
-      array(
-        'class' => 'btn-sm btn-primary'
-      )
-    );
+    if($isadmin) {
+      echo $this->Html->link('Account hinzufügen',
+        array(
+          'controller' => 'combination', 
+          'action' => 'create', $customer['Customer']['customer_id'],
+        ),
+        array(
+          'class' => 'btn-sm btn-primary'
+        )
+      );
+    }
 
     echo $this->Html->link('Favorit',
       array(
@@ -21,25 +23,27 @@
       )
     );
 
-    echo $this->Html->link('Bearbeiten',
-      array(
-        'controller' => 'customer', 
-        'action' => 'edit', $customer['Customer']['customer_id'],
-      ),
-      array(
-        'class' => 'btn-sm btn-warning'
-      )
-    );
-
-    echo $this->Html->link('Löschen',
-      array(
-        'controller' => 'customer', 
-        'action' => 'delete', $customer['Customer']['customer_id'],
-      ),
-      array(
-        'class' => 'btn-sm btn-danger'
-      )
-    );
+    if($isadmin) {
+      echo $this->Html->link('Bearbeiten',
+        array(
+          'controller' => 'customer', 
+          'action' => 'edit', $customer['Customer']['customer_id'],
+        ),
+        array(
+          'class' => 'btn-sm btn-warning'
+        )
+      );
+    
+      echo $this->Html->link('Löschen',
+        array(
+          'controller' => 'customer', 
+          'action' => 'delete', $customer['Customer']['customer_id'],
+        ),
+        array(
+          'class' => 'btn-sm btn-danger'
+        )
+      );
+    }
   ?>
 </p>
 <?php
@@ -60,14 +64,16 @@ if(sizeof($combinations) > 0) {
     }
     echo '<tr><td><b>Kommentar:</b></td><td>'.$combination['Combination']['comment']."</td></tr>";
 
-    echo '<tr><td>'.$this->Html->link('Bearbeiten', array(
-      'controller' => 'combination',
-      'action' => 'edit/'.$combination['Combination']['combination_id']
-    )).'</td>';
-    echo '<td>'.$this->Html->link('Löschen', array(
-      'controller' => 'combination',
-      'action' => 'delete/'.$combination['Combination']['combination_id']
-    )).'</td><td></tr>';
+    if($isadmin) {
+      echo '<tr><td>'.$this->Html->link('Bearbeiten', array(
+        'controller' => 'combination',
+        'action' => 'edit/'.$combination['Combination']['combination_id']
+      )).'</td>';
+      echo '<td>'.$this->Html->link('Löschen', array(
+        'controller' => 'combination',
+        'action' => 'delete/'.$combination['Combination']['combination_id']
+      )).'</td><td></tr>';
+    }
     ?>
     </table>
     <hr>

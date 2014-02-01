@@ -52,51 +52,38 @@ class AppController extends Controller {
                 'element' => 'flash_bt_warning',
                 'key' => 'auth',
                 'params' => array(1)
-            )
+            ),
+
         ),
-        //'DebugKit.Toolbar'
+        'DebugKit.Toolbar'
     );
 
     public $uses = array(
         'Customer',
         'Favorite',
+        'Permission',
     );
 
-    public $permissions = array(); 
+    // Customer -> view (eingeschrängt), search
+    // User -> allow all
+    // Type -> deny all
+    // Combination -> view (do not implement)
 
+    public function beforeFilter() {
+        $this->checkPermission($this->Auth->user());
+    }
+    
     /*
-     * @overrice (not rly, but its sounds cooler)
-     * Overrides the method. 
+     * Has to be overwritten in Conrtollers or no controller-action is allowed
+     * default: block all actions if no admin
      */
-    function isAuthorized(){ 
-        if($this->Auth->user('isadmin')) return true; //Remove this line if you don't want admins to have access to everything by default
-        if(!empty($this->permissions[$this->action])) { 
-            if($this->permissions[$this->action] == '*') {
-                return true; 
-            }
-            if(in_array($this->Auth->user('group'), $this->permissions[$this->action])) {
-                return true; 
-            }
-        } 
-        return false; 
-         
-    } 
-
- 	public function beforeFilter() {
-        if($this->Auth->user('isadmin')) {
-            $this->Auth->allow();
-            return;
+    public function checkPermission() {
+        if(!$this->Auth->user('isadmin')) {
+            throw new MethodNotAllowedException('Insufficient permissions.');
+            return true;
         }
-        else {
-
-            return;
-        }
-
-        // Default deny
-        $this->Auth->deny();
     }
 
-    
     /* 
      * beforeRender callback
      */
@@ -109,12 +96,30 @@ class AppController extends Controller {
             'fields' => 'customer_id'
         ));
 
-        // Favorites
-        $this->set('favorite_customers', $this->Customer->findAllByCustomer_id($favorites));
+        // Wenn kein Admin, dann nur Kunden anzeigen auf die der User Rechte hat
+        if(!$this->Auth->user('isadmin')) {
+            $permissions = $this->Permission->find('list', array(
+                'conditions' => array(
+                    'user_id' => $this->Auth->user('user_id')
+                ),
+                'fields' => 'customer_id'
+            ));
+        
+            $favorite_customers = $this->Customer->findAllByCustomer_id($favorites);
+            
+            $all_customers = $this->Customer->find('all', array('conditions' => array(
+                'customer_id' => $permissions,
+                'NOT' => array('customer_id' => $favorites)
+            )));
+        }
+        else {
+            $favorite_customers = $this->Customer->findAllByCustomer_id($favorites);
+            $all_customers = $this->Customer->find('all', array('conditions' => array('NOT' => array('customer_id' => $favorites))));
+        }
 
-        // Other (favorites excluded)
-        $customer = $this->Customer->find('all', array('conditions' => array('NOT' => array('customer_id' => $favorites))));
-        $this->set('all_customers', $customer);
+        $this->set('favorite_customers', $favorite_customers);
+        $this->set('all_customers', $all_customers);
+        $this->set('isadmin', $this->Auth->user('isadmin'));
     }
     
 

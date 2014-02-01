@@ -12,8 +12,8 @@
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <?php echo "<li>".$this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create'))."</li>"; ?>
-          <?php echo "<li>".$this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create'))."</li>"; ?>
+          <?php if($isadmin) echo "<li>".$this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create'))."</li>"; ?>
+          <?php if($isadmin) echo "<li>".$this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create'))."</li>"; ?>
           <?php 
             if($this->Session->check('Auth.User')) {
               echo "<li>".$this->Html->link('Logout', array('controller' => 'user', 'action' => 'logout'))."</li>"; 
