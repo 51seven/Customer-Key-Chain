@@ -131,7 +131,6 @@ class CustomerController extends AppController {
 
                 foreach ($results as $key => $result) {
                     if(in_array($key, $permissions)) {
-                        $this->log($result);
                         $filtered_results[$key] = $result;
                     }    
                 }

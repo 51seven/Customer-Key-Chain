@@ -25,7 +25,6 @@ class UserController extends AppController {
 
         // Welche Actions sind erlaubt?
         $this->Auth->allow('login', 'createsalt');
-        //$this->Auth->deny();
         
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
@@ -60,51 +59,28 @@ class UserController extends AppController {
         $this->autoRender = false;
     }
 
-    public function index() {
-        $users = $this->User->find('all');
-        $this->set('users', $users);
-    }
-
     public function settings() {  
-
-        // User-ID des aktuell eingeloggten Benutzers auslesen
-        $user_id = $this->Session->read('User.user_id');
-        $this->User->recursive = -1;
-
         if($this->request->is('post')) {
-            $this->request->data['User']['user_id'] = $user_id;
+            $this->request->data['User']['user_id'] = $this->Auth->user('user_id');
 
-            // Schaut nach ob das Passwort aktuaisiert werden soll
-            /*if($this->request->data['User']['password_old'] != null) {
-
-                $db_password = $this->User->findByUser_id($user_id);
-                // Stimmt das alte PW mit dem neuen überein?
-                if($db_password == Security::hash($this->request->data['User']['password_old'], 'sha1', true)) {
-                    // Stimmen die beiden neuen Passwörter überein?
-                    if($this->request->data['User']['password_new'] == $this->request->data['User']['password_confirm']) {
-
-
-                    }
-                }
-            }*/
+            $this->User->recursive = -1;
+            $db_password = $this->User->findByUser_id($this->Auth->user('user_id'));
             
-            unset($this->request->data['User']['password_old']);
-            unset($this->request->data['User']['password_new']);
-            unset($this->request->data['User']['password_confirm']);
-
-            if($this->User->save($this->request->data, $validate = true)) {
-                $this->Session->setFlash('Profil erfolgreich aktualisiert.', 'flash_bt_good');
+            if($db_password['User']['password'] == Security::hash($this->request->data['User']['password_old'], 'sha1', true)) {
+                if($this->User->save($this->request->data)) {
+                    unset($this->request->data);
+                    $this->Session->setFlash('Passwort wurde erfolgreich aktualisiert.', 'flash_bt_good');
+                }
+                else {
+                    $this->Session->setFlash('Passwort konnte nicht aktualisiert werden.', 'flash_bt_bad');   
+                }
+                // Why the fuck does this result in a white page?
+                //$this->redirect(array('controller' => 'user', 'action' => 'settings'));
             }
             else {
-                $this->Session->setFlash('Profil konnte nicht aktualisiert werden.', 'flash_bt_bad');   
+                $this->Session->setFlash('Dein altes Passwort ist inkorrekt.', 'flash_bt_warning');
             }
-
-            $this->redirect('/user/settings');
         } 
-        else {
-            $user = $this->User->findByUser_id($user_id);
-            $this->data = $user;
-        }
     }
 
     /**
@@ -142,7 +118,7 @@ class UserController extends AppController {
                 ));
 
                 if($this->Favorite->save($new_fav)) {
-                    //$this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
+                    $this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
                     $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
                 }
                 else {
