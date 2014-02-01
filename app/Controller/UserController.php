@@ -30,7 +30,7 @@ class UserController extends AppController {
         
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
-/*
+
         if(!$this->Auth->loggedIn() && isset($cookie)) { // Wenn ausgeloggt und Cookie gesetzt
             if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) { // Wenn cookie gültig
                 $this->User->recursive = -1;
@@ -42,7 +42,7 @@ class UserController extends AppController {
                     $this->Session->write('User', $user['User']);
                 }
             }
-        }*/
+        }
         if($this->Auth->loggedIn()) { // User setzen, falls eingeloggt
             $user = $this->Auth->user();
             unset($user['User']['password']); // Security shit

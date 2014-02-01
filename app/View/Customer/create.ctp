@@ -7,9 +7,5 @@ echo $this->Form->create('Customer', array(
 echo $this->Form->input('name', array(
 	'label' => 'Name des Kunden: ', 
 ));
-echo $this->Form->input('isfavorite', array(
-	'label' => 'als Favorit markieren',
-	'type' => 'checkbox'
-));
 echo $this->Form->end('Kunde anlegen'); 
 ?>
