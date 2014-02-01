@@ -40,31 +40,77 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'user', 'action' => 'login'),
             'loginAction' => array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
+            /*'authenticate' => array(
+                'Form' => array(
+                    'fields' => array(
+                        'username' => 'username', 
+                        'password' => 'password'
+                    )
+                )
+            )*/ // It seems that this snipped isnt neccessary. hum.
         ),
         //'DebugKit.Toolbar',
         // authError als flash_bt_info sollte sein
     );
 
     public $uses = array(
-        'Customer'
+        'Customer',
+        'Favorite',
     );
 
+    public $permissions = array(); 
+
+    /*
+     * @overrice (not rly, but its sounds cooler)
+     * Overrides the method. 
+     */
+    function isAuthorized(){ 
+        if($this->Auth->user('isadmin')) return true; //Remove this line if you don't want admins to have access to everything by default
+        if(!empty($this->permissions[$this->action])) { 
+            if($this->permissions[$this->action] == '*') {
+                return true; 
+            }
+            if(in_array($this->Auth->user('group'), $this->permissions[$this->action])) {
+                return true; 
+            }
+        } 
+        return false; 
+         
+    } 
+
  	public function beforeFilter() {
+        if($this->Auth->user('isadmin')) {
+            $this->Auth->allow();
+            return;
+        }
+        else {
+
+            return;
+        }
+
+        // Default deny
         $this->Auth->deny();
     }
 
-    /**
+    
+    /* 
      * beforeRender callback
-     *
-     * @return void
      */
     public function beforeRender() {
-        $this->set('favorite_customers', $this->Customer->find('list', array(
-            'conditions' =>  array('isfavorite' => true),
-        )));
-        $this->set('all_customers', $this->Customer->find('list', array(
-            'conditions' =>  array('isfavorite' => false),
-        )));
+        // Get Favorite Customer IDs
+        $favorites = $this->Favorite->find('list', array(
+            'conditions' => array(
+                'user_id' => $this->Auth->user('user_id')
+            ),
+            'fields' => 'customer_id'
+        ));
+
+        // Favorites
+        $this->set('favorite_customers', $this->Customer->findAllByCustomer_id($favorites));
+
+        // Other (favorites excluded)
+        $customer = $this->Customer->find('all', array('conditions' => array('NOT' => array('customer_id' => $favorites))));
+        $this->set('all_customers', $customer);
     }
     
 

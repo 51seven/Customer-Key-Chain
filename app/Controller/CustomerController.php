@@ -9,6 +9,13 @@ class CustomerController extends AppController {
         'Time',
     ); 
 
+    // Used for controlling permisson on actions
+    public $permissions = array( 
+        'logout' => '*', 
+        'welcome' => '*' 
+    ); 
+
+
     public function index() {
     	//$this->set('customers', $this->Customer->find('list', array('order' => 'Customer.name ASC')));
     }

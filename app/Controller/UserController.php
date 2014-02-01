@@ -7,7 +7,9 @@ class UserController extends AppController {
     );
     public $uses = array(
         'User', 
-        'Task'
+        'Task',
+        'Customer',
+        'Favorite',
     );
     public $helpers = array(
         'Time',
@@ -17,36 +19,29 @@ class UserController extends AppController {
         // Kein blackhole callback (validatePost, CheckForm) bei AJAX Request
         // blackhole callback bei POST Aufruf trotzdem vorhanden
         // (AJAXCall leitet zu POST weiter)
-        $this->Security->csrfCheck = false;
+        //$this->Security->csrfCheck = false;
 
         // Welche Actions sind erlaubt?
         $this->Auth->allow('login', 'createsalt');
         
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
+/*
+        if(!$this->Auth->loggedIn() && isset($cookie)) { // Wenn ausgeloggt und Cookie gesetzt
+            if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) { // Wenn cookie gültig
+                $this->User->recursive = -1;
+                $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
-        // Wenn ausgeloggt und Cookie gesetzt
-        if(!$this->Auth->loggedIn() && isset($cookie)) {
-            // Wenn cookie gültig
-            if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) {
-                $user = $this->User->find('first', array(
-                    'conditions' => array(
-                        'User.username' => $cookie['username'],
-                        'User.password' => $cookie['password']
-                    ),
-                    'recursive' => -1,
-                ));
-                // Wenn ein Benutzer gefunden wurde: Authentifizieren
-                if(count($user) > 0) {
+                if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
                     $this->Session->write('User', $user['User']);
                 }
             }
-        }
-        // User setzen, falls eingeloggt
-        if($this->Auth->loggedIn()) {
+        }*/
+        if($this->Auth->loggedIn()) { // User setzen, falls eingeloggt
             $user = $this->Auth->user();
+            unset($user['User']['password']); // Security shit
             $this->set('current_user', $user);
         } 
         else {
@@ -107,46 +102,65 @@ class UserController extends AppController {
         }
     }
 
-    public function login() {
 
-        if($this->request->is('Post')) {
-
-            $this->User->recursive = -1;
-
-            $user = $this->User->findByUsernameAndPassword(
-                $this->request->data['User']['username'], 
-                Security::hash($this->request->data['User']['password'], 'sha1', true) //true = default salt
-            );
-
-            if(!$user) {
-                $this->Session->setFlash('Login fehlgeschlagen.', 'flash_bt_warning');
-                $this->redirect($this->Auth->loginAction);
+    /**
+     * @param Kunden ID
+     * Toggle the Customer favorite state
+    */
+    public function favorite($customer_id = null) {
+        // Gültiger Kunde?
+        $customer = $this->Customer->findByCustomer_id($customer_id);
+        if($customer) {
+            // Kunde bereits Favorit? Entfernen!
+            if($this->Favorite->findByCustomer_idAndUser_id($customer_id, $this->Auth->user('user_id'))) {
+                $this->Favorite->deleteAll(array('Favorite.customer_id' => $customer_id, 'Favorite.user_id' => $this->Auth->user('user_id')));
+                $this->Session->setFlash($customer['Customer']['name'].' wurde von den Favoriten entfernt.', 'flash_bt_good');
+                $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
             }
-            else { 
-                //debug($user);
+            // Kunde als Favorit speichern
+            else {       
+                // data to save
+                $new_fav = array('Favorite' => array(
+                    'user_id' => $this->Auth->user('user_id'),
+                    'customer_id' => $customer_id
+                ));
 
-                // User Authentifizieren
-                $this->Auth->login($user);
-                $this->Auth->authenticate = $user;
+                if($this->Favorite->save($new_fav)) {
+                    $this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
+                    $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
+                }
+                else {
+                    $this->Session->setFlash($customer['Customer']['name'].' konnte nicht als Favorit gespeichert werden', 'flash_bt_bad');
+                    $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
+                }
+            }
+        }
+        else {
+            $this->Session->setFlash('Ungültiger Kunde.', 'flash_bt_bad');
+            $this->redirect('/');
+        }
+    }
 
-                // Wichtige Daten in der Session speichern:
-                $this->Session->write('User', $user['User']);
-
-                // Eingeloggt bleiben?
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
                 if($this->request->data['User']['stay'] == 1) {
                     $currentTime = time();
                     $cookie = array(
-                        'username' => $user['User']['username'],
-                        'password' => $user['User']['password'],
+                        'username' => $this->request->data['User']['username'],
+                        'password' => Security::hash($this->request->data['User']['password'], 'sha1', true),
                         'time' => $currentTime,
                         'hash' => Security::hash($user['User']['username'].$currentTime) // Checksumme
                     );
                     // Cookie Speichern
                     $this->Cookie->write('autologin', $cookie, true, '+1 year');
                 }
-                
-                // weiterleiten
-                $this->redirect($this->Auth->loginRedirect);
+
+                $this->Session->setFlash('Willkommen zurück, '.$this->request->data['User']['username'], 'flash_bt_good');
+                return $this->redirect($this->Auth->redirectUrl());
+            } 
+            else {
+                $this->Session->setFlash('Login fehlgeschlagen', 'flash_bt_bad');
             }
         }
     }
@@ -156,7 +170,7 @@ class UserController extends AppController {
         $this->Session->setFlash('Du wurdest erfolgreich ausgeloggt.', 'flash_bt_info');
         $this->Session->delete('User');
         $this->Cookie->delete('autologin');
-        $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Auth->logout());
     }
 
 

@@ -10,12 +10,16 @@ class Customer extends AppModel {
         'Customer.name ASC'
     );
 
-    public $hasMany = array(
+    /*public $hasOne = array(
         'Combination' => array(
             'className' => 'Combination',
             'foreignKey' => 'combination_id'
+        ),
+        'Favorites' => array(
+            'className' => 'Favorites',
+            'foreignKey' => 'favorite_id'
         )
-    );
+    );*/
 
     // Varlidation Rules for this Model
     public $validate = array(
