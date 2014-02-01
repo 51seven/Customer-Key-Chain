@@ -1,3 +1,7 @@
+.ckc-customer-h {
+	margin-top: 0;
+}
+
 .ckc-fav-icon {
 	
 	text-decoration: none;
@@ -22,6 +26,33 @@
 
 		&:hover {
 			color: #f8d308;
+		}
+	}
+}
+
+.ckc-account-table {
+	.nr {
+		width: 30px;
+	}
+	.action {
+		width: 70px;
+	}
+	.username {
+		width: 150px;
+	}
+	.password {
+		width: 150px;
+	}
+	.comment {
+		width: 200px;
+	}
+
+	.ckc-action-btn {
+		height: 24px;
+		width: 24px;
+
+		span {
+			top: 3px;
 		}
 	}
 }

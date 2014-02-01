@@ -57,8 +57,16 @@ class CustomerController extends AppController {
                 if($favorite == $cid) $isfav = true;
             }
     		$combinations = $this->Combination->findAllByCustomer_id($cid);
+            $combos = array();
+            foreach($combinations as $combination) {
+                $type = $combination['Type']['name'];
+                if(!array_key_exists($type, $combos)) {
+                    $combos[$type] = array();
+                }
+                $combos[$type][] = $combination['Combination'];
+            }
             $this->set('isfav', $isfav);
-    		$this->set('combinations', $combinations);
+    		$this->set('combinations', $combos);
     		$this->set('customer', $customer);
     	}
     }
