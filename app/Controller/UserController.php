@@ -147,6 +147,7 @@ class UserController extends AppController {
                     $this->Cookie->write('autologin', $cookie, true, '+1 year');
                 }
 
+                $this->Session->write('NavCollapse.fav', true);
                 $this->Session->setFlash('Willkommen zurück, '.$this->request->data['User']['username'], 'flash_bt_good');
                 return $this->redirect($this->Auth->redirectUrl());
             } 
