@@ -4,7 +4,12 @@
     <div id="favoriten" class="panel-collapse collapse">
       <?php 
       foreach ($favorite_customers as $key => $fav_customer) {
-          echo $this->Html->link($fav_customer, array('controller' => 'customer', 'action' => 'view/'.$key), array('class' => 'list-group-item'));
+          echo $this->Html->link($fav_customer['Customer']['name'], array(
+            'controller' => 'customer', 
+            'action' => 'view/'.$fav_customer['Customer']['customer_id']
+          ), array(
+            'class' => 'list-group-item'
+          ));
       }
       ?>
     </div>
@@ -14,7 +19,9 @@
     <div id="allCustomers" class="panel-collapse collapse in">
       <?php 
       foreach ($all_customers as $key => $customer) {
-          echo $this->Html->link($customer, array('controller' => 'customer', 'action' => 'view/'.$key), array('class' => 'list-group-item'));
+          echo $this->Html->link($customer['Customer']['name'], array(
+      'controller' => 'customer', 
+      'action' => 'view/'.$customer['Customer']['customer_id']), array('class' => 'list-group-item'));
       }
       ?>
     </div>
