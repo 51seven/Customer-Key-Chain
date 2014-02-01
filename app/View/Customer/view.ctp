@@ -1,4 +1,21 @@
-<h1><?php echo $customer['Customer']['name']; ?></h1>
+<h1>
+  <?php echo $customer['Customer']['name']; ?>
+  <?php
+    if($isfav)
+      $addClass = 'glyphicon-star';
+    else
+      $addClass = 'glyphicon-star-empty';
+  ?>
+  <?php echo $this->Html->link('',
+    array(
+      'controller' => 'user', 
+      'action' => 'favorite', $customer['Customer']['customer_id'],
+    ),
+    array(
+      'class' => 'ckc-fav-icon glyphicon '.$addClass
+    )
+  ); ?>
+</h1>
 <p>
   <?php
     echo $this->Html->link('Account hinzufügen',
@@ -10,17 +27,8 @@
         'class' => 'btn-sm btn-primary'
       )
     );
-
-    echo $this->Html->link('Favorit',
-      array(
-        'controller' => 'user', 
-        'action' => 'favorite', $customer['Customer']['customer_id'],
-      ),
-      array(
-        'class' => 'btn-sm btn-info'
-      )
-    );
-
+  ?>
+  <?php
     echo $this->Html->link('Bearbeiten',
       array(
         'controller' => 'customer', 
@@ -30,7 +38,8 @@
         'class' => 'btn-sm btn-warning'
       )
     );
-
+  ?>
+  <?php
     echo $this->Html->link('Löschen',
       array(
         'controller' => 'customer', 

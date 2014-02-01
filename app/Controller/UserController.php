@@ -117,7 +117,7 @@ class UserController extends AppController {
             // Kunde bereits Favorit? Entfernen!
             if($this->Favorite->findByCustomer_idAndUser_id($customer_id, $this->Auth->user('user_id'))) {
                 $this->Favorite->deleteAll(array('Favorite.customer_id' => $customer_id, 'Favorite.user_id' => $this->Auth->user('user_id')));
-                $this->Session->setFlash($customer['Customer']['name'].' wurde von den Favoriten entfernt.', 'flash_bt_good');
+                //$this->Session->setFlash($customer['Customer']['name'].' wurde von den Favoriten entfernt.', 'flash_bt_good');
                 $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
             }
             // Kunde als Favorit speichern
@@ -129,7 +129,7 @@ class UserController extends AppController {
                 ));
 
                 if($this->Favorite->save($new_fav)) {
-                    $this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
+                    //$this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
                     $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
                 }
                 else {

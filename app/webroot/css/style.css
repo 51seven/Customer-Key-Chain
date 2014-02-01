@@ -77,3 +77,36 @@ body.login .ckc-btn-login {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* line 1, ../scss/_view-customer.scss */
+.ckc-fav-icon {
+  text-decoration: none;
+  font-size: .6em;
+  top: -.1em;
+  left: 5px;
+}
+/* line 8, ../scss/_view-customer.scss */
+.ckc-fav-icon:hover {
+  text-decoration: none;
+}
+/* line 12, ../scss/_view-customer.scss */
+.ckc-fav-icon.glyphicon-star {
+  color: #f8d308;
+}
+/* line 15, ../scss/_view-customer.scss */
+.ckc-fav-icon.glyphicon-star:hover {
+  color: #dddddd;
+}
+/* line 20, ../scss/_view-customer.scss */
+.ckc-fav-icon.glyphicon-star-empty {
+  color: #dddddd;
+}
+/* line 23, ../scss/_view-customer.scss */
+.ckc-fav-icon.glyphicon-star-empty:hover {
+  color: #f8d308;
+}
+
+/* line 21, ../scss/style.scss */
+.ckc-panel-dump {
+  display: block;
+}

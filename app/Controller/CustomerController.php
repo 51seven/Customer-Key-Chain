@@ -28,7 +28,18 @@ class CustomerController extends AppController {
     		$this->render('index');
     	}
     	else {
+            $favorites = $this->Favorite->find('list', array(
+                'conditions' => array(
+                    'user_id' => $this->Auth->user('user_id')
+                ),
+                'fields' => 'customer_id'
+            ));
+            $isfav = false;
+            foreach($favorites as $favorite) {
+                if($favorite == $cid) $isfav = true;
+            }
     		$combinations = $this->Combination->findAllByCustomer_id($cid);
+            $this->set('isfav', $isfav);
     		$this->set('combinations', $combinations);
     		$this->set('customer', $customer);
     	}

@@ -16,3 +16,8 @@ body {
 @import "header";
 @import "login";
 @import "sidebar";
+@import "view-customer";
+
+.ckc-panel-dump {
+	display: block;
+}
