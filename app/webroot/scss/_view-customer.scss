@@ -1,0 +1,27 @@
+.ckc-fav-icon {
+	
+	text-decoration: none;
+	font-size: .6em;
+	top: -.1em;
+	left: 5px;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.glyphicon-star {
+		color: #f8d308;
+
+		&:hover {
+			color: #dddddd;
+		}
+	}
+
+	&.glyphicon-star-empty {
+		color: #dddddd;
+
+		&:hover {
+			color: #f8d308;
+		}
+	}
+}
