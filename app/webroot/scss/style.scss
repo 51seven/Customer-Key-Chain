@@ -1,15 +1,18 @@
 @import "compass/css3/transition";
 
-body { padding-top: 70px; }
+@mixin retina-background($name, $extension) {
+	background-image: image-url($name + "." + $extension);
 
-.ckc-alert {
-	width: auto;
-	position: relative;
-}
-
-.site-search {
-	@include transition(all .3s);
-	&.active {
-		min-width: 250px;
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		background-image: image-url($name + "@2x." + $extension);
+		background-size: image-width($name + "." + $extension) image-height($name + "." + $extension);
 	}
 }
+
+body {
+	padding-top: 70px;
+}
+
+@import "header";
+@import "login";
+@import "sidebar";

@@ -46,7 +46,7 @@ class AppController extends Controller {
                 'params' => array(1)
             )
         ),
-        //'DebugKit.Toolbar',
+        //'DebugKit.Toolbar'
     );
 
     public $uses = array(

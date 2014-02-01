@@ -1,0 +1,7 @@
+.site-search {
+	@include transition(all .3s);
+
+	&.active {
+		min-width: 250px;
+	}
+}

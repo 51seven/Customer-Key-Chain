@@ -1,0 +1,26 @@
+body.login {
+	background: #f3f3f3;
+	.wrapper {
+		max-width: 300px;
+		margin: 0 auto;
+	}
+
+	.logo {
+		display: block;
+		text-indent: -9999px;
+		width: 100px;
+		height: 100px;
+		margin: 0 auto 40px;
+		opacity: .5;
+		@include retina-background(logo, png);
+		@include transition(opacity .3s);
+
+		&:hover {
+			opacity: .6;
+		}
+	}
+
+	.ckc-btn-login {
+		width: 100%;
+	}
+}

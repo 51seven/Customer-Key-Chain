@@ -19,21 +19,10 @@
     echo $this->fetch('css');
     echo $this->fetch('script');
   ?>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <?php echo $this->element('navigation'); ?>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3">
-        <?php echo $this->element('left-sidebar'); ?>
-      </div>
-      <div class="col-sm-9">
-        <?php echo $this->Session->flash(); ?>
-        <?php echo $this->fetch('content'); ?>
-        <?php //echo $this->element('sql_dump'); ?>
-      </div>
-    </div>
+<body class="login">
+  <div class="wrapper">
+    <?php echo $this->fetch('content'); ?>
   </div>
 </body>
 </html>

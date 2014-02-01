@@ -17,7 +17,7 @@ class CustomerController extends AppController {
     	$customer = $this->Customer->findByCustomer_id($cid);
 
     	if(!$customer) {
-    		$this->Session->setFLash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
+    		$this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
     		$this->render('index');
     	}
     	else {

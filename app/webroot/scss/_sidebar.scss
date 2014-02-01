@@ -1,0 +1,22 @@
+.ckc-head-item {
+	background-color: #e7ecf1;
+	font-weight: bold;
+
+	.glyphicon-bookmark {
+		position: absolute;
+		top: 0;
+		right: 10px;
+		font-size: 2em;
+		color: #a71010;
+	}
+}
+
+.sidebar-accordion {
+	margin-top: 20px;
+	.panel-collapse {
+		.list-group-item:first-child {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	}
+}

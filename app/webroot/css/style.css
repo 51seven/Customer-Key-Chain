@@ -1,22 +1,79 @@
-/* line 3, ../scss/style.scss */
+/* line 12, ../scss/style.scss */
 body {
   padding-top: 70px;
 }
 
-/* line 5, ../scss/style.scss */
-.ckc-alert {
-  width: auto;
-  position: relative;
-}
-
-/* line 10, ../scss/style.scss */
+/* line 1, ../scss/_header.scss */
 .site-search {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 12, ../scss/style.scss */
+/* line 4, ../scss/_header.scss */
 .site-search.active {
   min-width: 250px;
+}
+
+/* line 1, ../scss/_login.scss */
+body.login {
+  background: #f3f3f3;
+}
+/* line 3, ../scss/_login.scss */
+body.login .wrapper {
+  max-width: 300px;
+  margin: 0 auto;
+}
+/* line 8, ../scss/_login.scss */
+body.login .logo {
+  display: block;
+  text-indent: -9999px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 40px;
+  opacity: .5;
+  background-image: url('../img/logo.png?1391209126');
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* line 8, ../scss/_login.scss */
+  body.login .logo {
+    background-image: url('../img/logo@2x.png?1391209138');
+    background-size: 100px 100px;
+  }
+}
+/* line 18, ../scss/_login.scss */
+body.login .logo:hover {
+  opacity: .6;
+}
+/* line 23, ../scss/_login.scss */
+body.login .ckc-btn-login {
+  width: 100%;
+}
+
+/* line 1, ../scss/_sidebar.scss */
+.ckc-head-item {
+  background-color: #e7ecf1;
+  font-weight: bold;
+}
+/* line 5, ../scss/_sidebar.scss */
+.ckc-head-item .glyphicon-bookmark {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 2em;
+  color: #a71010;
+}
+
+/* line 14, ../scss/_sidebar.scss */
+.sidebar-accordion {
+  margin-top: 20px;
+}
+/* line 17, ../scss/_sidebar.scss */
+.sidebar-accordion .panel-collapse .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

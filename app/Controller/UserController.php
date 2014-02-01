@@ -19,6 +19,10 @@ class UserController extends AppController {
         // (AJAXCall leitet zu POST weiter)
         $this->Security->csrfCheck = false;
 
+        $this->Auth->flash = array(
+           'element' => 'flash_bt_warning'
+      );
+
         // Welche Actions sind erlaubt?
         $this->Auth->allow('login', 'createsalt');
         
@@ -108,6 +112,7 @@ class UserController extends AppController {
     }
 
     public function login() {
+        $this->layout = 'login';
 
         if($this->request->is('Post')) {
 
