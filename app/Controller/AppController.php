@@ -48,9 +48,13 @@ class AppController extends Controller {
                     )
                 )
             )*/ // It seems that this snipped isnt neccessary. hum.
+            'flash' => array(
+                'element' => 'flash_bt_warning',
+                'key' => 'auth',
+                'params' => array(1)
+            )
         ),
         //'DebugKit.Toolbar',
-        // authError als flash_bt_info sollte sein
     );
 
     public $uses = array(
