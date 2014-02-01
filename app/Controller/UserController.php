@@ -145,6 +145,7 @@ class UserController extends AppController {
     }
 
     public function login() {
+        $this->layout = 'login';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 if($this->request->data['User']['stay'] == 1) {
