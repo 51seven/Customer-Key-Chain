@@ -1,6 +1,7 @@
-/* line 12, ../scss/style.scss */
+/* line 14, ../scss/style.scss */
 body {
   padding-top: 70px;
+  background: #fbfbfb;
 }
 
 /* line 1, ../scss/_header.scss */
@@ -12,7 +13,20 @@ body {
 }
 /* line 4, ../scss/_header.scss */
 .site-search.active {
-  min-width: 250px;
+  min-width: 210px;
+}
+
+/* line 9, ../scss/_header.scss */
+.ckc-search-form {
+  width: 230px;
+  padding-right: 0;
+}
+@media (max-width: 768px) {
+  /* line 9, ../scss/_header.scss */
+  .ckc-search-form {
+    width: inherit;
+    padding-right: 15px;
+  }
 }
 
 /* line 1, ../scss/_login.scss */
@@ -68,6 +82,10 @@ body.login .ckc-btn-login {
   color: #a71010;
 }
 
+/* line 14, ../scss/_sidebar.scss */
+.sidebar-accordion {
+  margin-top: 20px;
+}
 /* line 17, ../scss/_sidebar.scss */
 .sidebar-accordion .panel-collapse .list-group-item:first-child {
   border-top-left-radius: 0;
@@ -107,37 +125,70 @@ body.login .ckc-btn-login {
   color: #f8d308;
 }
 
-/* line 34, ../scss/_view-customer.scss */
-.ckc-account-table .nr {
-  width: 30px;
-}
-/* line 37, ../scss/_view-customer.scss */
-.ckc-account-table .action {
-  width: 70px;
-}
-/* line 40, ../scss/_view-customer.scss */
-.ckc-account-table .username {
-  width: 150px;
-}
-/* line 43, ../scss/_view-customer.scss */
-.ckc-account-table .password {
-  width: 150px;
-}
-/* line 46, ../scss/_view-customer.scss */
-.ckc-account-table .comment {
-  width: 200px;
-}
-/* line 50, ../scss/_view-customer.scss */
-.ckc-account-table .ckc-action-btn {
-  height: 24px;
-  width: 24px;
-}
-/* line 54, ../scss/_view-customer.scss */
-.ckc-account-table .ckc-action-btn span {
-  top: 3px;
+/* line 33, ../scss/_view-customer.scss */
+.ckc-page-header {
+  border-bottom-width: 3px;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 37, ../scss/_view-customer.scss */
+.ckc-account {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* line 42, ../scss/_view-customer.scss */
+.ckc-view-panel {
+  background-color: white;
+  width: 100%;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+/* line 49, ../scss/_view-customer.scss */
+.ckc-view-panel .ckc-view-btn-group {
+  top: -11px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* line 55, ../scss/_view-customer.scss */
+.ckc-view-panel .ckc-input-group-username {
+  margin-bottom: 10px;
+}
+/* line 59, ../scss/_view-customer.scss */
+.ckc-view-panel .form-control {
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+/* line 64, ../scss/_view-customer.scss */
+.ckc-view-panel label {
+  display: block;
+}
+
+/* line 69, ../scss/_view-customer.scss */
+.ckc-loginurl, .ckc-comment {
+  position: relative;
+  top: -1px;
+  background: white;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* line 77, ../scss/_view-customer.scss */
+.ckc-loginurl {
+  padding: 10px;
+  margin-bottom: -1px;
+}
+
+/* line 82, ../scss/_view-customer.scss */
+.ckc-comment {
+  padding: 10px 10px 0 10px;
+}
+
+/* line 24, ../scss/style.scss */
 .ckc-panel-dump {
   display: block;
 }

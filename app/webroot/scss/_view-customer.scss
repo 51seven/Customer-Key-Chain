@@ -30,29 +30,55 @@
 	}
 }
 
-.ckc-account-table {
-	.nr {
-		width: 30px;
-	}
-	.action {
-		width: 70px;
-	}
-	.username {
-		width: 150px;
-	}
-	.password {
-		width: 150px;
-	}
-	.comment {
-		width: 200px;
+.ckc-page-header {
+	border-bottom-width: 3px;
+}
+
+.ckc-account {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.ckc-view-panel {
+	background-color: white;
+	width: 100%;
+	border: 1px solid #ddd;
+	@include box-shadow(0 1px 1px rgba(0,0,0,.05));
+	padding: 10px;
+
+	.ckc-view-btn-group {
+		top: -11px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
 	}
 
-	.ckc-action-btn {
-		height: 24px;
-		width: 24px;
-
-		span {
-			top: 3px;
-		}
+	.ckc-input-group-username {
+		margin-bottom: 10px;
 	}
+
+	.form-control {
+		background-color: #f4f4f4;
+		cursor: pointer;
+	}
+
+	label {
+		display: block;
+	}
+}
+
+.ckc-loginurl, .ckc-comment {
+	position: relative;
+	top: -1px;
+	background: white;
+	border: 1px solid #ddd;
+	@include box-shadow(0 1px 1px rgba(0,0,0,.05));
+}
+
+.ckc-loginurl {
+	padding: 10px;
+	margin-bottom: -1px;
+}
+
+.ckc-comment {
+	padding: 10px 10px 0 10px;
 }

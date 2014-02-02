@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -23,12 +23,17 @@
       <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
         'type' => 'get',  
         'inputDefaults' => array(
-          'div' => array('class' => 'form-group')
+          'div' => false
         ),
-        'class' => 'navbar-form navbar-left',
+        'class' => 'navbar-form navbar-left pull-right ckc-search-form',
+        'role' => 'search'
       )); ?>
-      <?php echo $this->Form->input('string', array('label' => false, 'placeholder' => 'Suchen...', 'class' => 'site-search form-control')); ?>
-      <?php echo $this->Form->button('Suchen', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+      <div class="input-group">
+      <?php echo $this->Form->input('string', array('label' => false, 'placeholder' => 'Suchen...', 'class' => 'site-search form-control pull-right')); ?>
+      <span class="input-group-btn">
+      <?php echo $this->Form->button('<span class="glyphicon glyphicon-search"></span>', array('escape' => false, 'type' => 'submit', 'class' => 'btn btn-default')); ?>
+      </span>
+    </div>
       <?php echo $this->Form->end(); ?>
     </div>
   </div>

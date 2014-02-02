@@ -118,7 +118,8 @@ class UserController extends AppController {
                 ));
 
                 if($this->Favorite->save($new_fav)) {
-                    $this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
+                    //Kein Flash, return ist sichtbar durch veränderung des Sterns
+                    //$this->Session->setFlash($customer['Customer']['name'].' erfolgreich als Favorit gespeichert.', 'flash_bt_good');
                     $this->redirect(array('controller' => 'customer', 'action' => 'view', $customer_id));
                 }
                 else {

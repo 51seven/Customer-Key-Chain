@@ -1,4 +1,6 @@
 @import "compass/css3/transition";
+@import "compass/css3/box-shadow";
+@import "breakpoints";
 
 @mixin retina-background($name, $extension) {
 	background-image: image-url($name + "." + $extension);
@@ -11,6 +13,7 @@
 
 body {
 	padding-top: 70px;
+	background: #fbfbfb;
 }
 
 @import "header";

@@ -7,6 +7,7 @@ class CustomerController extends AppController {
     );
     public $helpers = array(
         'Time',
+        'Markdown.Markdown',
     ); 
 
     public function checkPermission() {

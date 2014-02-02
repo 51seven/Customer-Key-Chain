@@ -13,7 +13,7 @@
 
     echo $this->Html->css('style');
 
-    echo $this->Html->script(array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 'bootstrap.min', 'ux'));
+    echo $this->Html->script(array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 'bootstrap.min'));
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
@@ -23,7 +23,7 @@
 </head>
 <body>
   <?php echo $this->element('navigation'); ?>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-sm-3">
         <?php echo $this->element('left-sidebar'); ?>
@@ -35,5 +35,6 @@
     </div>
     <?php echo $this->element('sql_dump'); ?>
   </div>
+<?php echo $this->Html->script('ux'); ?>
 </body>
 </html>
