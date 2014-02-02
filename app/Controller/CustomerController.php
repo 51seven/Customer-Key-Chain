@@ -138,6 +138,8 @@ class CustomerController extends AppController {
                     'fields' => 'customer_id'
                 ));   
 
+                $filtered_results = array();
+
                 foreach ($results as $key => $result) {
                     if(in_array($key, $permissions)) {
                         $filtered_results[$key] = $result;

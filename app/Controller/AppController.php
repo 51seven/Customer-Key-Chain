@@ -117,6 +117,37 @@ class AppController extends Controller {
             $all_customers = $this->Customer->find('all', array('conditions' => array('NOT' => array('customer_id' => $favorites))));
         }
 
+        // Set toggle sidebar state 
+        if(isset($this->request->query['sbt'])) {
+            switch ($this->request->query['sbt']) {
+                // Favorite shown, other hidden (fav)
+                case 'f': 
+                    $this->Session->write('NavCollapse.fav', true);
+                    $this->Session->write('NavCollapse.all', false);
+                    break;
+                // Favorite hidden, other shown (all)
+                case 'a': 
+                    $this->Session->write('NavCollapse.fav', false);
+                    $this->Session->write('NavCollapse.all', true);
+                    break;
+                // Favorite shown, other shown (both)
+                case 'b': 
+                    $this->Session->write('NavCollapse.fav', true);
+                    $this->Session->write('NavCollapse.all', true);
+                    break;
+                // Favorite hidden, other shown (nothing)
+                case 'n': 
+                    $this->Session->write('NavCollapse.fav', false);
+                    $this->Session->write('NavCollapse.all', false);
+                    break;
+                // No Changes 
+                default: 
+                    break;
+            }
+        }
+
+        //debug($this->Session->read('NavCollapse'));
+
         $this->set('favorite_customers', $favorite_customers);
         $this->set('all_customers', $all_customers);
         $this->set('isadmin', $this->Auth->user('isadmin'));

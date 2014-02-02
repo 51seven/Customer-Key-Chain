@@ -34,8 +34,6 @@ class UserController extends AppController {
                 $this->User->recursive = -1;
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
-                debug($user);
-
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
@@ -150,6 +148,7 @@ class UserController extends AppController {
                     $this->Cookie->write('autologin', $cookie, true, '+1 year');
                 }
 
+                $this->Session->write('NavCollapse.fav', true);
                 $this->Session->setFlash('Willkommen zurück, '.$this->request->data['User']['username'], 'flash_bt_good');
                 return $this->redirect($this->Auth->redirectUrl());
             } 
