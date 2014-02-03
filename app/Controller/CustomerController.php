@@ -25,14 +25,14 @@ class CustomerController extends AppController {
                     return true;
                 }
                 else {
-                   throw new MethodNotAllowedException('You dont have permission to see this Customer.'); 
+                   throw new ForbiddenException('You dont have permission to see this Customer.'); 
                 }
             }
             else if($this->action == 'search' OR $this->action == 'index') {
                 return true;
             }
             else {
-                throw new MethodNotAllowedException('Insufficient permissions.');
+                throw new ForbiddenException('Insufficient permissions.');
             }
         }
     }

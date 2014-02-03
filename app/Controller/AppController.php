@@ -40,14 +40,6 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'user', 'action' => 'login'),
             'loginAction' => array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
-            /*'authenticate' => array(
-                'Form' => array(
-                    'fields' => array(
-                        'username' => 'username', 
-                        'password' => 'password'
-                    )
-                )
-            )*/ // It seems that this snipped isnt neccessary. hum.
             'flash' => array(
                 'element' => 'flash_bt_warning',
                 'key' => 'auth',
@@ -64,30 +56,71 @@ class AppController extends Controller {
         'Permission',
     );
 
-    // Customer -> view (eingeschrängt), search
-    // User -> allow all
-    // Type -> deny all
-    // Combination -> view (do not implement)
-
+    /* 
+    * Current allowed guest-Actions:
+    * Customer -> view, search (only allowed customers)
+    */
     public function beforeFilter() {
         $this->checkPermission($this->Auth->user());
     }
     
     /*
-     * Has to be overwritten in Conrtollers or no controller-action is allowed
-     * default: block all actions if no admin
-     */
+    * Has to be overwritten in Conrtollers or no controller-action is allowed
+    * default: block all actions if no admin
+    */
     public function checkPermission() {
         if(!$this->Auth->user('isadmin')) {
-            throw new MethodNotAllowedException('Insufficient permissions.');
-            return true;
+            throw new ForbiddenException('Insufficient permissions.');
+            return false;
         }
     }
 
     /* 
-     * beforeRender callback
-     */
+    * beforeRender callback
+    */
     public function beforeRender() {
+        $this->initSidebar();
+        $this->toggleSidebarState();
+
+        $this->set('isadmin', $this->Auth->user('isadmin'));
+    }
+
+    private function toggleSidebarState() {
+        // Set toggle sidebar state 
+        if(isset($this->request->query['sbt'])) {
+            switch ($this->request->query['sbt']) {
+                // Favorite shown, other hidden (fav)
+                case 'f': 
+                    $this->Session->write('NavCollapse.fav', true);
+                    $this->Session->write('NavCollapse.all', false);
+                    break;
+                // Favorite hidden, other shown (all)
+                case 'a': 
+                    $this->Session->write('NavCollapse.fav', false);
+                    $this->Session->write('NavCollapse.all', true);
+                    break;
+                // Favorite shown, other shown (both)
+                case 'b': 
+                    $this->Session->write('NavCollapse.fav', true);
+                    $this->Session->write('NavCollapse.all', true);
+                    break;
+                // Favorite hidden, other shown (nothing)
+                case 'n': 
+                    $this->Session->write('NavCollapse.fav', false);
+                    $this->Session->write('NavCollapse.all', false);
+                    break;
+                // No Changes 
+                default: 
+                    break;
+            }
+        }
+    }
+
+    /*
+    * Sets the favorites and the other customers.
+    * Also checks if the current user has rights for his customer
+    */
+    private function initSidebar() {
         // Get Favorite Customer IDs
         $favorites = $this->Favorite->find('list', array(
             'conditions' => array(
@@ -117,38 +150,8 @@ class AppController extends Controller {
             $all_customers = $this->Customer->find('all', array('conditions' => array('NOT' => array('customer_id' => $favorites))));
         }
 
-        // Set toggle sidebar state 
-        if(isset($this->request->query['sbt'])) {
-            switch ($this->request->query['sbt']) {
-                // Favorite shown, other hidden (fav)
-                case 'f': 
-                    $this->Session->write('NavCollapse.fav', true);
-                    $this->Session->write('NavCollapse.all', false);
-                    break;
-                // Favorite hidden, other shown (all)
-                case 'a': 
-                    $this->Session->write('NavCollapse.fav', false);
-                    $this->Session->write('NavCollapse.all', true);
-                    break;
-                // Favorite shown, other shown (both)
-                case 'b': 
-                    $this->Session->write('NavCollapse.fav', true);
-                    $this->Session->write('NavCollapse.all', true);
-                    break;
-                // Favorite hidden, other shown (nothing)
-                case 'n': 
-                    $this->Session->write('NavCollapse.fav', false);
-                    $this->Session->write('NavCollapse.all', false);
-                    break;
-                // No Changes 
-                default: 
-                    break;
-            }
-        }
-
         $this->set('favorite_customers', $favorite_customers);
         $this->set('all_customers', $all_customers);
-        $this->set('isadmin', $this->Auth->user('isadmin'));
     }
     
 
