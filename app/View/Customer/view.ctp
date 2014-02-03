@@ -1,8 +1,15 @@
 <div class="page-header ckc-page-header">
-  Ansprechpartner: <br>
+  Ansprechpartner:<br>
   <?php foreach ($contactpersons as $key => $contactperson) {
     echo $this->Html->link($contactperson['Contactperson']['title']." ".$contactperson['Contactperson']['prename']." ".$contactperson['Contactperson']['name'], 
       array('controller' => 'contactperson', 'action' => 'edit', $contactperson['Contactperson']['contactperson_id']));
+    echo "<br>";
+  }?>
+  <br>
+  History:<br>
+  <?php foreach ($histories as $key => $history) {
+    echo $this->Html->link($history['History']['time'], array(
+      'controller' => 'history', 'action' => 'edit', $history['History']['history_id']));
     echo "<br>";
   }?>
   <div class="btn-group pull-right">

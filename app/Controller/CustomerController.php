@@ -5,6 +5,7 @@ class CustomerController extends AppController {
         'Customer',
         'Combination',
         'Contactperson',
+        'History',
     );
     public $helpers = array(
         'Time',
@@ -71,6 +72,10 @@ class CustomerController extends AppController {
             $this->Contactperson->recursive = -1;
             $contactpersons = $this->Contactperson->findAllByCustomer_id($cid);
 
+            $this->History->recursive = -1;
+            $histories = $this->History->findAllByCustomer_id($cid);
+
+            $this->set('histories', $histories);
             $this->set('contactpersons', $contactpersons);
             $this->set('isfav', $isfav);
     		$this->set('combinations', $combos);
