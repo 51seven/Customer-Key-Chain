@@ -146,8 +146,6 @@ class AppController extends Controller {
             }
         }
 
-        //debug($this->Session->read('NavCollapse'));
-
         $this->set('favorite_customers', $favorite_customers);
         $this->set('all_customers', $all_customers);
         $this->set('isadmin', $this->Auth->user('isadmin'));

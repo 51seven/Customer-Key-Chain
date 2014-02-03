@@ -1,7 +1,35 @@
 <div class="page-header ckc-page-header">
+  Ansprechpartner: <br>
+  <?php foreach ($contactpersons as $key => $contactperson) {
+    echo $this->Html->link($contactperson['Contactperson']['title']." ".$contactperson['Contactperson']['prename']." ".$contactperson['Contactperson']['name'], 
+      array('controller' => 'contactperson', 'action' => 'edit', $contactperson['Contactperson']['contactperson_id']));
+    echo "<br>";
+  }?>
   <div class="btn-group pull-right">
   <?php
-    if($isadmin):
+  if($isadmin):
+      echo $this->Html->link('<span class="glyphicon">Neuer Vermerk</span>',
+        array(
+          'controller' => 'history', 
+          'action' => 'create', $customer['Customer']['customer_id'],
+        ),
+        array(
+          'escape' => false,
+          'class' => 'btn btn-primary'
+        )
+      );
+      echo $this->Html->link('<span class="glyphicon">Neue Kontaktperson</span>',
+        array(
+          'controller' => 'contactperson', 
+          'action' => 'create', $customer['Customer']['customer_id'],
+        ),
+        array(
+          'escape' => false,
+          'class' => 'btn btn-primary'
+        )
+      );
+   ?> 
+   <?php
       echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span>',
         array(
           'controller' => 'combination', 
