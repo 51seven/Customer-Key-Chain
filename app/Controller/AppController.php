@@ -60,7 +60,7 @@ class AppController extends Controller {
     * Current allowed guest-Actions:
     * Customer -> view, search (only allowed customers)
     */
-    public function beforeFilter() {
+    private function beforeFilter() {
         $this->checkPermission($this->Auth->user());
     }
     
@@ -68,7 +68,7 @@ class AppController extends Controller {
     * Has to be overwritten in Conrtollers or no controller-action is allowed
     * default: block all actions if no admin
     */
-    public function checkPermission() {
+    private function checkPermission() {
         if(!$this->Auth->user('isadmin')) {
             throw new ForbiddenException('Insufficient permissions.');
             return false;

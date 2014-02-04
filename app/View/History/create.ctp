@@ -9,5 +9,5 @@ echo $this->Form->input('text', array(
 echo $this->Form->input('time', array(
 	'label' => 'Zeit: ', 
 ));
-echo $this->Form->end('Kontaktperson anlegen'); 
+echo $this->Form->end('Eintrag erstellen'); 
 ?>
