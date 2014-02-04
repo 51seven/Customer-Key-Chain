@@ -12,7 +12,7 @@ class CustomerController extends AppController {
         'Markdown.Markdown',
     ); 
 
-    private function checkPermission() {
+    public function checkPermission() {
         if(!$this->Auth->user('isadmin')) {
             // nur erlaubte Kunden anzeigen
             $permissions = $this->Permission->find('list', array(
