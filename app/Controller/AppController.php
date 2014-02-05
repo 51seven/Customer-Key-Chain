@@ -81,7 +81,7 @@ class AppController extends Controller {
     public function beforeRender() {
         $this->initSidebar();
         $this->toggleSidebarState();
-
+        
         $this->set('isadmin', $this->Auth->user('isadmin'));
     }
 

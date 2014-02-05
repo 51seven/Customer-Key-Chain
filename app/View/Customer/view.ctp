@@ -15,7 +15,7 @@
   <div class="btn-group pull-right">
   <?php
   if($isadmin):
-      echo $this->Html->link('<span class="glyphicon">Neuer Vermerk</span>',
+      echo $this->Html->link('<span class="glyphicon glyphicon-inbox"></span>',
         array(
           'controller' => 'history', 
           'action' => 'create', $customer['Customer']['customer_id'],
@@ -25,7 +25,7 @@
           'class' => 'btn btn-primary'
         )
       );
-      echo $this->Html->link('<span class="glyphicon">Neue Kontaktperson</span>',
+      echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>',
         array(
           'controller' => 'contactperson', 
           'action' => 'create', $customer['Customer']['customer_id'],
@@ -37,7 +37,7 @@
       );
    ?> 
    <?php
-      echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span>',
+      echo $this->Html->link('<span class="glyphicon glyphicon-lock"></span>',
         array(
           'controller' => 'combination', 
           'action' => 'create', $customer['Customer']['customer_id'],
