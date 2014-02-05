@@ -144,6 +144,14 @@ class AppController extends Controller {
                 'customer_id' => $permissions,
                 'NOT' => array('customer_id' => $favorites)
             )));
+
+            // ID die nicht in permission, aber in favorite enthalten ist entfernen (User hat fav auf den er keine Berechtigung hat)
+            foreach ($favorite_customers as $key => $fav_customer) {
+                if(!in_array($fav_customer['Customer']['customer_id'], $permissions)) {
+                    unset($favorite_customers[$key]);
+                }
+            }
+
         }
         else {
             $favorite_customers = $this->Customer->findAllByCustomer_id($favorites);

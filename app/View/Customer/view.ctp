@@ -21,6 +21,7 @@
           'action' => 'create', $customer['Customer']['customer_id'],
         ),
         array(
+          'title' => 'Neuen Eintrag hinzufügen',
           'escape' => false,
           'class' => 'btn btn-primary'
         )
@@ -31,6 +32,7 @@
           'action' => 'create', $customer['Customer']['customer_id'],
         ),
         array(
+          'title' => 'Neue Kontaktperson hinzufügen',
           'escape' => false,
           'class' => 'btn btn-primary'
         )
@@ -43,6 +45,7 @@
           'action' => 'create', $customer['Customer']['customer_id'],
         ),
         array(
+          'title' => 'Neue Kombination hinzufügen',
           'escape' => false,
           'class' => 'btn btn-primary'
         )
