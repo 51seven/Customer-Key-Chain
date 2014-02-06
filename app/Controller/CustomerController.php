@@ -35,7 +35,7 @@ class CustomerController extends AppController {
                 throw new ForbiddenException('Insufficient permissions.');
             }
         }
-    }
+    }    
 
     public function index() {
         $this->set('user', $this->Auth->user());
@@ -119,8 +119,38 @@ class CustomerController extends AppController {
                 $this->redirect('/');
             }
         }
+    }
 
+    /**
+    * Listet alle Kontaktpersonen zu einem Kunden auf
+    * @param customer_id
+    */
+    public function contacts($cid = null) {
+        $contacts = $this->Contactperson->findAllByCustomer_id($cid);
 
+        if($contacts) {
+            $this->set('contacts', $contacts);
+        }
+        else {
+            $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');
+            $this->redirect('/');
+        }
+    }
+
+    /**
+    * Listet alle historischen Ereignisse zu einem Kunden auf
+    * @param customer_id
+    */
+    public function history($cid = null) {
+        $history = $this->History->findAllByCustomer_id($cid);
+
+        if($history) {
+            $this->set('history', $history);
+        }
+        else {
+            $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');
+            $this->redirect('/');
+        }
     }
 
     public function search() {

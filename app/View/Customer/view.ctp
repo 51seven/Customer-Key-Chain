@@ -1,19 +1,29 @@
 <div class="page-header ckc-page-header">
-  Ansprechpartner:<br>
-  <?php foreach ($contactpersons as $key => $contactperson) {
-    echo $this->Html->link($contactperson['Contactperson']['title']." ".$contactperson['Contactperson']['prename']." ".$contactperson['Contactperson']['name'], 
-      array('controller' => 'contactperson', 'action' => 'edit', $contactperson['Contactperson']['contactperson_id']));
-    echo "<br>";
-  }?>
-  <br>
-  History:<br>
-  <?php foreach ($histories as $key => $history) {
-    echo $this->Html->link($history['History']['time'], array(
-      'controller' => 'history', 'action' => 'edit', $history['History']['history_id']));
-    echo "<br>";
-  }?>
   <div class="btn-group pull-right">
   <?php
+  echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
+    array(
+      'controller' => 'customer', 
+      'action' => 'history', $customer['Customer']['customer_id'],
+    ),
+    array(
+      'title' => 'History ansehen',
+      'escape' => false,
+      'class' => 'btn btn'
+    )
+  );
+  echo $this->Html->link('<span class="glyphicon glyphicon-book"></span>',
+    array(
+      'controller' => 'customer', 
+      'action' => 'contacts', $customer['Customer']['customer_id'],
+    ),
+    array(
+      'title' => 'Kontaktpersonen anzeigen',
+      'escape' => false,
+      'class' => 'btn btn'
+    )
+  );
+
   if($isadmin):
       echo $this->Html->link('<span class="glyphicon glyphicon-inbox"></span>',
         array(
@@ -32,7 +42,7 @@
           'action' => 'create', $customer['Customer']['customer_id'],
         ),
         array(
-          'title' => 'Neue Kontaktperson hinzufügen',
+          'title' => 'Neuen Ansprechpartner hinzufügen',
           'escape' => false,
           'class' => 'btn btn-primary'
         )
