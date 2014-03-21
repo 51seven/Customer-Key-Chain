@@ -1,5 +1,6 @@
 @import "compass/css3/transition";
 @import "compass/css3/box-shadow";
+@import "compass/css3/border-radius";
 @import "breakpoints";
 
 @mixin retina-background($name, $extension) {
@@ -23,4 +24,8 @@ body {
 
 .ckc-panel-dump {
 	display: block;
+}
+
+h1.primary {
+	margin-bottom: 30px;
 }
