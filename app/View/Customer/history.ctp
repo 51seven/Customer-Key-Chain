@@ -2,13 +2,14 @@
 <?php
 foreach ($history as $key => $h) {
 	echo "<section class='history'>";
-		echo "<span class='date'>";
+		echo "<h3>";
 			echo $this->Time->format($h['History']['time'], '%d.%m.%y');
-		echo "</span>";
-		echo "<span class='subinfo'>";
+		
+		echo "<small>";
 			echo $this->Time->format($h['History']['time'], ' %k:%M');
 			echo " - ".$h['User']['username'];
-		echo "</span>";
+		echo "</small>";
+		echo "</h3>";
 
 		echo "<p class='text'>".$h['History']['text']."</p>";
 
