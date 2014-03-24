@@ -49,8 +49,11 @@ class CustomerController extends AppController {
         $customer_count = $this->Customer->find('count');
 
         // Kunden bei denen der letzte Eintrag länger als 30 Tage her ist
-        $frozen_customers = $this->Customer->find('all', array(
-            'conditions' => array('History.time')
+        $onemonth = date('Y-m-d', strtotime('-1 month'));
+        $frozen_customers = $this->History->find('all', array(
+            'conditions' => array('History.time <=' => $onemonth),
+            'group' => 'History.customer_id',
+            'fields' => array('History.history_id', 'History.customer_id', 'MAX(History.time) as time', 'Customer.name'),
         ));
 
         // Aktivitäten der Benutzer
@@ -165,7 +168,7 @@ class CustomerController extends AppController {
     public function history($cid = null) {
         //$this->History->order = 'time ASC';
 
-        $history = $this->History->findAllByCustomer_id($cid);
+        $history = $this->History->findAllByCustomer_id($cid, array(), array('History.time' => 'DESC'));
 
         if($history) {
             $this->set('history', $history);
