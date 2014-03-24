@@ -1,29 +1,6 @@
 <div class="page-header ckc-page-header">
   <div class="btn-group pull-right">
   <?php
-  echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
-    array(
-      'controller' => 'customer', 
-      'action' => 'history', $customer['Customer']['customer_id'],
-    ),
-    array(
-      'title' => 'History ansehen',
-      'escape' => false,
-      'class' => 'btn btn'
-    )
-  );
-  echo $this->Html->link('<span class="glyphicon glyphicon-book"></span>',
-    array(
-      'controller' => 'customer', 
-      'action' => 'contacts', $customer['Customer']['customer_id'],
-    ),
-    array(
-      'title' => 'Kontaktpersonen anzeigen',
-      'escape' => false,
-      'class' => 'btn btn'
-    )
-  );
-
   if($isadmin):
       echo $this->Html->link('<span class="glyphicon glyphicon-inbox"></span>',
         array(
@@ -33,7 +10,7 @@
         array(
           'title' => 'Neuen Eintrag hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-primary'
+          'class' => 'btn btn-success'
         )
       );
       echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>',
@@ -44,7 +21,7 @@
         array(
           'title' => 'Neuen Ansprechpartner hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-primary'
+          'class' => 'btn btn-success'
         )
       );
    ?> 
@@ -57,9 +34,34 @@
         array(
           'title' => 'Neue Kombination hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-primary'
+          'class' => 'btn btn-success'
         )
       );
+  ?>
+  <?php 
+  echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
+    array(
+      'controller' => 'customer', 
+      'action' => 'history', $customer['Customer']['customer_id'],
+    ),
+    array(
+      'title' => 'History ansehen',
+      'escape' => false,
+      'class' => 'btn btn-primary'
+    )
+  );
+  echo $this->Html->link('<span class="glyphicon glyphicon-book"></span>',
+    array(
+      'controller' => 'customer', 
+      'action' => 'contacts', $customer['Customer']['customer_id'],
+    ),
+    array(
+      'title' => 'Kontaktpersonen anzeigen',
+      'escape' => false,
+      'class' => 'btn btn-primary'
+    )
+  );
+
   ?>
   <?php
       echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>',
