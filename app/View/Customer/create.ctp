@@ -36,7 +36,7 @@ echo $this->Form->input('street', array(
 	'between' => '<div class="col-sm-10">',
 	'after' => '</div>',
 ));
-echo $this->Form->input('zip', array(
+echo $this->Form->input('plz', array(
 	'label' => array(
 		'class' => 'col-sm-2 control-label', 
 		'text' => 'PLZ '
