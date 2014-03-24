@@ -30,7 +30,7 @@ echo $this->Form->input('time', array(
 	'after' => '</div>', 
 ));
 echo $this->Form->end(array(
-	'label' => 'Eintrag anlegen',
+	'label' => 'Speichern',
 	'class' => 'btn btn-default',
 	'div' => array('class' => 'form-group'),
 	'before' => '<div class="col-sm-offset-2 col-sm-10">',
