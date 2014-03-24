@@ -31,7 +31,12 @@ class HistoryController extends AppController {
             if($this->request->is('post')) { 
                 if($this->History->save($this->request->data)) {
                     $this->Session->setFlash('Eintrag wurde erfolgreich aktualisiert', 'flash_bt_good');
-                    $this->redirect('view/'.$hid);
+                    $this->redirect(array(
+                        'controller' => 'customer', 
+                        'action' => 'History', 
+                        $this->request->data['History']['customer_id'],
+                        '?' => array('fade' => $hid),
+                        ));
                 }
                 else {
                     $this->Session->setFlash('Eintrag konnte nicht aktualisiert werden.', 'flash_bt_bad');

@@ -1,7 +1,13 @@
 <h1>History von <?php echo $history[0]['Customer']['name']; ?></h1>
 <?php
 foreach ($history as $key => $h) {
-	echo "<section class='history'>";
+	$fadeclass = "";
+
+	if($h['History']['history_id'] == $fade) {
+		$fadeclass = "fade";
+	}
+
+	echo "<section class='history ".$fadeclass."'>";
 		echo "<h3>";
 			echo $this->Time->format($h['History']['time'], '%d.%m.%y');
 			echo "<small>";

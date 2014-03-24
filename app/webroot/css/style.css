@@ -1,4 +1,4 @@
-/* line 15, ../scss/style.scss */
+/* line 16, ../scss/style.scss */
 body {
   padding-top: 70px;
   background: #fbfbfb;
@@ -188,38 +188,73 @@ body.login .ckc-btn-login {
   padding: 10px 10px 0 10px;
 }
 
-/* line 25, ../scss/style.scss */
+/* line 26, ../scss/style.scss */
 .ckc-panel-dump {
   display: block;
 }
 
 /* REMOVE THIS SHIT IN HERE */
-/* line 33, ../scss/style.scss */
+/* line 34, ../scss/style.scss */
 h1.primary {
   margin-bottom: 30px;
 }
 
-/* line 37, ../scss/style.scss */
+/* line 38, ../scss/style.scss */
 section.history {
   width: 400px;
+  padding: 15px;
   /*&:hover > .options{
   	visibility: visible;
   }*/
 }
-/* line 41, ../scss/style.scss */
+/* line 42, ../scss/style.scss */
 section.history .subinfo {
   color: #999;
   font-weight: 300;
 }
-/* line 46, ../scss/style.scss */
+/* line 47, ../scss/style.scss */
 section.history .date {
   font-size: 24px;
 }
-/* line 54, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 section.history .options {
   margin-top: 10px;
 }
-/* line 62, ../scss/style.scss */
+/* line 63, ../scss/style.scss */
 section.history:after {
   clear: both;
+}
+
+/* line 68, ../scss/style.scss */
+.fade {
+  opacity: 1.0;
+  -webkit-animation: fadeout 3s;
+  /* Chrome, Safari, Opera */
+  animation: fadeout 3s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeout {
+  /* line 76, ../scss/style.scss */
+  from {
+    background: #35d329;
+  }
+
+  /* line 79, ../scss/style.scss */
+  to {
+    background: none;
+  }
+}
+
+/* Standard syntax */
+@keyframes fadeout {
+  /* line 86, ../scss/style.scss */
+  from {
+    background: #35d329;
+  }
+
+  /* line 87, ../scss/style.scss */
+  to {
+    background: none;
+  }
 }

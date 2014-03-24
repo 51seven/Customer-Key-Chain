@@ -5,6 +5,8 @@ echo $this->Form->create('Contactperson', array(
 	'type' => 'post',
 	'class' => 'form-horizontal',
 ));
+echo $this->Form->hidden('customer_id');
+
 $title = array('Herr' => 'Herr', 'Frau' => 'Frau');
 echo $this->Form->input('title', array(
     'options' => $title, 

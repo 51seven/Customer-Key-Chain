@@ -150,14 +150,19 @@ class CustomerController extends AppController {
     * @param customer_id
     */
     public function contacts($cid = null) {
-        $contacts = $this->Contactperson->findAllByCustomer_id($cid);
 
-        if($contacts) {
-            $this->set('contacts', $contacts);
+        if(!$this->Customer->findByCustomer_id($cid)) {
+            throw new NotFoundException('Kunde wurde nicht gefunden.');
+        }
+
+        $contactpersons = $this->Contactperson->findAllByCustomer_id($cid); 
+
+        if($contactpersons) {
+            $this->set('contactpersons', $contactpersons);
         }
         else {
-            $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');
-            $this->redirect('/');
+            $this->Customer->recursive = -1;
+            $this->set('customername', $this->Customer->read('Customer.name', $cid));
         }
     }
 
@@ -171,7 +176,14 @@ class CustomerController extends AppController {
         $history = $this->History->findAllByCustomer_id($cid, array(), array('History.time' => 'DESC'));
 
         if($history) {
+            $fade = -1;
+            
+            if(isset($this->request->query['fade'])) {
+                $fade = $this->request->query['fade'];
+            }
+
             $this->set('history', $history);
+            $this->set('fade', $fade);
         }
         else {
             $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');

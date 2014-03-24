@@ -3,6 +3,7 @@ class ContactpersonController extends AppController {
 
     public $uses = array(
         'Contactperson',
+        'Customer',
     );
     public $helpers = array(
         'Time',
@@ -11,6 +12,18 @@ class ContactpersonController extends AppController {
 
     // Es wird eine Kontaktperson zum übergebenen Kundn erstellt
     public function create($cid = null) {
+        // ?id=1 oder contactperson/create/1
+        if(isset($this->request->query['cid'])) {
+            $cid = $this->request->query['cid'];
+        }
+
+        // Auswahl des Kunden, falls dieser ungültig oder nicht übergeben wurde.
+        if(!$this->Customer->findByCustomer_id($cid)) {
+            $this->set('customers', $this->Customer->find('list'));
+            $this->Session->setFlash('Bitte wählen Sie zuerst einen Kunden aus.', 'flash_bt_warning');
+            $this->render('choose_customer');
+        }
+
 		if($this->request->is('post')) {
 
             $this->request->data['Contactperson']['customer_id'] = $cid;

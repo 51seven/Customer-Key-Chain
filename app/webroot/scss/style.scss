@@ -2,6 +2,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "breakpoints";
+//@import "compass/css3/animation";
 
 @mixin retina-background($name, $extension) {
 	background-image: image-url($name + "." + $extension);
@@ -36,7 +37,7 @@ h1.primary {
 
 section.history {
 	width: 400px;
-	
+	padding: 15px;	
 
 	.subinfo {
 		color: #999;
@@ -64,9 +65,27 @@ section.history {
 	}
 } 
 
+.fade {
+	opacity: 1.0;
+	-webkit-animation: fadeout 3s; /* Chrome, Safari, Opera */
+	animation: fadeout 3s;
+}
 
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeout {
+	from {
+		background: #35d329;
+	}
+	to {
+		background: none;
+	}
+}
 
-
+/* Standard syntax */
+@keyframes fadeout {
+	from {background: #35d329;}
+	to {background: none;}
+}
 
 
 
