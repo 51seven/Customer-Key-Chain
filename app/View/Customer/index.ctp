@@ -5,6 +5,7 @@
 Admin: <?php echo $user['isadmin']; ?>
 
 <?php
+
 /*foreach ($customers as $key => $customer) {
 	echo $this->Html->link($customer['Customer']['name'], array(
 		'controller' => 'customer', 

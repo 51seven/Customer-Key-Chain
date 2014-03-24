@@ -54,7 +54,11 @@ class AppController extends Controller {
         'Customer',
         'Favorite',
         'Permission',
+        'CakeTime', 'Utility',
+        'TimeHelper'
     );
+
+    public $helpers = array('Form', 'Html', 'Time');
 
     /* 
     * Current allowed guest-Actions:
@@ -69,8 +73,12 @@ class AppController extends Controller {
     * default: block all actions if no admin
     */
     public function checkPermission() {
+
+        //debug($this->Auth->user());
+
         if(!$this->Auth->user('isadmin')) {
             throw new ForbiddenException('Insufficient permissions.');
+            $this->redirect(array('controller' => 'customer', 'action' => 'login'));
             return false;
         }
     }

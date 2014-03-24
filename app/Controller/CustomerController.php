@@ -8,7 +8,6 @@ class CustomerController extends AppController {
         'History',
     );
     public $helpers = array(
-        'Time',
         'Markdown.Markdown',
     ); 
 
@@ -38,7 +37,15 @@ class CustomerController extends AppController {
     }    
 
     public function index() {
-        $this->set('user', $this->Auth->user());
+        if($this->Auth->user()) {
+            $this->set('user', $this->Auth->user());
+        }
+        else {
+            $this->set('user', array('User' => array(
+                'username' => 'please log in.',
+                'user_id' => -1,
+            )));
+        }
     }
 
     public function view($cid = null) {
@@ -142,6 +149,8 @@ class CustomerController extends AppController {
     * @param customer_id
     */
     public function history($cid = null) {
+        //$this->History->order = 'time ASC';
+
         $history = $this->History->findAllByCustomer_id($cid);
 
         if($history) {

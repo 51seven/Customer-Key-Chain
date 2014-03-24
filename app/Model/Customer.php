@@ -19,6 +19,10 @@ class Customer extends AppModel {
             'className' => 'History',
             'foreignKey' => 'history_id'
         ),
+        'History' => array(
+            'className' => 'History',
+            'foreignKey' => 'history_id'
+        ),
     );
 
     // Varlidation Rules for this Model

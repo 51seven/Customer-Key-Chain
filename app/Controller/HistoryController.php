@@ -13,6 +13,7 @@ class HistoryController extends AppController {
     public function create($cid = null) {
 		if($this->request->is('post')) {
             $this->request->data['History']['customer_id'] = $cid;
+            $this->request->data['History']['user_id'] = $this->Auth->user('user_id');
 
             if($this->History->save($this->request->data)) {
                 $this->Session->setFlash('Eintrag erfolgreich erstellt.', 'flash_bt_good');
@@ -40,6 +41,7 @@ class HistoryController extends AppController {
             // Felder vorselektieren
             else {
                 $this->request->data = $this->History->findByHistory_id($hid);
+                $this->set('history_id', $this->request->data['History']['history_id']);
             }
         }
         else {

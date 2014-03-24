@@ -11,6 +11,10 @@ class History extends AppModel {
             'className' => 'Customer',
             'foreignKey' => 'customer_id'
         ),
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id'
+        ),
     );
 
     // Varlidation Rules for this Model

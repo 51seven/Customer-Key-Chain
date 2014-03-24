@@ -26,6 +26,48 @@ body {
 	display: block;
 }
 
+
+/* REMOVE THIS SHIT IN HERE */
+
+
 h1.primary {
 	margin-bottom: 30px;
 }
+
+section.history {
+	width: 400px;
+	
+
+	.subinfo {
+		color: #999;
+		font-weight: 300;
+	}
+
+	.date {
+		font-size: 24px;
+	}
+
+	.text {
+		
+	}
+
+	.options {
+		margin-top: 10px;
+		//float: right;
+	}
+	/*&:hover > .options{
+		visibility: visible;
+	}*/
+
+	&:after {
+		 clear: both;
+	}
+} 
+
+
+
+
+
+
+
+

@@ -193,7 +193,33 @@ body.login .ckc-btn-login {
   display: block;
 }
 
-/* line 29, ../scss/style.scss */
+/* REMOVE THIS SHIT IN HERE */
+/* line 33, ../scss/style.scss */
 h1.primary {
   margin-bottom: 30px;
+}
+
+/* line 37, ../scss/style.scss */
+section.history {
+  width: 400px;
+  /*&:hover > .options{
+  	visibility: visible;
+  }*/
+}
+/* line 41, ../scss/style.scss */
+section.history .subinfo {
+  color: #999;
+  font-weight: 300;
+}
+/* line 46, ../scss/style.scss */
+section.history .date {
+  font-size: 24px;
+}
+/* line 54, ../scss/style.scss */
+section.history .options {
+  margin-top: 10px;
+}
+/* line 62, ../scss/style.scss */
+section.history:after {
+  clear: both;
 }
