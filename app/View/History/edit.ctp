@@ -1,15 +1,40 @@
-<h1>Eintrag bearbeiten</h1>
+<div class="input-group">
+<h1 class="primary">Eintrag bearbeiten</h1>
 <?php
 echo $this->Form->create('History', array(
-	'type' => 'post'
+	'type' => 'post',
+	'class' => 'form-horizontal'
 ));
+
 echo $this->Form->hidden('history_id');
 echo $this->Form->hidden('customer_id');
+
 echo $this->Form->input('text', array(
-	'label' => 'Text: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Text '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('time', array(
-	'label' => 'Zeit: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Datum '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>', 
 ));
-echo $this->Form->end('speichern'); 
+echo $this->Form->end(array(
+	'label' => 'Eintrag anlegen',
+	'class' => 'btn btn-default',
+	'div' => array('class' => 'form-group'),
+	'before' => '<div class="col-sm-offset-2 col-sm-10">',
+	'after' => '</div>',
+)); 
 ?>
+</div>
