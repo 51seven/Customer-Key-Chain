@@ -36,16 +36,30 @@ class CustomerController extends AppController {
         }
     }    
 
+    /*  
+    called by route:
+    */
     public function index() {
-        if($this->Auth->user()) {
-            $this->set('user', $this->Auth->user());
-        }
-        else {
-            $this->set('user', array('User' => array(
-                'username' => 'please log in.',
-                'user_id' => -1,
-            )));
-        }
+        $this->set('user', $this->Auth->user());
+        
+        // Anzahl an gespeicherten Kombinationen:
+        $combination_count = $this->Combination->find('count');
+
+        // Anzahl der Kunden
+        $customer_count = $this->Customer->find('count');
+
+        // Kunden bei denen der letzte Eintrag länger als 30 Tage her ist
+        $frozen_customers = $this->Customer->find('all', array(
+            'conditions' => array('History.time')
+        ));
+
+        // Aktivitäten der Benutzer
+        $user_activity = 'user_activity';
+
+        $this->set('combination_count', $combination_count);
+        $this->set('customer_count', $customer_count);
+        $this->set('frozen_customers', $frozen_customers);
+        $this->set('user_activity', $user_activity);
     }
 
     public function view($cid = null) {

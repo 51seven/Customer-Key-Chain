@@ -1,19 +1,18 @@
-<div class="page-header">
-	<h1>Hi! <small><?php echo $user['username']; ?></small></h1>
-</div>
+<h2>Hi <small><?php echo $user['username']; ?></small></h2>
 
-Admin: <?php echo $user['isadmin']; ?>
+Admin: <?php echo $user['isadmin']."<br>"; ?>
 
-<?php
+<?php 
+echo "Gespeicherten Kombinationen: ".$combination_count."<br>";
+echo "Anzahl an Kunden: ".$customer_count."<br><br>";
+echo "Anzahl an Kunden: ".$customer_count."<br>";
 
-/*foreach ($customers as $key => $customer) {
-	echo $this->Html->link($customer['Customer']['name'], array(
-		'controller' => 'customer', 
-		'action' => 'view/'.$customer['Customer']['customer_id']
-		)
-	)."<br>";
-}
-*/
+echo "Kein Kundenkontakt seit 30 Tagen: <br>";
+	foreach ($frozen_customers as $customer => $value) {
+		echo $customer;
+	}
 ?>
+
+
 
 
