@@ -1,22 +1,30 @@
 <h1>Kontaktpersonen von <?php echo $contacts[0]['Customer']['name']; ?></h1>
 <?php
 foreach ($contacts as $key => $contact) {
-	echo $contact['Contactperson']['title']." ".$contact['Contactperson']['prename']." ".$contact['Contactperson']['name']."<br>";	
-	echo "Tel: ".$contact['Contactperson']['phone']."<br>";
-	echo "Mobile: ".$contact['Contactperson']['mobile']."<br>";
-	echo "Mail: ".$contact['Contactperson']['mail']."<br>";
+	echo "<section class='history'>";
+		echo "<h3>";
+			echo $contact['Contactperson']['title']." ";
+			echo $contact['Contactperson']['prename']." ".$contact['Contactperson']['name'];
+		echo "</h3>";
 
-	echo $this->Html->link('Bearbeiten', array(
-		'controller' => 'contactperson',
-		'action' => 'edit', $contact['Contactperson']['contactperson_id']
-	));
-	echo " ";
-	echo $this->Html->link('Löschen', array(
-		'controller' => 'contactperson',
-		'action' => 'delete', $contact['Contactperson']['contactperson_id']
-		),
-		array(), "Willst du diesen Kunden wirklich entfernen?"
-	);
+		echo "<strong>Tel: </strong>".$contact['Contactperson']['phone']."<br>";
+		echo "<strong>Mobile: </strong>".$contact['Contactperson']['mobile']."<br>";
+		echo "<strong>Mail: </strong>".$contact['Contactperson']['mail']."<br>";
 
+		echo $this->Html->link('Bearbeiten', array(
+			'controller' => 'contactperson',
+			'action' => 'edit', $contact['Contactperson']['contactperson_id']
+		));
+		echo " ";
+		echo $this->Html->link('Löschen', array(
+			'controller' => 'contactperson',
+			'action' => 'delete', $contact['Contactperson']['contactperson_id']
+			),
+			array(), "Willst du diesen Kunden wirklich entfernen?"
+		);
+	echo "</section>";
 	echo "<hr>";
 }
+
+
+?>
