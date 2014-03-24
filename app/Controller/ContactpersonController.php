@@ -30,8 +30,8 @@ class ContactpersonController extends AppController {
             // Speichern
             if($this->request->is('post')) { 
                 if($this->Contactperson->save($this->request->data)) {
-                    $this->Session->setFlash('Kontaktperson erfolgreich aktualisiert', 'flash_bt_good');
-                    $this->redirect('view/'.$cpid);
+                    $this->Session->setFlash($this->request->data['Contactperson']['prename'].' '.$this->request->data['Contactperson']['name'].' erfolgreich aktualisiert', 'flash_bt_good');
+                    $this->redirect(array('controller' => 'customer', 'action' => 'contacts', $this->request->data['Contactperson']['customer_id']));
                 }
                 else {
                     $this->Session->setFlash('Kontaktperson konnte nicht aktualisiert werden.', 'flash_bt_bad');

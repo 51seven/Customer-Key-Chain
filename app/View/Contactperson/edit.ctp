@@ -1,30 +1,82 @@
-<h1>Kontaktperson bearbeiten</h1>
+<div class="input-group">
+<h1 class="primary">Kontaktperson bearbeiten</h1>
 <?php
-$title = array('Herr' => 'Herr', 'Frau' => 'Frau');
-
 echo $this->Form->create('Contactperson', array(
-	'type' => 'post'
+	'type' => 'post',
+	'class' => 'form-horizontal',
 ));
 echo $this->Form->hidden('customer_id');
 echo $this->Form->hidden('contactperson_id');
+
+$title = array('Herr' => 'Herr', 'Frau' => 'Frau');
+
 echo $this->Form->input('title', array(
     'options' => $title, 
-	'label' => 'Anrede: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Anrede '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('prename', array(
-	'label' => 'Vorname: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Vorname '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('name', array(
-	'label' => 'Nachname: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Nachname '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('phone', array(
-	'label' => 'Telefonnummer: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Telefon '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('mobile', array(
-	'label' => 'Mobilfunknummer: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Mobil '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
 echo $this->Form->input('mail', array(
-	'label' => 'Email: ', 
+	'label' => array(
+		'class' => 'col-sm-2 control-label', 
+		'text' => 'Email '
+	),
+	'class' => 'form-control',
+	'div' => array('class' => 'form-group'),
+	'between' => '<div class="col-sm-10">',
+	'after' => '</div>',
 ));
-echo $this->Form->end('speichern'); 
+echo $this->Form->end(array(
+	'label' => 'Speichern',
+	'class' => 'btn btn-default',
+	'div' => array('class' => 'form-group'),
+	'before' => '<div class="col-sm-offset-2 col-sm-10">',
+	'after' => '</div>',
+)); 
 ?>
+</div>
