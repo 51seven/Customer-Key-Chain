@@ -38,6 +38,19 @@
         )
       );
   ?>
+  <?php
+    echo $this->Html->link('<span class="glyphicon glyphicon-comment"></span>',
+      array(
+        'controller' => 'funfact', 
+        'action' => 'create', $customer['Customer']['customer_id'],
+      ),
+      array(
+        'title' => 'Neuen Funfact hinzufügen',
+        'escape' => false,
+        'class' => 'btn btn-success'
+      )
+    );
+  ?>
   <?php 
   echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
     array(
