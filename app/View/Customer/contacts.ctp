@@ -2,7 +2,7 @@
 <?php 
 if(isset($contactpersons)) {
 ?>
-	<h1>Kontaktpersonen von <?php echo $contacts[0]['Customer']['name']; ?></h1>
+	<h1>Kontaktpersonen von <?php echo $contactpersons[0]['Customer']['name']; ?></h1>
 	<?php
 	foreach ($contactpersons as $key => $contact) {
 		echo "<section class='history'>";

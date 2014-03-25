@@ -65,7 +65,7 @@ class AppController extends Controller {
     * Customer -> view, search (only allowed customers)
     */
     public function beforeFilter() {
-        $this->checkPermission($this->Auth->user());
+        $this->checkPermission();
     }
     
     /*
@@ -73,9 +73,6 @@ class AppController extends Controller {
     * default: block all actions if no admin
     */
     public function checkPermission() {
-
-        //debug($this->Auth->user());
-
         if(!$this->Auth->user('isadmin')) {
             throw new ForbiddenException('Insufficient permissions.');
             $this->redirect(array('controller' => 'customer', 'action' => 'login'));

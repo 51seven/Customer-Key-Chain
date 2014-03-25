@@ -6,6 +6,7 @@ class CustomerController extends AppController {
         'Combination',
         'Contactperson',
         'History',
+        'Funfact',
     );
     public $helpers = array(
         'Markdown.Markdown',
@@ -70,7 +71,7 @@ class CustomerController extends AppController {
 
     	if(!$customer) {
     		$this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
-    		$this->render('index');
+    		$this->redirect('index');
     	}
     	else {
             $favorites = $this->Favorite->find('list', array(
@@ -99,6 +100,13 @@ class CustomerController extends AppController {
             $this->History->recursive = -1;
             $histories = $this->History->findAllByCustomer_id($cid);
 
+            $funfact = $this->Funfact->find('first', array(
+                'conditions' => array('Funfact.customer_id LIKE' => $cid),
+                'fields' => array('Funfact.customer_id', 'Funfact.text'),
+                'order' => 'RAND()',
+            ));
+
+            $this->set('funfact', $funfact);
             $this->set('histories', $histories);
             $this->set('contactpersons', $contactpersons);
             $this->set('isfav', $isfav);
