@@ -202,30 +202,30 @@ h1.primary {
 /* line 38, ../scss/style.scss */
 section.history {
   width: 400px;
-  padding: 15px;
   /*&:hover > .options{
   	visibility: visible;
   }*/
 }
-/* line 42, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
 section.history .subinfo {
   color: #999;
   font-weight: 300;
 }
-/* line 47, ../scss/style.scss */
+/* line 46, ../scss/style.scss */
 section.history .date {
   font-size: 24px;
 }
-/* line 55, ../scss/style.scss */
+/* line 54, ../scss/style.scss */
 section.history .options {
   margin-top: 10px;
+  color: #999;
 }
-/* line 63, ../scss/style.scss */
+/* line 62, ../scss/style.scss */
 section.history:after {
   clear: both;
 }
 
-/* line 68, ../scss/style.scss */
+/* line 67, ../scss/style.scss */
 .fade {
   opacity: 1.0;
   -webkit-animation: fadeout 3s;
@@ -235,12 +235,12 @@ section.history:after {
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeout {
-  /* line 76, ../scss/style.scss */
+  /* line 75, ../scss/style.scss */
   from {
     background: #35d329;
   }
 
-  /* line 79, ../scss/style.scss */
+  /* line 78, ../scss/style.scss */
   to {
     background: none;
   }
@@ -248,12 +248,12 @@ section.history:after {
 
 /* Standard syntax */
 @keyframes fadeout {
-  /* line 86, ../scss/style.scss */
+  /* line 85, ../scss/style.scss */
   from {
     background: #35d329;
   }
 
-  /* line 87, ../scss/style.scss */
+  /* line 86, ../scss/style.scss */
   to {
     background: none;
   }

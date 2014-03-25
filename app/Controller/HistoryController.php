@@ -14,10 +14,11 @@ class HistoryController extends AppController {
 		if($this->request->is('post')) {
             $this->request->data['History']['customer_id'] = $cid;
             $this->request->data['History']['user_id'] = $this->Auth->user('user_id');
+            $this->request->data['History']['updated'] = "";
 
             if($this->History->save($this->request->data)) {
                 $this->Session->setFlash('Eintrag erfolgreich erstellt.', 'flash_bt_good');
-                $this->redirect(array('controller' => 'customer', 'action' => 'view/'.$cid));
+                $this->redirect(array('controller' => 'customer', 'action' => 'history', $cid));
             }
             else {
                 $this->Session->setFlash('Fehler beim erstellen des Eintrags.', 'flash_bt_bad');
@@ -29,6 +30,8 @@ class HistoryController extends AppController {
         if($this->History->findByHistory_id($hid)) {
             // Speichern
             if($this->request->is('post')) { 
+                $this->request->data['History']['updated'] = "Geändert am ".date('d.m.y')." von ".$this->Auth->user('username').".";
+
                 if($this->History->save($this->request->data)) {
                     $this->Session->setFlash('Eintrag wurde erfolgreich aktualisiert', 'flash_bt_good');
                     $this->redirect(array(
@@ -36,7 +39,7 @@ class HistoryController extends AppController {
                         'action' => 'History', 
                         $this->request->data['History']['customer_id'],
                         '?' => array('fade' => $hid),
-                        ));
+                    ));
                 }
                 else {
                     $this->Session->setFlash('Eintrag konnte nicht aktualisiert werden.', 'flash_bt_bad');
@@ -56,14 +59,15 @@ class HistoryController extends AppController {
     }
 
     public function delete($hid) {
-        if($this->History->findByHistory_id($hid)) {
+        $history = $this->History->findByHistory_id($hid);
+
+        if($history) {
             if($this->History->delete($hid)) {
                 $this->Session->setFlash('Eintrag wurde erfolgreich gelöscht.', 'flash_bt_warning');
-                $this->redirect('/'); 
+                $this->redirect(array('controller' => 'customer', 'action' => 'history', $history['History']['customer_id']));
             }   
             else {
                 $this->Session->setFlash('Eintrag konnte nicht gelöscht werden.', 'flash_bt_warning');
-                $this->redirect('/');
             }     
         }
         else {

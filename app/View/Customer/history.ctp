@@ -29,6 +29,10 @@ foreach ($history as $key => $h) {
 			'action' => 'delete', $h['History']['history_id'],
 			), array(), "Willst du diesen Eintrag wirklich entfernen?"
 		);
+
+		if(isset($h['History']['updated'])) {
+			echo " ".$h['History']['updated'];
+		}
 	echo "</span>";
 	echo "</section><hr>";
 }

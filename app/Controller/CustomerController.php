@@ -178,8 +178,12 @@ class CustomerController extends AppController {
     * Listet alle historischen Ereignisse zu einem Kunden auf
     * @param customer_id
     */
-    public function history($cid = null) {
-        //$this->History->order = 'time ASC';
+    public function history($cid = null) {        
+
+        if(!$this->Customer->findByCustomer_id($cid)) {
+            $this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
+            $this->redirect('index');
+        }
 
         $history = $this->History->findAllByCustomer_id($cid, array(), array('History.time' => 'DESC'));
 
@@ -194,8 +198,11 @@ class CustomerController extends AppController {
             $this->set('fade', $fade);
         }
         else {
-            $this->Session->setFlash('Kunde nicht gefunden.', 'flash_bt_warning');
-            $this->redirect('/');
+            $this->Session->setFlash('Der Kunde hat noch keine History. Du kannst jetzt einen erstellen. ', 'flash_bt_warning', array(
+                'link_text' => 'Zurück zum Kunden',
+                'link_url' => array('controller' => 'customer', 'action' => 'view', $cid)                
+            ));
+            $this->redirect(array('controller' => 'history', 'action' => 'create', $cid));
         }
     }
 

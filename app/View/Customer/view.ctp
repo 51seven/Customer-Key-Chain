@@ -107,10 +107,23 @@
       );
     ?>
   </h1>
-  "<?php echo $funfact['Funfact']['text']; ?>"
+  <?php 
+  if(isset($funfact['Funfact']['text'])) {
+    echo "\"".$funfact['Funfact']['text']."\"";
+  }
+  else {
+    echo "Dieser Kunde ist in Ordnung. ";
+    echo $this->Html->link('doch nicht?', array(
+      'controller' => 'funfact', 
+        'action' => 'create', $customer['Customer']['customer_id'],
+      )
+    );
+  }
+  ?>
 </div>
 
 <?php
+// Liste alle Kundenkombinationen auf
 if(sizeof($combinations) > 0):
   foreach ($combinations as $key => $combinationtype):
     ?>

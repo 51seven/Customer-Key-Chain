@@ -1,5 +1,5 @@
 <div class="input-group">
-<h1 class="primary">Neue Eintrag anlegen</h1>
+<h1 class="primary">Neuen Eintrag anlegen</h1>
 <?php
 echo $this->Form->create('History', array(
 	'type' => 'post',
