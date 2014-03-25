@@ -9,7 +9,18 @@ echo "Kunden: ".$customer_count."<br><br>";
 
 echo "Kein Kundenkontakt seit über 30 Tagen mit: <br>";
 	foreach ($frozen_customers as $customer => $value) {
-		echo " - ".$value['Customer']['name'].$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
+		echo " - ";
+		echo $this->Html->link($value['Customer']['name'], array(
+			'controller' => 'customer',
+			'action' => 'view', $value['History']['customer_id'],
+		));
+
+		$then = new DateTime($value[0]['time']);
+        $now = new DateTime(date("Y-m-d"));
+
+        echo $then->diff($now)->format(" (~%a Tage)")."<br>";
+        // Add Tooltip with Date here?
+		//echo " ".$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
 	}
 ?>
 

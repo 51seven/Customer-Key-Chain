@@ -122,7 +122,7 @@
   </h1>
   <?php 
   if(isset($funfact['Funfact']['text'])) {
-    echo "\"".$funfact['Funfact']['text']."\"";
+    echo "<blockquote>\"".$funfact['Funfact']['text']."\"</blockquote>";
   }
   else {
     echo "Dieser Kunde ist in Ordnung. ";

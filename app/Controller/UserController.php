@@ -25,7 +25,7 @@ class UserController extends AppController {
 
         // Welche Actions sind erlaubt?
         $this->Auth->allow('login', 'createsalt');
-        
+
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
 
@@ -34,22 +34,18 @@ class UserController extends AppController {
                 $this->User->recursive = -1;
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
-                $this->log("$user in UserController 37: ".$user);
-
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
-                    $this->Session->write('User', $user['User']);
+                    //$this->Session->write('User', $user['User']); (can be deleted if not neccessary - 25.5.14^s)
                 }
             }
         }
         if($this->Auth->loggedIn()) { // User setzen, falls eingeloggt
-            $user = $this->Auth->user();
-            unset($user['User']['password']); // Security shit
-            $this->set('current_user', $user);
+            $this->set('current_user', $this->Auth->user());
         } 
         else {
-            $this->set('current_user', null);
+            $this->set('current_user', false);
         }
     }
 

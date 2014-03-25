@@ -1,5 +1,6 @@
 <div class="input-group">
 <h1 class="primary">Neuen Zugangstyp anlegen</h1>
+<p>Zugangstypen beschreiben die Art des Passwortes. Z.B. Wordpress, FTP...</p><br>
 <?php
 echo $this->Form->create('Type', array(
 	'type' => 'post',
