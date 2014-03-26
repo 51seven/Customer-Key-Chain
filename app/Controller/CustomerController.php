@@ -221,7 +221,20 @@ class CustomerController extends AppController {
             $this->redirect('index');
         }
         else {
-            $results = $this->Customer->find('list', array(
+
+            $contact_results = $this->Contactperson->find('all', array(
+                'conditions' => array(
+                    'OR' => array(
+                        array('Contactperson.prename LIKE' => $string),
+                        array('Contactperson.name LIKE' => $string)
+                    )
+                )
+            ));
+
+
+            $this->set('contact_results', $contact_results);
+
+            $customer_results = $this->Customer->find('list', array(
                 'conditions' => array('Customer.name LIKE' => '%'.$string.'%'),
             ));
 
@@ -234,16 +247,16 @@ class CustomerController extends AppController {
 
                 $filtered_results = array();
 
-                foreach ($results as $key => $result) {
+                foreach ($customer_results as $key => $result) {
                     if(in_array($key, $permissions)) {
                         $filtered_results[$key] = $result;
                     }    
                 }
 
-                $results = $filtered_results;
+                $customer_results = $filtered_results;
             }
 
-            $this->set('results', $results);
+            $this->set('customer_results', $customer_results);
             $this->set('string', $string);
         }
     }

@@ -6,6 +6,10 @@ class Contactperson extends AppModel {
     public $useTable = 'contactpersons'; 
     public $primaryKey = 'contactperson_id'; 
 
+    public $virtualFields = array(
+        'fullname' => 'CONCAT(Contactperson.prename, " ", Contactperson.name)',
+    );
+
     public $belongsTo = array(
         'Customer' => array(
             'className' => 'Customer',

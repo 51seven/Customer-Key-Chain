@@ -140,7 +140,7 @@ class UserController extends AppController {
                         'hash' => Security::hash($this->request->data['User']['username'].$currentTime) // Checksumme
                     );
                     // Cookie Speichern
-                    $this->Cookie->write('autologin', $cookie, true, '+1 year');
+                    $this->Cookie->write('autologin', $cookie, true, 999999);
                 }
 
                 $this->Session->write('NavCollapse.fav', true);
