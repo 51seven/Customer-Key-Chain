@@ -226,8 +226,9 @@ class CustomerController extends AppController {
                 'conditions' => array(
                     'OR' => array(
                         array('Contactperson.prename LIKE' => $string),
-                        array('Contactperson.name LIKE' => $string)
-                    )
+                        array('Contactperson.name LIKE' => $string),
+                        array('Contactperson.fullname LIKE' => $string),
+                    ),
                 )
             ));
 

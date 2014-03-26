@@ -18,8 +18,8 @@ else {
 if($contact_results) {
 	foreach ($contact_results as $contact => $result) {
 		echo $this->Html->link($result['Contactperson']['fullname'], array(
-			'controller' => 'contactperson', 
-			'action' => 'view', $result['Contactperson']['contactperson_id']
+			'controller' => 'customer', 
+			'action' => 'contacts', $result['Customer']['customer_id']
 			)
 		)."<br>";
 	}
