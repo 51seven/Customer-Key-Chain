@@ -148,18 +148,20 @@ if(sizeof($combinations) > 0):
         <?php if($isadmin): ?>
           <div class="btn-group ckc-view-btn-group">
           <?php
-            echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', array(
-              'controller' => 'combination',
-              'action' => 'edit',
-              $combination['combination_id']
-            ), array('escape' => false, 'class' => 'ckc-action-btn btn btn-warning btn-xs'));
+            echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', 
+              array(
+                'controller' => 'combination',
+                'action' => 'edit', $combination['combination_id'],
+              ), 
+              array('escape' => false, 'class' => 'ckc-action-btn btn btn-warning btn-xs'));
           ?>
           <?php
-            echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>', array(
-              'controller' => 'combination',
-              'action' => 'delete',
-              $combination['combination_id']
-            ), array('escape' => false, 'class' => 'ckc-action-btn btn btn-danger btn-xs'), "Willst du diesen Account   wirklich entfernen?"
+            echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>', 
+              array(
+                'controller' => 'combination',
+                'action' => 'delete', $combination['combination_id'],
+              ), 
+              array('escape' => false, 'class' => 'ckc-action-btn btn btn-danger btn-xs'), "Willst du diesen Account   wirklich entfernen?"
             );
           ?>
           </div>

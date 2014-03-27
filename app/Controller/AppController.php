@@ -80,12 +80,7 @@ class AppController extends Controller {
     * default: block all actions if no admin
     */
     public function checkPermission() {
-        if($this->Auth->loggedIn()) {
-           return true;
-        }
-
-        $this->redirect(array('controller' => 'user', 'action' => 'login'));
-        return false;
+        return true;
     }
 
     /* 
