@@ -54,8 +54,8 @@
   <?php 
   echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
     array(
-      'controller' => 'customer', 
-      'action' => 'history', $customer['Customer']['customer_id'],
+      'controller' => 'history', 
+      'action' => 'listall', $customer['Customer']['customer_id'],
     ),
     array(
       'title' => 'History ansehen',
@@ -65,8 +65,8 @@
   );
   echo $this->Html->link('<span class="glyphicon glyphicon-book"></span>',
     array(
-      'controller' => 'customer', 
-      'action' => 'contacts', $customer['Customer']['customer_id'],
+      'controller' => 'contactperson', 
+      'action' => 'listall', $customer['Customer']['customer_id'],
     ),
     array(
       'title' => 'Kontaktpersonen anzeigen',

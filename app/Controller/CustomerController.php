@@ -20,20 +20,33 @@ class CustomerController extends AppController {
                 'fields' => 'customer_id'
             ));
 
-            if($this->action == 'view') {
-                if(in_array($this->request->pass[0], $permissions)) {
-                    return true;
+            $allowedActions = array('view', 'history', 'contacts', 'search');
+
+            if(in_array($this->action, $allowedActions)) {
+                if(isset($this->request->pass[0])) {
+                    if(in_array($this->request->pass[0], $permissions) || $this->action == 'search') {
+                        return true;
+                    }
+                    else {                    
+                        throw new ForbiddenException('Du hast keine Berechtigung diesen Kunden zu sehen.');
+                    }
                 }
-                else {
-                   throw new ForbiddenException('You dont have permission to see this Customer.'); 
-                }
-            }
-            else if($this->action == 'search' OR $this->action == 'index') {
-                return true;
             }
             else {
-                throw new ForbiddenException('Insufficient permissions.');
+                throw new ForbiddenException('Deine Berechtigungen reichen leider nicht aus.');
             }
+        }
+        else if($this->Auth->loggedIn()) {
+            // Eingeloggt 
+            if($this->action == 'search' OR $this->action == 'index') {
+                return true;
+            }
+        }
+        else {
+            // Nicht eingeloggt. Redirect zum Login
+            $this->Session->setFlash('Bitte melde dich an.', 'flash_bt_warning');
+            $this->redirect(array('controller' => 'user', 'action' => 'login'));
+            return false;
         }
     }    
 
@@ -153,59 +166,6 @@ class CustomerController extends AppController {
         }
     }
 
-    /**
-    * Listet alle Kontaktpersonen zu einem Kunden auf
-    * @param customer_id
-    */
-    public function contacts($cid = null) {
-
-        if(!$this->Customer->findByCustomer_id($cid)) {
-            throw new NotFoundException('Kunde wurde nicht gefunden.');
-        }
-
-        $contactpersons = $this->Contactperson->findAllByCustomer_id($cid); 
-
-        if($contactpersons) {
-            $this->set('contactpersons', $contactpersons);
-        }
-        else {
-            $this->Customer->recursive = -1;
-            $this->set('customername', $this->Customer->read('Customer.name', $cid));
-        }
-    }
-
-    /**
-    * Listet alle historischen Ereignisse zu einem Kunden auf
-    * @param customer_id
-    */
-    public function history($cid = null) {        
-
-        if(!$this->Customer->findByCustomer_id($cid)) {
-            $this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
-            $this->redirect('index');
-        }
-
-        $history = $this->History->findAllByCustomer_id($cid, array(), array('History.time' => 'DESC'));
-
-        if($history) {
-            $fade = -1;
-            
-            if(isset($this->request->query['fade'])) {
-                $fade = $this->request->query['fade'];
-            }
-
-            $this->set('history', $history);
-            $this->set('fade', $fade);
-        }
-        else {
-            $this->Session->setFlash('Der Kunde hat noch keine History. Du kannst jetzt einen erstellen. ', 'flash_bt_warning', array(
-                'link_text' => 'Zurück zum Kunden',
-                'link_url' => array('controller' => 'customer', 'action' => 'view', $cid)                
-            ));
-            $this->redirect(array('controller' => 'history', 'action' => 'create', $cid));
-        }
-    }
-
     public function search() {
 
         if(isset($this->request->query['string'])) {
@@ -221,19 +181,15 @@ class CustomerController extends AppController {
             $this->redirect('index');
         }
         else {
-
-            $contact_results = $this->Contactperson->find('all', array(
+            $contact_results = $this->Contactperson->find('list', array(
                 'conditions' => array(
                     'OR' => array(
                         array('Contactperson.prename LIKE' => $string),
                         array('Contactperson.name LIKE' => $string),
                         array('Contactperson.fullname LIKE' => $string),
                     ),
-                )
+                ),
             ));
-
-
-            $this->set('contact_results', $contact_results);
 
             $customer_results = $this->Customer->find('list', array(
                 'conditions' => array('Customer.name LIKE' => '%'.$string.'%'),
@@ -246,6 +202,7 @@ class CustomerController extends AppController {
                     'fields' => 'customer_id'
                 ));   
 
+                // Kunden filtern
                 $filtered_results = array();
 
                 foreach ($customer_results as $key => $result) {
@@ -253,11 +210,22 @@ class CustomerController extends AppController {
                         $filtered_results[$key] = $result;
                     }    
                 }
-
                 $customer_results = $filtered_results;
+
+                // Kontakte filtern
+                $filtered_results = array();
+
+                foreach ($contact_results as $key => $result) {
+                    if(in_array($key['Customer']['customer_id'], $permissions)) {
+                        $filtered_results[$key] = $result;
+                    }    
+                }
+                $customer_results = $filtered_results;
+
             }
 
             $this->set('customer_results', $customer_results);
+            $this->set('contact_results', $contact_results);
             $this->set('string', $string);
         }
     }

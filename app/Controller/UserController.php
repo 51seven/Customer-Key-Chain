@@ -20,7 +20,6 @@ class UserController extends AppController {
         // blackhole callback bei POST Aufruf trotzdem vorhanden
         // (AJAXCall leitet zu POST weiter)
         //$this->Security->csrfCheck = false;
-
         $this->Auth->flash = array('element' => 'flash_bt_warning');
 
         // Welche Actions sind erlaubt?
@@ -37,7 +36,6 @@ class UserController extends AppController {
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
-                    //$this->Session->write('User', $user['User']); (can be deleted if not neccessary - 25.5.14^s)
                 }
             }
         }
@@ -49,34 +47,20 @@ class UserController extends AppController {
         }
     }
 
+  /*  public function checkPermission() {
+        if($this->Auth->loggedIn()) {
+            return true;
+        }
+        else {
+            $this->redirect(array('controller' => 'user', 'action' => 'login'));
+            return false;
+        }
+    }*/
+
     // Just a development function
     public function createsalt($pw) {
         echo Security::hash($pw, 'sha1', true);
         $this->autoRender = false;
-    }
-
-    public function settings() {  
-        if($this->request->is('post')) {
-            $this->request->data['User']['user_id'] = $this->Auth->user('user_id');
-
-            $this->User->recursive = -1;
-            $db_password = $this->User->findByUser_id($this->Auth->user('user_id'));
-            
-            if($db_password['User']['password'] == Security::hash($this->request->data['User']['password_old'], 'sha1', true)) {
-                if($this->User->save($this->request->data)) {
-                    unset($this->request->data);
-                    $this->Session->setFlash('Passwort wurde erfolgreich aktualisiert.', 'flash_bt_good');
-                }
-                else {
-                    $this->Session->setFlash('Passwort konnte nicht aktualisiert werden.', 'flash_bt_bad');   
-                }
-                // Why the fuck does this result in a white page?
-                //$this->redirect(array('controller' => 'user', 'action' => 'settings'));
-            }
-            else {
-                $this->Session->setFlash('Dein altes Passwort ist inkorrekt.', 'flash_bt_warning');
-            }
-        } 
     }
 
     /**
@@ -129,6 +113,7 @@ class UserController extends AppController {
 
     public function login() {
         $this->layout = 'login';
+
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 if($this->request->data['User']['stay'] == 1) {
@@ -140,12 +125,12 @@ class UserController extends AppController {
                         'hash' => Security::hash($this->request->data['User']['username'].$currentTime) // Checksumme
                     );
                     // Cookie Speichern
-                    $this->Cookie->write('autologin', $cookie, true, 999999);
+                    $this->Cookie->write('autologin', $cookie, true, '+1 year');
                 }
 
                 $this->Session->write('NavCollapse.fav', true);
                 $this->Session->setFlash('Willkommen zurück, '.$this->request->data['User']['username'], 'flash_bt_good');
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirect());
             } 
             else {
                 $this->Session->setFlash('Login fehlgeschlagen', 'flash_bt_bad');

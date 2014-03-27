@@ -38,6 +38,27 @@ class ContactpersonController extends AppController {
         }
     }
 
+    /**
+    * Listet alle Kontaktpersonen zu einem Kunden auf
+    * @param customer_id
+    */
+    public function listall($cid = null) {
+
+        if(!$this->Customer->findByCustomer_id($cid)) {
+            throw new NotFoundException('Kunde wurde nicht gefunden.');
+        }
+
+        $contactpersons = $this->Contactperson->findAllByCustomer_id($cid); 
+
+        if($contactpersons) {
+            $this->set('contactpersons', $contactpersons);
+        }
+        else {
+            $this->Customer->recursive = -1;
+            $this->set('customername', $this->Customer->read('Customer.name', $cid));
+        }
+    }
+
     public function edit($cpid = null) {
         if($this->Contactperson->findByContactperson_id($cpid)) {
             // Speichern

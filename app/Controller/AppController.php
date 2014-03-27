@@ -40,6 +40,12 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'user', 'action' => 'login'),
             'loginAction' => array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
+            'userModel' => 'User',
+            'authenticate' => array(
+                'Form' => array(
+                    'fields' => array('username')
+                )
+            ),
             'flash' => array(
                 'element' => 'flash_bt_warning',
                 'key' => 'auth',
@@ -55,7 +61,8 @@ class AppController extends Controller {
         'Favorite',
         'Permission',
         'CakeTime', 'Utility',
-        'TimeHelper'
+        'TimeHelper',
+        'Cookie'
     );
 
     public $helpers = array('Form', 'Html', 'Time');
@@ -73,11 +80,12 @@ class AppController extends Controller {
     * default: block all actions if no admin
     */
     public function checkPermission() {
-        if(!$this->Auth->user('isadmin')) {
-            throw new ForbiddenException('Insufficient permissions.');
-            $this->redirect(array('controller' => 'customer', 'action' => 'login'));
-            return false;
+        if($this->Auth->loggedIn()) {
+           return true;
         }
+
+        $this->redirect(array('controller' => 'user', 'action' => 'login'));
+        return false;
     }
 
     /* 

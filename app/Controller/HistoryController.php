@@ -3,6 +3,7 @@ class HistoryController extends AppController {
 
     public $uses = array(
         'History',
+        'Customer',
     );
     public $helpers = array(
         'Time',
@@ -18,11 +19,43 @@ class HistoryController extends AppController {
 
             if($this->History->save($this->request->data)) {
                 $this->Session->setFlash('Eintrag erfolgreich erstellt.', 'flash_bt_good');
-                $this->redirect(array('controller' => 'customer', 'action' => 'history', $cid));
+                $this->redirect(array('controller' => 'history', 'action' => 'list', $cid));
             }
             else {
                 $this->Session->setFlash('Fehler beim erstellen des Eintrags.', 'flash_bt_bad');
             }
+        }
+    }
+
+     /**
+    * Listet alle historischen Ereignisse zu einem Kunden auf
+    * @param customer_id
+    */
+    public function listall($cid = null) {   
+        if(!$this->Customer->findByCustomer_id($cid)) {
+            $this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
+            $this->redirect('index');
+        }
+
+        $history = $this->History->findAllByCustomer_id($cid, array(), array('History.time' => 'DESC'));
+
+        if($history) {
+            $fade = -1;
+            
+            if(isset($this->request->query['fade'])) {
+                $fade = $this->request->query['fade'];
+            }
+
+            $this->set('history', $history);
+            $this->set('fade', $fade);
+            $this->render('listall');
+        }
+        else {
+            $this->Session->setFlash('Der Kunde hat noch keine History. Du kannst jetzt einen erstellen. ', 'flash_bt_warning', array(
+                'link_text' => 'Zurück zum Kunden',
+                'link_url' => array('controller' => 'customer', 'action' => 'view', $cid)                
+            ));
+            $this->redirect(array('controller' => 'history', 'action' => 'create', $cid));
         }
     }
 

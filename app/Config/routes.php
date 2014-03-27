@@ -27,8 +27,6 @@
 	Router::connect('/', array('controller' => 'customer', 'action' => 'index'));
 	
 
-
-
  	// ...and connect the rest of 'Pages' controller's URLs.
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
