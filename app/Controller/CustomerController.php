@@ -7,6 +7,7 @@ class CustomerController extends AppController {
         'Contactperson',
         'History',
         'Funfact',
+        'User',
     );
     public $helpers = array(
         'Markdown.Markdown',

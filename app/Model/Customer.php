@@ -34,6 +34,7 @@ class Customer extends AppModel {
         )
     );
 
+    // deprecated
     public function checkPermission($customer, $user) {
         if(!$user('isadmin')) {
             // nur erlaubte Kunden anzeigen

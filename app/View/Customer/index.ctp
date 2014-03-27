@@ -1,3 +1,5 @@
+Route: /customer/index
+
 <h2>Hi <small><?php echo $user['username']; ?></small></h2>
 
 <?php 

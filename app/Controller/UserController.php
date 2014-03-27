@@ -136,6 +136,12 @@ class UserController extends AppController {
                 $this->Session->setFlash('Login fehlgeschlagen', 'flash_bt_bad');
             }
         }
+
+        // Falls User bereits eingeloggt war
+        if($this->Auth->loggedIn()) {
+            $this->Session->setFlash('Alles ok. Du bist bereits eingeloggt.', 'flash_bt_warning');
+            return $this->redirect($this->Auth->redirect());
+        }
     }
 
     // Logout-Funktion
