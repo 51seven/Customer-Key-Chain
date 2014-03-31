@@ -6,7 +6,8 @@
     CKC – 51seven
   </title>
   <?php
-    echo $this->Html->meta('icon');
+    //echo $this->Html->meta('icon');
+    echo $this->Html->meta('icon', $this->Html->url('/app/webroot/favicon.ico'))."\n";
 
     echo $this->Html->css('bootstrap.min');
     //echo $this->Html->css('bootstrap-theme.min');
@@ -33,8 +34,8 @@
         <?php echo $this->fetch('content'); ?>
       </div>
     </div>
-    <?php echo $this->element('sql_dump'); ?>
   </div>
+  <div style="margin: 0 10px 0 10px;"><?php echo $this->element('sql_dump'); ?></div>
 <?php echo $this->Html->script('ux'); ?>
 </body>
 </html>

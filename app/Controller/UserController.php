@@ -29,13 +29,24 @@ class UserController extends AppController {
         $cookie = $this->Cookie->read('autologin');
 
         if(!$this->Auth->loggedIn() && isset($cookie)) { // Wenn ausgeloggt und Cookie gesetzt
+            
+            $this->log('Try to autologin...', 'debug');
+            $this->log($cookie, 'debug');
+
             if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) { // Wenn cookie gültig
                 $this->User->recursive = -1;
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
+                // DO NOT TOUCH THIS! (srsly, just dont do it)
+                $user = $user['User']; // This is so fucking dirty, but it works.
+
                 if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
+                    $this->redirect($this->Auth->loginRedirect);
+                }
+                else {
+                    $this->log('Autologin failed.', 'debug');
                 }
             }
         }
@@ -147,7 +158,7 @@ class UserController extends AppController {
     // Logout-Funktion
     public function logout() {
         $this->Session->setFlash('Du wurdest erfolgreich ausgeloggt.', 'flash_bt_info');
-        $this->Session->delete('User');
+        //$this->Session->delete('User');
         $this->Cookie->delete('autologin');
         return $this->redirect($this->Auth->logout());
     }

@@ -1,15 +1,13 @@
 Route: /customer/index
+<h2>Hi <small><?= $user['username'] ?></small></h2>
 
-<h2>Hi <small><?php echo $user['username']; ?></small></h2>
+<?php $role = array(0 => 'Gast', 1 => 'Admin');?>
 
-<?php 
-$role = array(0 => 'Gast', 1 => 'Admin');
-echo "Rolle: ".$role[$user['isadmin']]."<br><br>";
-
-echo "Kombinationen: ".$combination_count."<br>";
-echo "Kunden: ".$customer_count."<br><br>";
-
-echo "Kein Kundenkontakt seit über 30 Tagen mit: <br>";
+Rolle: <?= $role[$user['isadmin']] ?><br><br>
+Kombinationen: <?= $combination_count ?><br>
+Kunden: <?= $customer_count ?><br><br>
+Kein Kundenkontakt seit über 30 Tagen mit: <br>
+<?php
 	foreach ($frozen_customers as $customer => $value) {
 		echo " - ";
 		echo $this->Html->link($value['Customer']['name'], array(

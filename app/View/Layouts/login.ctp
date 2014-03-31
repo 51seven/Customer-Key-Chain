@@ -6,7 +6,8 @@
     CKC – 51seven
   </title>
   <?php
-    echo $this->Html->meta('icon');
+    //echo $this->Html->meta('icon');
+    echo $this->Html->meta('icon', $this->Html->url('/app/webroot/favicon.ico'))."\n";
 
     echo $this->Html->css('bootstrap.min');
     //echo $this->Html->css('bootstrap-theme.min');

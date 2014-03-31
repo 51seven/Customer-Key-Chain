@@ -36,22 +36,17 @@ class AppController extends Controller {
     	'Security',
         'Session', 
         'Auth' => array(
-            'loginRedirect' => array('controller' => 'pages', 'action' => 'index'),
+            'loginRedirect' =>  array('controller' => 'pages', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'user', 'action' => 'login'),
-            'loginAction' => array('controller' => 'user', 'action' => 'login'),
+            'loginAction' =>    array('controller' => 'user', 'action' => 'login'),
             'authError' => 'Bitte melde Dich an, bevor du auf diese Seite zugreifst.',
             'userModel' => 'User',
             'authenticate' => array(
                 'Form' => array(
                     'fields' => array('username')
-                )
+                ),
             ),
-            'flash' => array(
-                'element' => 'flash_bt_warning',
-                'key' => 'auth',
-                'params' => array(1)
-            ),
-
+            'flash' => array('element' => 'flash_bt_warning', 'key' => 'auth', 'params' => array(1)),
         ),
         'DebugKit.Toolbar'
     );
@@ -65,7 +60,11 @@ class AppController extends Controller {
         'Cookie'
     );
 
-    public $helpers = array('Form', 'Html', 'Time');
+    public $helpers = array(
+        'Form', 
+        'Html', 
+        'Time'
+    );
 
     /* 
     * Current allowed guest-Actions:

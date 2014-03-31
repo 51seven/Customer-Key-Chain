@@ -13,10 +13,21 @@ class CustomerController extends AppController {
         'Markdown.Markdown',
     );
 
+
     /*  
-    called by route:
-    */
+     * Default Route: '/'
+     */
     public function index() {
+
+        if($this->Auth->loggedIn()) {
+            if($this->Auth->user('User')) {
+                debug($this->Auth->user());
+                debug($this->Auth->authenticate);
+            }
+
+            //debug($this->Auth->user());
+        }
+
         $this->set('user', $this->Auth->user());
         
         // Anzahl an gespeicherten Kombinationen:
