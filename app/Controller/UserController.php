@@ -58,16 +58,6 @@ class UserController extends AppController {
         }
     }
 
-  /*  public function checkPermission() {
-        if($this->Auth->loggedIn()) {
-            return true;
-        }
-        else {
-            $this->redirect(array('controller' => 'user', 'action' => 'login'));
-            return false;
-        }
-    }*/
-
     // Just a development function
     public function createsalt($pw) {
         echo Security::hash($pw, 'sha1', true);
@@ -163,5 +153,49 @@ class UserController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 
+    public function changepw() {
+
+        if($this->request->is('post')) {
+            $this->User->recursive = -1;
+            $this->User->id = $this->Auth->user('user_id');
+
+            // oldpw == dbpw
+            if($this->User->field('password') == Security::hash($this->request->data['User']['old_password'], 'sha1', true)) {
+                // newpw1 == newpw2
+                if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
+                    $this->User->password = $this->request->data['User']['confirm_password'];
+
+                    // Passwort matching?
+                    $password['User']['password'] = $this->request->data['User']['password'];
+                    unset($this->request->data);
+                    $this->User->set($password);
+
+                    if($this->User->validates(array('fieldList' => array('password')))) {                 
+                        if($this->User->save()) {
+                           $this->Session->setFlash('Passwort erfolgreich geändert.', 'flash_bt_good'); 
+                        }
+                        else {
+                            $this->Session->setFlash('Passwort konnte nicht geändert werden.', 'flash_bt_bad'); 
+                        }
+                    }
+                    else {
+                        $this->Session->setFlash('Passwort konnte nicht geändert werden.', 'flash_bt_bad'); 
+                    }
+
+                }
+                else {
+                    $this->Session->setFlash('Passwörter stimmen nicht überein.', 'flash_bt_bad'); 
+                }
+            }
+            else {
+                $this->Session->setFlash('Dein altes Passwort scheint nicht korrekt zu sein.', 'flash_bt_bad'); 
+            }
+        }
+
+    }
 
 }
+
+
+
+?>

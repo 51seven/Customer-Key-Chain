@@ -49,42 +49,8 @@ class User extends AppModel {
                 'message' => 'Dein Passwort muss mindestens 6 Zeichen lang sein. (Maximal 40)'
             )
         ),
-        'password_confirm' => array(
-            'required' => array(
-                'rule' => array(
-                    'notEmpty'
-                ),
-                'message' => 'Du musst dein Passwort bestätigen.',
-                'required' => true
-            ),
-            'isCorrectConfirmed' => array(
-                'rule' => array(
-                    'isCorrectConfirmed'
-                ),    
-                'message' => 'Deine Passwörter stimmen nicht überein.'
-            )
-        ),
     );
     
-    /** Überprüft ob der Benutzername bereits im System vorhanden ist.
-     *  @params username aus den Post-Variablen
-     *  @return boolean
-    **/
-    public function isUniqueUsername($username) {
-        $usernames = $this->find('count', array(
-            'conditions' => array(
-                'User.username' => $username['username']
-                )
-            )
-        );
-
-        if($usernames > 0){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
 
     /** Überprüft ob das Passwort erneut korrekt eingegeben wurde
      *  @params $password_confirm aus den Post-Variablen
