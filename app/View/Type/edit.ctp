@@ -1,12 +1,12 @@
 <div class="input-group">
-<h2 class="primary">Neuen Zugangstyp anlegen</h2>
-<p>Zugangstypen beschreiben die Art des Passwortes. Z.B. Wordpress, FTP...</p><br>
+<h2 class="primary">Zugangstyp bearbeiten</h2>
 <?php
 echo $this->Form->create('Type', array(
 	'type' => 'post',
 	'class' => 'form-horizontal'
 	)
 );
+echo $this->Form->hidden('type_id');
 echo $this->Form->input('name', array(
 	'label' => array(
 		'class' => 'col-sm-2 control-label', 
@@ -18,7 +18,7 @@ echo $this->Form->input('name', array(
 	'after' => '</div>',
 ));
 echo $this->Form->end(array(
-	'label' => 'Typ anlegen',
+	'label' => 'Speichern',
 	'class' => 'btn btn-default',
 	'div' => array('class' => 'form-group'),
 	'before' => '<div class="col-sm-offset-2 col-sm-10">',

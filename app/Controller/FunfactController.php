@@ -42,10 +42,10 @@ class FunfactController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Funfact->save($this->request->data)) {
-				$this->Session->setFlash(__('The funfact has been saved.'));
+				$this->Session->setFlash('The funfact has been saved.', 'flash_bt_good');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The funfact could not be saved. Please, try again.'));
+				$this->Session->setFlash('The funfact could not be saved. Please, try again.', 'flash_bt_bad'););
 			}
 		} else {
 			$options = array('conditions' => array('Funfact.' . $this->Funfact->primaryKey => $id));
