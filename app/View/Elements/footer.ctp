@@ -4,8 +4,8 @@
     <div class="col-xs-4">
         <ul class="no-list-style">
           <li><?= $this->Html->link('Alle Typen anzeigen', array('controller' => 'type', 'action' => 'index')); ?></li>
-          <li><?= $this->Html->link('Einen Fehler melden', array()); ?></li>
           <li><?= $this->Html->link('Dein Passwort ändern', array('controller' => 'user', 'action' => 'changepw')); ?></li>
+          <li><?= $this->Html->link('Einen Fehler melden', 'https://github.com/51seven/Customer-Key-Chain/issues/new'); ?></li>
         </ul>
       </div>
       <div class="col-xs-4">
