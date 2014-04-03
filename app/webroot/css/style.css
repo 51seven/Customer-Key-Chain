@@ -1,4 +1,4 @@
-/* line 16, ../scss/style.scss */
+/* line 15, ../scss/style.scss */
 body {
   padding-top: 70px;
   background: #fbfbfb;
@@ -90,6 +90,48 @@ body.login .ckc-btn-login {
 .sidebar-accordion .panel-collapse .list-group-item:first-child {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+/* line 1, ../scss/_footer.scss */
+footer {
+  background-color: #f8f8f8;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  min-height: 50px;
+  margin-top: 20px;
+  color: #333;
+  padding: 15px 0 15px 0;
+  font-size: 13px;
+}
+/* line 11, ../scss/_footer.scss */
+footer .logo {
+  display: block;
+  text-indent: -9999px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  opacity: .5;
+  background-size: 100% 100%;
+  background-image: url('../img/logo.png?1391286727');
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* line 11, ../scss/_footer.scss */
+  footer .logo {
+    background-image: url('../img/logo@2x.png?1391286727');
+    background-size: 100px 100px;
+  }
+}
+/* line 22, ../scss/_footer.scss */
+footer .logo:hover {
+  opacity: .6;
+}
+/* line 27, ../scss/_footer.scss */
+footer a {
+  color: #333;
 }
 
 /* line 1, ../scss/_view-customer.scss */
@@ -193,29 +235,38 @@ body.login .ckc-btn-login {
   display: block;
 }
 
+/* line 30, ../scss/style.scss */
+.no-list-style {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 36, ../scss/style.scss */
+.align-right {
+  text-align: right;
+}
+
 /* REMOVE THIS SHIT IN HERE */
-/* line 34, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
 h1.primary {
   margin-bottom: 30px;
 }
 
-/* line 38, ../scss/style.scss */
+/* line 45, ../scss/style.scss */
 section.history {
   width: 400px;
-  /*&:hover > .options{
-  	visibility: visible;
-  }*/
 }
-/* line 41, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 section.history .subinfo {
   color: #999;
   font-weight: 300;
 }
-/* line 46, ../scss/style.scss */
+/* line 53, ../scss/style.scss */
 section.history .date {
   font-size: 24px;
 }
-/* line 54, ../scss/style.scss */
+/* line 57, ../scss/style.scss */
 section.history .options {
   margin-top: 10px;
   color: #999;

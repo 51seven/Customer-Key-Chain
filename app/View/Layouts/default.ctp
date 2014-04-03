@@ -30,16 +30,15 @@
         <?php echo $this->fetch('content'); ?>
       </div>
     </div>
-  </div>
-  <?php
-  if(Configure::read('debug') > 0):
-  ?>
-    <div style="margin: 0 10px 0 10px;">
+
+    <?php if(Configure::read('debug') > 3): ?>
+    <div style="margin: 50 10px 0 10px;">
       <?php echo $this->element('sql_dump'); ?>
     </div>
-  <?php
-  endif;  
-  ?>
+    <?php endif; ?>
+    
+  </div>
+  <?php echo $this->element('footer'); ?>
 <?php echo $this->Html->script('ux'); ?>
 </body>
 </html>

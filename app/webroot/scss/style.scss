@@ -2,7 +2,6 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "breakpoints";
-//@import "compass/css3/animation";
 
 @mixin retina-background($name, $extension) {
 	background-image: image-url($name + "." + $extension);
@@ -21,16 +20,24 @@ body {
 @import "header";
 @import "login";
 @import "sidebar";
+@import "footer";
 @import "view-customer";
 
 .ckc-panel-dump {
 	display: block;
 }
 
+.no-list-style {
+list-style: none;
+margin: 0px;
+padding: 0px;
+}
+
+.align-right {
+text-align: right;
+}
 
 /* REMOVE THIS SHIT IN HERE */
-
-
 h1.primary {
 	margin-bottom: 30px;
 }
@@ -47,17 +54,10 @@ section.history {
 		font-size: 24px;
 	}
 
-	.text {
-		
-	}
-
 	.options {
 		margin-top: 10px;
 		color: #999;
 	}
-	/*&:hover > .options{
-		visibility: visible;
-	}*/
 
 	&:after {
 		 clear: both;

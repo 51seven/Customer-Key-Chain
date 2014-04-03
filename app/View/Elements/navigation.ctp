@@ -15,9 +15,7 @@
           <?php if($isadmin) echo "<li>".$this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create'))."</li>"; ?>
           <?php if($isadmin) echo "<li>".$this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create'))."</li>"; ?>
           <?php 
-            if($this->Session->check('Auth.User')) {
-              echo "<li>".$this->Html->link('Logout', array('controller' => 'user', 'action' => 'logout'))."</li>"; 
-            }
+            echo "<li>".$this->Html->link('Logout', array('controller' => 'user', 'action' => 'logout'))."</li>"; 
           ?>
       </ul>
       <?php echo $this->Form->create(null, array('url' => array('controller' => 'customer', 'action' => 'search'), 
