@@ -24,6 +24,8 @@ echo $this->Form->input('time', array(
 	'div' => array('class' => 'form-group'),
 	'between' => '<div class="col-sm-10">',
 	'after' => '</div>', 
+	'id' => 'datepicker',
+	'type' => 'text'
 ));
 echo $this->Form->end(array(
 	'label' => 'Eintrag anlegen',
