@@ -68,8 +68,8 @@ class HistoryController extends AppController {
                 if($this->History->save($this->request->data)) {
                     $this->Session->setFlash('Eintrag wurde erfolgreich aktualisiert', 'flash_bt_good');
                     $this->redirect(array(
-                        'controller' => 'customer', 
-                        'action' => 'History', 
+                        'controller' => 'history', 
+                        'action' => 'listall', 
                         $this->request->data['History']['customer_id'],
                         '?' => array('fade' => $hid),
                     ));
@@ -97,7 +97,7 @@ class HistoryController extends AppController {
         if($history) {
             if($this->History->delete($hid)) {
                 $this->Session->setFlash('Eintrag wurde erfolgreich gelöscht.', 'flash_bt_warning');
-                $this->redirect(array('controller' => 'customer', 'action' => 'history', $history['History']['customer_id']));
+                $this->redirect(array('controller' => 'history', 'action' => 'listall', $history['History']['customer_id']));
             }   
             else {
                 $this->Session->setFlash('Eintrag konnte nicht gelöscht werden.', 'flash_bt_warning');

@@ -228,16 +228,16 @@ section.history:after {
 /* line 67, ../scss/style.scss */
 .fade {
   opacity: 1.0;
-  -webkit-animation: fadeout 3s;
+  -webkit-animation: fadeout 4s;
   /* Chrome, Safari, Opera */
-  animation: fadeout 3s;
+  animation: fadeout 4s;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeout {
   /* line 75, ../scss/style.scss */
   from {
-    background: #35d329;
+    background: #dff0d8;
   }
 
   /* line 78, ../scss/style.scss */
@@ -250,17 +250,11 @@ section.history:after {
 @keyframes fadeout {
   /* line 85, ../scss/style.scss */
   from {
-    background: #35d329;
+    background: #dff0d8;
   }
 
   /* line 86, ../scss/style.scss */
   to {
     background: none;
   }
-}
-
-/* line 89, ../scss/style.scss */
-blockquote {
-  color: #333;
-  text-decoration: itali;
 }

@@ -66,14 +66,14 @@ section.history {
 
 .fade {
 	opacity: 1.0;
-	-webkit-animation: fadeout 3s; /* Chrome, Safari, Opera */
-	animation: fadeout 3s;
+	-webkit-animation: fadeout 4s; /* Chrome, Safari, Opera */
+	animation: fadeout 4s;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeout {
 	from {
-		background: #35d329;
+		background: #dff0d8;
 	}
 	to {
 		background: none;
@@ -82,14 +82,10 @@ section.history {
 
 /* Standard syntax */
 @keyframes fadeout {
-	from {background: #35d329;}
+	from {background: #dff0d8;}
 	to {background: none;}
 }
 
-blockquote {
-	color: #333;
-	text-decoration: itali
-}
 
 
 

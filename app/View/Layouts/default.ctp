@@ -2,16 +2,12 @@
 <html>
 <head>
   <?php echo $this->Html->charset(); ?>
-  <title>
-    CKC – 51seven
-  </title>
+  <title>CKC – 51seven</title>
   <?php
     //echo $this->Html->meta('icon');
     echo $this->Html->meta('icon', $this->Html->url('/app/webroot/favicon.ico'))."\n";
 
     echo $this->Html->css('bootstrap.min');
-    //echo $this->Html->css('bootstrap-theme.min');
-
     echo $this->Html->css('style');
 
     echo $this->Html->script(array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 'bootstrap.min'));
