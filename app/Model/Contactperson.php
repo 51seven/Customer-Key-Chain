@@ -20,11 +20,44 @@ class Contactperson extends AppModel {
 
     // Varlidation Rules for this Model
     public $validate = array(
+        'title' => array(
+             'rule'    => array('inList', array('Herr', 'Frau'), true),
+             'message' => 'Hier sind nur Herr oder Frau zugelassen.'
+        ),
+        'prename' => array(
+            'notEmpty' => array(
+                'rule' => 'notEmpty',
+                'required' => true,
+                'message' => 'Die Kontaktperson muss einen Vornamen haben.'
+            ),
+            'alpha' => array(
+                'rule' => '/^[a-zA-Z]+$/i',
+                'message' => 'Der Vorname darf nur aus Buchstaben bestehen.',
+            ),
+            'length' => array(
+                'rule'    => array('between', 3, 30),
+                'message' => 'Vorname muss zwischen 3 und 30 Zeichen lang sein.'
+            ),
+        ),
         'name' => array(
-            'rule'     => 'notEmpty',
-            'required' => true,
-            'message' => 'Die Kontaktperson muss einen Namen haben.'
-        )
+            'notEmpty' => array(
+                'rule' => 'notEmpty',
+                'required' => true,
+                'message' => 'Die Kontaktperson muss einen Nachnamen haben.'
+            ),
+            'alpha' => array(
+                'rule' => '/^[a-zA-Z]+$/i',
+                'message' => 'Der Nachname darf nur aus Buchstaben bestehen.',
+            ),
+            'length' => array(
+                'rule'    => array('between', 3, 30),
+                'message' => 'Nachname muss zwischen 3 und 30 Zeichen lang sein.'
+            ),
+        ),
+        'mail' => array(
+           'rule' => array('email', true),
+            'message' => 'Dies ist keine gültige Email-Adresse.'
+        ),
     );
 }
 ?>

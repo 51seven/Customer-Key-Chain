@@ -18,15 +18,6 @@ class CustomerController extends AppController {
      */
     public function index() {
 
-        if($this->Auth->loggedIn()) {
-            if($this->Auth->user('User')) {
-                debug($this->Auth->user());
-                debug($this->Auth->authenticate);
-            }
-
-            //debug($this->Auth->user());
-        }
-
         $this->set('user', $this->Auth->user());
         
         // Anzahl an gespeicherten Kombinationen:
@@ -125,7 +116,6 @@ class CustomerController extends AppController {
             }
             else {
                 $this->Session->setFlash('Kunde konnte nicht aktualisiert werden.', 'flash_bt_bad');
-                $this->redirect('edit/'.$cid);
             }
         }
         // Felder vorselektieren

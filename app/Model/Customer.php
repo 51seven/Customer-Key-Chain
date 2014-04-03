@@ -44,7 +44,12 @@ class Customer extends AppModel {
             'rule'     => 'notEmpty',
             'required' => true,
             'message' => 'Der Kunde muss einen Namen haben.'
-        )
+        ),
+        'plz' => array(
+            'rule' => array('postal', null, 'de'),
+            'message' => 'Diese Postleitzahl ist nicht gültig.',
+        ),
+
     );
 
     // deprecated

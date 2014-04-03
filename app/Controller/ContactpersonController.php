@@ -65,11 +65,11 @@ class ContactpersonController extends AppController {
             if($this->request->is('post')) { 
                 if($this->Contactperson->save($this->request->data)) {
                     $this->Session->setFlash($this->request->data['Contactperson']['prename'].' '.$this->request->data['Contactperson']['name'].' erfolgreich aktualisiert', 'flash_bt_good');
-                    $this->redirect(array('controller' => 'customer', 'action' => 'contacts', $this->request->data['Contactperson']['customer_id']));
+                    $this->redirect(array('controller' => 'contactperson', 'action' => 'listall', $this->request->data['Contactperson']['customer_id']));
                 }
                 else {
                     $this->Session->setFlash('Kontaktperson konnte nicht aktualisiert werden.', 'flash_bt_bad');
-                    $this->redirect('edit/'.$cpid);
+                    //$this->redirect('edit/'.$cpid);
                 }
             }
             // Felder vorselektieren

@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <?php if(Configure::read('debug') > 3): ?>
+    <?php if(Configure::read('debug') > 0): ?>
     <div style="margin: 50 10px 0 10px;">
       <?php echo $this->element('sql_dump'); ?>
     </div>
