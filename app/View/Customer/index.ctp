@@ -1,4 +1,3 @@
-Route: /customer/index
 <h2>Hi <small><?= $user['username'] ?></small></h2>
 
 <?php $role = array(0 => 'Gast', 1 => 'Admin');?>

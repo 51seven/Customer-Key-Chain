@@ -154,7 +154,7 @@ class CustomerController extends AppController {
             $this->redirect('index');
         }
         else {
-            $contact_results = $this->Contactperson->find('list', array(
+            $contact_results = $this->Contactperson->find('all', array(
                 'conditions' => array(
                     'OR' => array(
                         array('Contactperson.prename LIKE' => $string),
@@ -187,13 +187,17 @@ class CustomerController extends AppController {
 
                 // Kontakte filtern
                 $filtered_results = array();
+                debug($contact_results);
 
                 foreach ($contact_results as $key => $result) {
+                    debug($result);
+                    debug($key);
+
                     if(in_array($key['Customer']['customer_id'], $permissions)) {
                         $filtered_results[$key] = $result;
                     }    
                 }
-                $customer_results = $filtered_results;
+                $contact_results = $filtered_results;
 
             }
 

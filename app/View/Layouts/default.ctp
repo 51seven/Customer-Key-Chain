@@ -35,7 +35,15 @@
       </div>
     </div>
   </div>
-  <div style="margin: 0 10px 0 10px;"><?php echo $this->element('sql_dump'); ?></div>
+  <?php
+  if(Configure::read('debug') > 0):
+  ?>
+    <div style="margin: 0 10px 0 10px;">
+      <?php echo $this->element('sql_dump'); ?>
+    </div>
+  <?php
+  endif;  
+  ?>
 <?php echo $this->Html->script('ux'); ?>
 </body>
 </html>

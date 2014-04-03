@@ -4,7 +4,7 @@ if($customer_results) {
 	foreach ($customer_results as $customer => $result) {
 		echo $this->Html->link($result, array(
 			'controller' => 'customer', 
-			'action' => 'view', $result
+			'action' => 'view', $customer
 			)
 		)."<br>";
 	}
@@ -18,8 +18,8 @@ else {
 if($contact_results) {
 	foreach ($contact_results as $contact => $result) {
 		echo $this->Html->link($result['Contactperson']['fullname'], array(
-			'controller' => 'customer', 
-			'action' => 'contacts', $result['Customer']['customer_id']
+			'controller' => 'contactperson', 
+			'action' => 'listall', $result['Customer']['customer_id']
 			)
 		)."<br>";
 	}
