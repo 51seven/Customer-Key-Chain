@@ -7,10 +7,12 @@
     //echo $this->Html->meta('icon');
     echo $this->Html->meta('icon', $this->Html->url('/app/webroot/favicon.ico'))."\n";
 
-    echo $this->Html->css('bootstrap.min');
-    echo $this->Html->css('style');
-    echo $this->Html->css('//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css');
-    echo $this->Html->css('jquery.simple-dtpicker');
+    echo $this->Html->css(array(
+      'bootstrap.min',
+      'style',
+      '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
+      'jquery.simple-dtpicker'
+    ));
 
     echo $this->Html->script(array(
       '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 

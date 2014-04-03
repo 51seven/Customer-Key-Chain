@@ -63,7 +63,8 @@ class AppController extends Controller {
     public $helpers = array(
         'Form', 
         'Html', 
-        'Time'
+        'Time',
+        'Output',
     );
 
     /* 
