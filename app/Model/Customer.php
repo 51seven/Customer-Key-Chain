@@ -13,15 +13,28 @@ class Customer extends AppModel {
     public $hasMany = array(
         'Contactperson' => array(
             'className' => 'Contactperson',
-            'foreignKey' => 'contactperson_id'
+            'foreignKey' => 'customer_id',
+            'dependent' => true,
         ),
         'History' => array(
             'className' => 'History',
-            'foreignKey' => 'history_id'
+            'foreignKey' => 'customer_id',
+            'dependent' => true,
         ),
-        'History' => array(
-            'className' => 'History',
-            'foreignKey' => 'history_id'
+        'Favorite' => array(
+            'className' => 'Favorite',
+            'foreignKey' => 'customer_id',
+            'dependent' => true,
+        ),
+        'Combination' => array(
+            'className' => 'Combination',
+            'foreignKey' => 'customer_id',
+            'dependent' => true,
+        ),
+        'Funfact' => array(
+            'className' => 'Funfact',
+            'foreignKey' => 'customer_id',
+            'dependent' => true,
         ),
     );
 

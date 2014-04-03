@@ -19,7 +19,7 @@ class HistoryController extends AppController {
 
             if($this->History->save($this->request->data)) {
                 $this->Session->setFlash('Eintrag erfolgreich erstellt.', 'flash_bt_good');
-                $this->redirect(array('controller' => 'history', 'action' => 'list', $cid));
+                $this->redirect(array('controller' => 'history', 'action' => 'listall', $cid));
             }
             else {
                 $this->Session->setFlash('Fehler beim erstellen des Eintrags.', 'flash_bt_bad');

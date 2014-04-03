@@ -1,5 +1,6 @@
 <?php
-// hasOne: the other model contains the foreign key.
+// hasOne:      the other model contains the foreign key.
+// belongsTo:   the current model contains the foreign key.
 // HABTM requires a separate join table that includes both model names.
 
 class Contactperson extends AppModel {

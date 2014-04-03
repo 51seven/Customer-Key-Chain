@@ -13,7 +13,6 @@ class CustomerController extends AppController {
         'Markdown.Markdown',
     );
 
-
     /*  
      * Default Route: '/'
      */
@@ -206,18 +205,12 @@ class CustomerController extends AppController {
 
     public function delete($cid) {
         if($this->Customer->findByCustomer_id($cid)) {
-            if($this->Combination->deleteAll(array('Combination.customer_id' => $cid))) {
-                if($this->Customer->delete($cid, true)) {
-                    $this->Session->setFlash('Kunde erfolgreich gelöscht.', 'flash_bt_good');
-                    $this->redirect('/');
-                }
-                else {
-                    $this->Session->setFlash('Kunde konnte nicht gelöscht werden.', 'flash_bt_bad');
-                    $this->redirect('/');
-                }
+            if($this->Customer->delete($cid, true)) {
+                $this->Session->setFlash('Kunde erfolgreich gelöscht.', 'flash_bt_good');
+                $this->redirect('/');
             }
             else {
-                $this->Session->setFlash('Kundenkombinationen konnten nicht gelöscht werden.', 'flash_bt_bad');
+                $this->Session->setFlash('Kunde konnte nicht gelöscht werden.', 'flash_bt_bad');
                 $this->redirect('/');
             }
         }
