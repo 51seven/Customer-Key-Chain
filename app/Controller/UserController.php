@@ -38,9 +38,9 @@ class UserController extends AppController {
                 $user = $this->User->findByUsernameAndPassword($cookie['username'], $cookie['password']);
 
                 // DO NOT TOUCH THIS! (srsly, just dont do it)
-                $user = $user['User']; // This is so fucking dirty, but it works.
+                //$user = $user['User']; // This is so fucking dirty, but it works.
 
-                if(count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
+                if(isset($user['User']) && count($user) > 0) { // Wenn ein Benutzer gefunden wurde: Authentifizieren
                     $this->Auth->login($user);
                     $this->Auth->authenticate = $user;
                     $this->redirect($this->Auth->loginRedirect);
