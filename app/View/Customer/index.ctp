@@ -4,7 +4,8 @@
 
 Rolle: <?= $role[$user['isadmin']] ?><br><br>
 Kombinationen: <?= $combination_count ?><br>
-Kunden: <?= $customer_count ?><br><br>
+Kunden: <?= $customer_count ?><br>
+History: <?= $history_count ?><br><br>
 Kein Kundenkontakt seit über 30 Tagen mit: <br>
 <?php
 	foreach ($frozen_customers as $customer => $value) {
@@ -21,6 +22,24 @@ Kein Kundenkontakt seit über 30 Tagen mit: <br>
         // Add Tooltip with Date here?
 		//echo " ".$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
 	}
+?>
+<br><br>
+
+<?php
+	foreach ($news as $key => $value) {
+		echo "<div class='newsticker'>";
+		echo "<h3>".$this->Time->format($value['History']['time'], "%d.%m.%y um %k:%M Uhr")."</h3>";
+		echo "<ul>";
+			echo "<li>".$this->Html->link($value['Customer']['name'], array(
+				'controller' => 'customer', 'action' => 'view', $value['Customer']['customer_id']))."</li>";
+			echo "<li>".$value['User']['username']."</li>";
+		echo "</ul>";
+		echo "<p>".$value['History']['text']."</p>";
+		echo "</div>";
+		echo "<hr>";
+	}
+
+	echo $this->Html->link('Alle anzeigen', array('controller' => 'history', 'action' => 'newsfeed'));
 ?>
 
 
