@@ -26,10 +26,6 @@ Kein Kundenkontakt seit über 30 Tagen mit: <br>
 
 <?php
 	foreach ($news as $key => $value) {
-		//$value['History']['time'];
-		$date = "12.03.2014";
-		$time = "12:24 Uhr";
-
 		echo "<div class='newsticker'>";
 		echo "<h3>".$this->Time->format($value['History']['time'], "%d.%m.%y um %k:%M Uhr")."</h3>";
 		echo "<ul>";
@@ -41,7 +37,8 @@ Kein Kundenkontakt seit über 30 Tagen mit: <br>
 		echo "</div>";
 		echo "<hr>";
 	}
-	
+
+	echo $this->Html->link('Alle anzeigen', array('controller' => 'history', 'action' => 'newsfeed'));
 ?>
 
 

@@ -5,6 +5,18 @@ class HistoryController extends AppController {
         'History',
         'Customer',
     );
+
+    public $components = array(
+        'Paginator'
+    );
+
+    public $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'History.time' => 'DESC'
+        )
+    );
+
     public $helpers = array(
         'Time',
         'Markdown.Markdown',
@@ -25,6 +37,13 @@ class HistoryController extends AppController {
                 $this->Session->setFlash('Fehler beim erstellen des Eintrags.', 'flash_bt_bad');
             }
         }
+    }
+
+    public function newsfeed() {
+        $this->Paginator->settings = $this->paginate;
+
+        $histories = $this->Paginator->paginate('History');
+        $this->set('histores', $histories);
     }
 
      /**

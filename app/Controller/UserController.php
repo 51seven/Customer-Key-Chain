@@ -28,9 +28,11 @@ class UserController extends AppController {
         // Autologin?
         $cookie = $this->Cookie->read('autologin');
 
+        $this->log("This is UserController beforeFilter.");
+
         if(!$this->Auth->loggedIn() && isset($cookie)) { // Wenn ausgeloggt und Cookie gesetzt
             
-            $this->log('Try to autologin...', 'debug');
+            $this->log("!loggedIn() && cookie gesetzt.");
             $this->log($cookie, 'debug');
 
             if(Security::hash($cookie['username'].$cookie['time']) == $cookie['hash']) { // Wenn cookie gültig
