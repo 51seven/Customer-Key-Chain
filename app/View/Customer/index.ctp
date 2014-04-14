@@ -4,7 +4,8 @@
 
 Rolle: <?= $role[$user['isadmin']] ?><br><br>
 Kombinationen: <?= $combination_count ?><br>
-Kunden: <?= $customer_count ?><br><br>
+Kunden: <?= $customer_count ?><br>
+History: <?= $history_count ?><br><br>
 Kein Kundenkontakt seit über 30 Tagen mit: <br>
 <?php
 	foreach ($frozen_customers as $customer => $value) {

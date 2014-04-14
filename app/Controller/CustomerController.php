@@ -26,6 +26,9 @@ class CustomerController extends AppController {
         // Anzahl der Kunden
         $customer_count = $this->Customer->find('count');
 
+        // Anzahl aller History Einträge
+        $history_count = $this->History->find('count');
+
         // Kunden bei denen der letzte Eintrag länger als 30 Tage her ist
         $onemonth = date('Y-m-d', strtotime('-1 month'));
 
@@ -43,6 +46,7 @@ class CustomerController extends AppController {
 
         $this->set('combination_count', $combination_count);
         $this->set('customer_count', $customer_count);
+        $this->set('history_count', $history_count);
         $this->set('frozen_customers', $frozen_customers);
         $this->set('news', $news);
     }
