@@ -35,13 +35,16 @@ class CustomerController extends AppController {
             'fields' => array('History.history_id', 'History.customer_id', 'MAX(History.time) as time', 'Customer.name'),
         ));
 
-        // Aktivitäten der Benutzer
-        $user_activity = 'user_activity';
+        $news = $this->History->find('all', array(
+            'fields' => array('Customer.name','Customer.customer_id', 'User.username', 'History.text', 'History.time'),
+            'limit' => 10,
+            'order' => 'History.time DESC'
+        ));
 
         $this->set('combination_count', $combination_count);
         $this->set('customer_count', $customer_count);
         $this->set('frozen_customers', $frozen_customers);
-        $this->set('user_activity', $user_activity);
+        $this->set('news', $news);
     }
 
     public function view($cid = null) {
