@@ -11,9 +11,11 @@ if(isset($contactpersons)) {
 				echo $contact['Contactperson']['prename']." ".$contact['Contactperson']['name'];
 			echo "</h3>";
 
-			echo "<strong>Tel: </strong>".$contact['Contactperson']['phone']."<br>";
-			echo "<strong>Mobile: </strong>".$contact['Contactperson']['mobile']."<br>";
-			echo "<strong>Mail: </strong>".$contact['Contactperson']['mail']."<br>";
+			echo "<ul class='no-list-style'>";
+				echo "<li><span class='glyphicon glyphicon-phone-alt' /> ".$contact['Contactperson']['phone']."</li>";
+				echo "<li><span class='glyphicon glyphicon-earphone' /> ".$contact['Contactperson']['mobile']."</li>";
+				echo "<li><span class='glyphicon glyphicon-envelope' /> ".$contact['Contactperson']['mail']."</li>";
+			echo "</ul>";
 
 			echo $this->Html->link('Bearbeiten', array(
 				'controller' => 'contactperson',
