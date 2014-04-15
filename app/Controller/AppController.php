@@ -75,7 +75,7 @@ class AppController extends Controller {
         //debug($this->Auth->user());
         if($this->Auth->user('User') !== null ) {
             $this->log("Fixed the dirty Auth thing.");
-            $this->Auth->authenticate = $this->Auth->user('User');
+            $this->Auth->login($this->Auth->user('User'));
         }
 
         $this->checkPermission();
