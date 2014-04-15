@@ -34,8 +34,6 @@
 	        	data-toggle='tooltip' 
 	        	data-placement='right' 
 	        	title='".$then->format('d.m.Y')."'>(~%a Tage)</small>")."<br>";
-	        // Add Tooltip with Date here?
-			//echo " ".$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
 		}
 		?>
 	<br>
