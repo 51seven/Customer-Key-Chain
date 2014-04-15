@@ -1,107 +1,84 @@
 <div class="page-header ckc-page-header">
   <div class="btn-group pull-right">
-  <?php
-  if($isadmin):
-      echo $this->Html->link('<span class="glyphicon glyphicon-inbox"></span>',
-        array(
-          'controller' => 'history', 
-          'action' => 'create', $customer['Customer']['customer_id'],
-        ),
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle <?php echo (($isadmin) ? '' : 'disabled'); ?>"data-toggle="dropdown"> Hinzufügen <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <?php
+      echo "<li>".$this->Html->link(' History',
+        array('controller' => 'history', 'action' => 'create', $customer['Customer']['customer_id']),
         array(
           'title' => 'Neuen Eintrag hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-success'
-        )
-      );
-      echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>',
-        array(
-          'controller' => 'contactperson', 
-          'action' => 'create', $customer['Customer']['customer_id'],
-        ),
+          'class' => 'glyphicon glyphicon-inbox'
+        ))."</li>";
+      echo "<li>".$this->Html->link(' Ansprechpartner',
+        array('controller' => 'contactperson', 'action' => 'create', $customer['Customer']['customer_id']),
         array(
           'title' => 'Neuen Ansprechpartner hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-success'
-        )
-      );
-   ?> 
-   <?php
-      echo $this->Html->link('<span class="glyphicon glyphicon-lock"></span>',
-        array(
-          'controller' => 'combination', 
-          'action' => 'create', $customer['Customer']['customer_id'],
-        ),
+          'class' => 'glyphicon glyphicon-user'
+        ))."</li>";
+      echo "<li>".$this->Html->link(' Kombination',
+        array('controller' => 'combination', 'action' => 'create', $customer['Customer']['customer_id']),
         array(
           'title' => 'Neue Kombination hinzufügen',
           'escape' => false,
-          'class' => 'btn btn-success'
-        )
-      );
-  ?>
-  <?php
-    echo $this->Html->link('<span class="glyphicon glyphicon-comment"></span>',
-      array(
-        'controller' => 'funfact', 
-        'action' => 'create', $customer['Customer']['customer_id'],
-      ),
-      array(
-        'title' => 'Neuen Funfact hinzufügen',
-        'escape' => false,
-        'class' => 'btn btn-success'
-      )
-    );
-  ?>
-  <?php 
-  echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span>',
-    array(
-      'controller' => 'history', 
-      'action' => 'listall', $customer['Customer']['customer_id'],
-    ),
-    array(
-      'title' => 'History ansehen',
-      'escape' => false,
-      'class' => 'btn btn-primary'
-    )
-  );
-  echo $this->Html->link('<span class="glyphicon glyphicon-book"></span>',
-    array(
-      'controller' => 'contactperson', 
-      'action' => 'listall', $customer['Customer']['customer_id'],
-    ),
-    array(
-      'title' => 'Kontaktpersonen anzeigen',
-      'escape' => false,
-      'class' => 'btn btn-primary'
-    )
-  );
-
-  ?>
-  <?php
+          'class' => 'glyphicon glyphicon-lock'
+        ))."</li>";
+      echo "<li>".$this->Html->link(' Funfact',
+        array('controller' => 'funfact', 'action' => 'create', $customer['Customer']['customer_id']),
+        array(
+          'title' => 'Neuen Funfact hinzufügen',
+          'escape' => false,
+          'class' => 'glyphicon glyphicon-comment'
+        ))."</li>";
+      ?>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Anzeigen <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <?php
+        echo "<li>".$this->Html->link(' History',
+        array('controller' => 'history', 'action' => 'listall', $customer['Customer']['customer_id']),
+        array(
+          'title' => 'History ansehen',
+          'escape' => false,
+          'class' => 'glyphicon glyphicon-inbox'
+        ))."</li>";
+        echo "<li>".$this->Html->link(' Ansprechpartner',
+          array('controller' => 'contactperson', 'action' => 'create', $customer['Customer']['customer_id']),
+          array(
+            'title' => 'Ansprechpartner anzeigen',
+            'escape' => false,
+            'class' => 'glyphicon glyphicon-user'
+          ))."</li>";
+      ?>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <?php
       echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>',
-        array(
-          'controller' => 'customer', 
-          'action' => 'edit', $customer['Customer']['customer_id'],
-        ),
+        array('controller' => 'customer', 'action' => 'edit', $customer['Customer']['customer_id']),
         array(
           'escape' => false,
-          'class' => 'btn btn-warning'
+          'class' => "btn btn-warning ".(($isadmin) ? '' : 'disabled')
         )
-      );
-  ?>
-  <?php  
+      ); 
       echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
-        array(
-          'controller' => 'customer', 
-          'action' => 'delete', $customer['Customer']['customer_id'],
-        ),
+        array('controller' => 'customer', 'action' => 'delete', $customer['Customer']['customer_id']),
         array(
           'escape' => false,
-          'class' => 'btn btn-danger'
+          'class' => "btn btn-danger ".(($isadmin) ? '' : 'disabled')
         ), "Willst du diesen Kunden wirklich entfernen?"
       );
-    endif;
-  ?>
-</div>
+      ?>
+    </div>
+  </div>
+
   <h1>
     <?php echo $customer['Customer']['name']; ?>
     <?php
@@ -120,6 +97,7 @@
       );
     ?>
   </h1>
+
   <?php 
   if(isset($funfact['Funfact']['text'])) {
     echo "<blockquote>\"".$funfact['Funfact']['text']."\"</blockquote>";

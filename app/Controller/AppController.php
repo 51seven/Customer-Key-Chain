@@ -72,6 +72,12 @@ class AppController extends Controller {
     * Customer -> view, search (only allowed customers)
     */
     public function beforeFilter() {
+        //debug($this->Auth->user());
+        if($this->Auth->user('User') !== null ) {
+            $this->log("Fixed the dirty Auth thing.");
+            //$this->Auth->login($this->Auth->user('User'));
+        }
+
         $this->checkPermission();
     }
     

@@ -309,3 +309,40 @@ section.history:after {
     background: none;
   }
 }
+
+/* Newsticker */
+/* line 90, ../scss/style.scss */
+.newsticker {
+  margin-bottom: 20px;
+  clear: both;
+}
+/* line 94, ../scss/style.scss */
+.newsticker h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+/* line 99, ../scss/style.scss */
+.newsticker ul {
+  padding: 0;
+  margin: 0 20px 0 0;
+  width: 100px;
+  font-size: 13px;
+  color: #888;
+  float: left;
+}
+/* line 107, ../scss/style.scss */
+.newsticker ul li {
+  list-style: none;
+}
+/* line 112, ../scss/style.scss */
+.newsticker p {
+  min-height: 30px;
+}
+/* line 116, ../scss/style.scss */
+.newsticker a {
+  color: #888;
+}
+/* line 122, ../scss/style.scss */
+.newsticker:after {
+  clear: both;
+}

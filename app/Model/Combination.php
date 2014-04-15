@@ -24,10 +24,10 @@ class Combination extends AppModel {
         
     );
 
-
-    public function beforeSave($options) {
+    public function beforeSave($options = null) {
         
-        // Removes http/https because of link consistency.
+        parent::beforeSave(); 
+
         if(isset($this->data['Combination']['loginurl'])) {
             $this->data['Combination']['loginurl'] = str_replace('http://', '', $this->data['Combination']['loginurl']);
             $this->data['Combination']['loginurl'] = str_replace('https://', '', $this->data['Combination']['loginurl']);
@@ -37,4 +37,3 @@ class Combination extends AppModel {
     }
 
 }
-?>
