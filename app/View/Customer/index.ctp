@@ -1,28 +1,40 @@
-<h2>Hi <small><?= $user['username'] ?></small></h2>
+<div class="jumbotron clearfix">
+<div class="row">
+	<h1>Hi, <?= $user['username'] ?></h1>
+	<div class="col-xs-6" style="padding-left: 0;">
+	<p>
+	<?php $role = array(0 => 'Gast', 1 => 'Admin');?>
+	Du bist als <?= $role[$user['isadmin']] ?> eingeloggt.<br><br>
+	Kombinationen <span class="badge"><?= $combination_count ?></span><br>
+	Kunden <span class="badge"><?= $customer_count ?></span><br>
+	History <span class="badge"><?= $history_count ?></span><br>
+	</p>
+	</div>
+	<div class="col-xs-6">
+	<p>
+	Kontaktlos seit über 30 Tagen: <br><br>
+	<?php
+		foreach ($frozen_customers as $customer => $value) {
+			//echo " - ";
+			echo $this->Html->link($value['Customer']['name'], array(
+				'controller' => 'customer',
+				'action' => 'view', $value['History']['customer_id'],
+			));
 
-<?php $role = array(0 => 'Gast', 1 => 'Admin');?>
+			$then = new DateTime($value[0]['time']);
+	        $now = new DateTime(date("Y-m-d"));
 
-Rolle: <?= $role[$user['isadmin']] ?><br><br>
-Kombinationen: <?= $combination_count ?><br>
-Kunden: <?= $customer_count ?><br>
-History: <?= $history_count ?><br><br>
-Kein Kundenkontakt seit über 30 Tagen mit: <br>
-<?php
-	foreach ($frozen_customers as $customer => $value) {
-		echo " - ";
-		echo $this->Html->link($value['Customer']['name'], array(
-			'controller' => 'customer',
-			'action' => 'view', $value['History']['customer_id'],
-		));
+	        echo $then->diff($now)->format(" <small>(~%a Tage)</small>")."<br>";
+	        // Add Tooltip with Date here?
+			//echo " ".$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
+		}
+	?>
+	<br>
+	</p>
+	</div>
+</div>
+</div>
 
-		$then = new DateTime($value[0]['time']);
-        $now = new DateTime(date("Y-m-d"));
-
-        echo $then->diff($now)->format(" (~%a Tage)")."<br>";
-        // Add Tooltip with Date here?
-		//echo " ".$this->Time->format($value[0]['time'], ' (%d.%m.%y)')."<br>";
-	}
-?>
 <br><br>
 
 <?php
