@@ -14,6 +14,9 @@
       <ul class="nav navbar-nav">
           <?php if($isadmin) echo "<li>".$this->Html->link('Kunde anlegen', array('controller' => 'customer', 'action' => 'create'))."</li>"; ?>
           <?php if($isadmin) echo "<li>".$this->Html->link('Typ anlegen', array('controller' => 'type', 'action' => 'create'))."</li>"; ?>
+          <?php
+            echo "<li>".$this->Html->link('51seven', array('controller' => 'customer', 'action' => 'owner_redirect'))."</li>";
+          ?>
           <?php 
             echo "<li>".$this->Html->link('Logout', array('controller' => 'user', 'action' => 'logout'))."</li>"; 
           ?>

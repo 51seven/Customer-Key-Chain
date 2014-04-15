@@ -17,9 +17,6 @@ echo $this->Paginator->counter('{:count}')." total Results - ";
 echo $this->Paginator->counter('Page {:page} of {:pages}');
 echo "</p>";
 
-
-
-
 foreach ($histores as $key => $history) {
 	echo "<section class='history'>";
 		echo "<h3>";
