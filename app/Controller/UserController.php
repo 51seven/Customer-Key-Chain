@@ -118,7 +118,7 @@ class UserController extends AppController {
         $this->layout = 'login';
 
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
+            if ($this->Auth->login($this->request->data)) {
                 if($this->request->data['User']['stay'] == 1) {
                     $currentTime = time();
                     $cookie = array(

@@ -4,7 +4,7 @@
 	<div class="col-xs-6" style="padding-left: 0;">
 	<p>
 	<?php $role = array(0 => 'Gast', 1 => 'Admin');?>
-	Du bist als <?= $role[$user['isadmin']] ?> eingeloggt.<br><br>
+	Du bist als <strong><?= $role[$user['isadmin']] ?></strong> eingeloggt.<br><br>
 	Kombinationen <span class="badge"><?= $combination_count ?></span><br>
 	Kunden <span class="badge"><?= $customer_count ?></span><br>
 	History <span class="badge"><?= $history_count ?></span><br>
@@ -12,17 +12,23 @@
 	</div>
 	<div class="col-xs-6">
 	<p>
-	Kontaktlos seit über 30 Tagen: <br><br>
+	<small class="glyphicon glyphicon-time"></small> Kontaktlos seit über 30 Tagen: <br><br>
 	<?php
 		foreach ($frozen_customers as $customer => $value) {
-			//echo " - ";
+			$then = new DateTime($value[0]['time']);
+	        $now = new DateTime(date("Y-m-d"));
+
+			if($then->diff($now)->format('%a') > 90) { // Critical amount of days
+				echo "<small class='glyphicon glyphicon-fire'></small> ";
+			}
+			else {
+				echo "<small class='glyphicon glyphicon-eye-open'></small> ";
+			}
+
 			echo $this->Html->link($value['Customer']['name'], array(
 				'controller' => 'customer',
 				'action' => 'view', $value['History']['customer_id'],
 			));
-
-			$then = new DateTime($value[0]['time']);
-	        $now = new DateTime(date("Y-m-d"));
 
 	        echo $then->diff($now)->format(" <small>(~%a Tage)</small>")."<br>";
 	        // Add Tooltip with Date here?
