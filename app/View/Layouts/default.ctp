@@ -53,6 +53,6 @@
     
   </div>
   <?php echo $this->element('footer'); ?>
-<?php echo $this->Html->script('ux'); ?>
+  <?php echo $this->Html->script('ux'); ?>
 </body>
 </html>
