@@ -30,6 +30,10 @@ $(function() {
 	  $(this).removeClass('active');
 	});
 
+	$('[data-toggle="tooltip"]').tooltip({
+    	animation: true
+	});
+
 	$('#favClick').sbt();
 	$('#allClick').sbt();
 
