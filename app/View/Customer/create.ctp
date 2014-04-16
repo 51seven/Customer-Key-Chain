@@ -1,5 +1,5 @@
 <div class="input-group">
-<h1 class="primary">Neuen Kunden anlegen</h1>
+<h2 class="primary">Neuen Kunden anlegen</h2>
 <?php
 echo $this->Form->create('Customer', array(
 	'type' => 'post',

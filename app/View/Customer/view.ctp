@@ -80,19 +80,13 @@
   </div>
 
   <h1>
-    <?php echo $customer['Customer']['name']; ?>
-    <?php
-      if($isfav)
-        $addClass = 'glyphicon-star';
-      else
-        $addClass = 'glyphicon-star-empty';
+  <?php
+    echo $customer['Customer']['name']; 
+      if($isfav) $addClass = 'glyphicon-star';
+      else $addClass = 'glyphicon-star-empty';
       echo $this->Html->link('',
-        array(
-          'controller' => 'user', 
-          'action' => 'favorite', $customer['Customer']['customer_id'],
-        ),
-        array(
-          'class' => 'ckc-fav-icon glyphicon '.$addClass
+        array('controller' => 'user', 'action' => 'favorite', $customer['Customer']['customer_id']),
+        array('class' => 'ckc-fav-icon glyphicon '.$addClass
         )
       );
     ?>
