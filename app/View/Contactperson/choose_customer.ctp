@@ -10,20 +10,12 @@ echo $this->Form->create('Contactperson', array(
 echo $this->Form->input('cid', array(
     'options' => $customers, 
 	'label' => array(
-		'class' => 'col-sm-2 control-label', 
 		'text' => 'Kunde '
 	),
-	'class' => 'form-control',
-	'div' => array('class' => 'form-group'),
-	'between' => '<div class="col-sm-10">',
-	'after' => '</div>',
 ));
 echo $this->Form->end(array(
 	'label' => 'Weiter',
 	'class' => 'btn btn-default',
-	'div' => array('class' => 'form-group'),
-	'before' => '<div class="col-sm-offset-2 col-sm-10">',
-	'after' => '</div>',
 )); 
 ?>
 </div>

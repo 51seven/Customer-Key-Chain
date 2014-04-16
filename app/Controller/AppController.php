@@ -61,7 +61,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Form', 
+        'Form' => array('className' => 'BootstrapForm'), 
         'Html', 
         'Time',
         'Output',
@@ -75,7 +75,7 @@ class AppController extends Controller {
         //debug($this->Auth->user());
         if($this->Auth->user('User') !== null ) {
             $this->log("Fixed the dirty Auth thing.");
-            //$this->Auth->login($this->Auth->user('User'));
+            $this->Auth->login($this->Auth->user('User'));
         }
 
         $this->checkPermission();

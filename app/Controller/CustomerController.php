@@ -137,6 +137,19 @@ class CustomerController extends AppController {
         }
     }
 
+    public function owner_redirect() {
+        $this->Customer->recursive = -1;
+        $owner = $this->Customer->findByName('51seven');
+
+        if($owner) {
+            $this->redirect(array('action' => 'view', $owner['Customer']['customer_id']));    
+        }
+        else {
+            $this->Customer->save(array('Customer' => array('name' => '51seven')));
+            $this->owner_redirect();
+        }
+    }
+
     public function search() {
 
         if(isset($this->request->query['string'])) {

@@ -58,7 +58,7 @@
 		echo "<hr>";
 	}
 
-	echo $this->Html->link('Alle anzeigen', array('controller' => 'history', 'action' => 'newsfeed'));
+	echo "<p class='text-center'>".$this->Html->link('Alle anzeigen', array('controller' => 'history', 'action' => 'newsfeed'))."</p>";
 ?>
 
 
