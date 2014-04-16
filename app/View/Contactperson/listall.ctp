@@ -12,9 +12,12 @@ if(isset($contactpersons)) {
 			echo "</h3>";
 
 			echo "<ul class='no-list-style'>";
-				echo "<li><span class='glyphicon glyphicon-phone-alt' /> ".$contact['Contactperson']['phone']."</li>";
-				echo "<li><span class='glyphicon glyphicon-earphone' /> ".$contact['Contactperson']['mobile']."</li>";
-				echo "<li><span class='glyphicon glyphicon-envelope' /> ".$contact['Contactperson']['mail']."</li>";
+				if($contact['Contactperson']['phone']) 
+					echo "<li><span class='glyphicon glyphicon-phone-alt' /> ".$contact['Contactperson']['phone']."</li>";
+				if($contact['Contactperson']['mobile']) 
+					echo "<li><span class='glyphicon glyphicon-earphone' /> ".$contact['Contactperson']['mobile']."</li>";
+				if($contact['Contactperson']['mail']) 
+					echo "<li><span class='glyphicon glyphicon-envelope' /> ".$contact['Contactperson']['mail']."</li>";
 			echo "</ul>";
 
 			echo $this->Html->link('Bearbeiten', array(

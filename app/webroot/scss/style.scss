@@ -33,6 +33,10 @@ margin: 0px;
 padding: 0px;
 }
 
+.table td:last-child {
+	max-width: 55px; /* breaks at xs-breakpoint */
+}
+
 .align-right {
 text-align: right;
 }

@@ -1,7 +1,7 @@
 <div class="page-header ckc-page-header">
   <div class="btn-group pull-right">
     <div class="btn-group">
-      <button type="button" class="btn btn-success dropdown-toggle <?php echo (($isadmin) ? '' : 'disabled'); ?>"data-toggle="dropdown"> Hinzufügen <span class="caret"></span>
+      <button type="button" class="btn btn-default dropdown-toggle <?php echo (($isadmin) ? '' : 'disabled'); ?>"data-toggle="dropdown"> Hinzufügen <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
       <?php
@@ -37,7 +37,7 @@
       </ul>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
       Anzeigen <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
@@ -50,7 +50,7 @@
           'class' => 'glyphicon glyphicon-inbox'
         ))."</li>";
         echo "<li>".$this->Html->link(' Ansprechpartner',
-          array('controller' => 'contactperson', 'action' => 'create', $customer['Customer']['customer_id']),
+          array('controller' => 'contactperson', 'action' => 'listall', $customer['Customer']['customer_id']),
           array(
             'title' => 'Ansprechpartner anzeigen',
             'escape' => false,
@@ -65,14 +65,14 @@
         array('controller' => 'customer', 'action' => 'edit', $customer['Customer']['customer_id']),
         array(
           'escape' => false,
-          'class' => "btn btn-warning ".(($isadmin) ? '' : 'disabled')
+          'class' => "btn btn-default ".(($isadmin) ? '' : 'disabled')
         )
       ); 
       echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
         array('controller' => 'customer', 'action' => 'delete', $customer['Customer']['customer_id']),
         array(
           'escape' => false,
-          'class' => "btn btn-danger ".(($isadmin) ? '' : 'disabled')
+          'class' => "btn btn-default ".(($isadmin) ? '' : 'disabled')
         ), "Willst du diesen Kunden wirklich entfernen?"
       );
       ?>
@@ -116,60 +116,41 @@
 <?php
 // Liste alle Kundenkombinationen auf
 if(sizeof($combinations) > 0):
-  foreach ($combinations as $key => $combinationtype):
-    ?>
-    <h2 class="col-md-12"><?php echo $key; ?></h2>
-    <?php foreach ($combinationtype as $combination): ?>
-      <div class="col-md-4">
-        <div class="ckc-account">
-        <div class="ckc-view-panel">
-        <?php if($isadmin): ?>
-          <div class="btn-group ckc-view-btn-group">
-          <?php
-            echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', 
-              array(
-                'controller' => 'combination',
-                'action' => 'edit', $combination['combination_id'],
-              ), 
-              array('escape' => false, 'class' => 'ckc-action-btn btn btn-warning btn-xs'));
-          ?>
-          <?php
-            echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>', 
-              array(
-                'controller' => 'combination',
-                'action' => 'delete', $combination['combination_id'],
-              ), 
-              array('escape' => false, 'class' => 'ckc-action-btn btn btn-danger btn-xs'), "Willst du diesen Account   wirklich entfernen?"
-            );
-          ?>
-          </div>
-        <?php endif; ?>
-          <label>Benutzer</label>
-          <div class="input-group ckc-input-group-username">
-            <input type="text" readonly="readonly" value="<?php echo $combination['username']; ?>" class="form-control">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-import"></span></button>
-            </span>
-          </div>
-          <label>Passwort</label>
-          <div class="input-group ckc-input-group-password">
-            <input type="text" readonly="readonly" value="<?php echo $combination['password']; ?>" class="form-control">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-import"></span></button>
-            </span>
-          </div>
-        </div>
-        <?php if($combination['loginurl']): ?>
-        <div class="ckc-loginurl">
-          <a href="//<?php echo $combination['loginurl']; ?>" target="_blank"><?php echo $combination['loginurl']; ?></a>
-        </div>
-        <?php endif; ?>
-        <div class="ckc-comment">
-          <?php echo $this->Markdown->transform($combination['comment']); ?>
-        </div>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  <?php endforeach; else: ?>
+
+  echo "<table class='table table-striped table-responsive table-hover'>";
+      echo "<tr>";
+        echo "<th>Type</th>";
+        echo "<th>Username</th>";
+        echo "<th>Password</th>";
+        echo "<th>LoginURL</th>";
+        echo "<th></th>";
+      echo "</tr>";
+  foreach ($combinations as $key => $combinationtype) {
+    foreach ($combinationtype as $key2 => $combination) {
+      echo "<tr>";
+        echo "<td>".$key."</td>";
+        echo "<td>".$combination['username']."</td>";
+        echo "<td>".$combination['password']."</td>";
+        ?><td><a href="//<?php echo $combination['loginurl']; ?>" target="_blank"><?php echo $combination['loginurl']; ?></a></td><?php
+        echo "<td><div class='btn-group'>";
+          // Anzeigen
+          echo $this->Html->link('<span class="glyphicon glyphicon-eye-open"></span>', 
+                array('controller' => 'combination', 'action' => 'view', $combination['combination_id']), 
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'));
+          // Bearbeiten
+          echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', 
+                array('controller' => 'combination', 'action' => 'edit', $combination['combination_id']), 
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'));
+          // Löschen
+          echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>', 
+                array('controller' => 'combination', 'action' => 'delete', $combination['combination_id']), 
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'), "Willst du diesen Account wirklich entfernen?");
+        echo "</div></td>";
+      echo "</tr>";
+    }
+  }
+  echo "</table>";
+  else:
+  ?>
   <div class="alert alert-info">Für diesen Kunden sind noch keine Accounts gespeichert.</div>
 <?php endif; ?>

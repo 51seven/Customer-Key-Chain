@@ -19,7 +19,16 @@ class History extends AppModel {
 
     // Varlidation Rules for this Model
     public $validate = array(
-        
+        'text' => array(
+            'rule'     => 'notEmpty',
+            'required' => true,
+            'message' => 'Der Text darf nicht leer sein.'
+        ),
+        'time' => array(
+            'rule'     => array('datetime', 'ymd'),
+            'required' => true,
+            'message' => 'Es muss ein gültiges Datum angegeben werden.'
+        ),
     );
 }
 ?>
