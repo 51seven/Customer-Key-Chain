@@ -7,7 +7,7 @@
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['username']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
-                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['Combination']['username']; ?>" type="button">
+                <button class="btn btn-default ckc-button-copy copy-clipboard" data-clipboard-text="<?= $combination['Combination']['username']; ?>" type="button">
                   <span class="octicon octicon-clippy"></span>
                 </button>
               </span>
@@ -16,7 +16,7 @@
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['password']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
-                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['Combination']['password']; ?>" type="button">
+                <button class="btn btn-default ckc-button-copy copy-clipboard" data-clipboard-text="<?= $combination['Combination']['password']; ?>" type="button">
                   <span class="octicon octicon-clippy"></span>
                 </button>
               </span>
@@ -25,7 +25,7 @@
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['loginurl']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
-                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['Combination']['loginurl']; ?>" type="button">
+                <button class="btn btn-default ckc-button-copy copy-clipboard" data-clipboard-text="<?= $combination['Combination']['loginurl']; ?>" type="button">
                   <span class="octicon octicon-clippy"></span>
                 </button>
               </span>
