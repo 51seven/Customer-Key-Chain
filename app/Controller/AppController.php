@@ -61,7 +61,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Form' => array('className' => 'BootstrapForm'), 
+        'Form' => array('className' => 'Bs3Form'), 
         'Html', 
         'Time',
         'Output',

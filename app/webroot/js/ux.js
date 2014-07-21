@@ -22,6 +22,8 @@ $.fn.sbt = function() {
 }
 
 $(function() {
+	var client = new ZeroClipboard($(".copy-clipboard"));
+
 	$('.site-search').focus( function() {
   		$(this).addClass('active');
 	});
@@ -33,6 +35,13 @@ $(function() {
 	$('[data-toggle="tooltip"]').tooltip({
     	animation: true
 	});
+
+	$('.ckc-panel-footer.is-clickable').on('click', function() {
+		var sel = getSelection().toString();
+		if(!sel){
+			$(this).toggleClass('is-collapsed');
+	    }
+	})
 
 	$('#favClick').sbt();
 	$('#allClick').sbt();

@@ -1,7 +1,962 @@
-/* line 15, ../scss/style.scss */
+/* line 13, ../scss/style.scss */
 body {
   padding-top: 70px;
   background: #fbfbfb;
+}
+
+@font-face {
+  font-family: 'octicons';
+  src: url("../fonts/octicons.eot?#iefix") format("embedded-opentype"), url("../fonts/octicons.woff") format("woff"), url("../fonts/octicons.ttf") format("truetype"), url("../fonts/octicons.svg#octicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+
+.octicon is optimized for 16px.
+.mega-octicon is optimized for 32px but can be used larger.
+
+*/
+/* line 17, ../scss/_octicons.scss */
+.octicon {
+  font: normal normal 16px octicons;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* line 30, ../scss/_octicons.scss */
+.mega-octicon {
+  font: normal normal 32px octicons;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* line 44, ../scss/_octicons.scss */
+.octicon-alert:before {
+  content: '\f02d';
+}
+
+/* line 45, ../scss/_octicons.scss */
+.octicon-alignment-align:before {
+  content: '\f08a';
+}
+
+/* line 46, ../scss/_octicons.scss */
+.octicon-alignment-aligned-to:before {
+  content: '\f08e';
+}
+
+/* line 47, ../scss/_octicons.scss */
+.octicon-alignment-unalign:before {
+  content: '\f08b';
+}
+
+/* line 48, ../scss/_octicons.scss */
+.octicon-arrow-down:before {
+  content: '\f03f';
+}
+
+/* line 49, ../scss/_octicons.scss */
+.octicon-arrow-left:before {
+  content: '\f040';
+}
+
+/* line 50, ../scss/_octicons.scss */
+.octicon-arrow-right:before {
+  content: '\f03e';
+}
+
+/* line 51, ../scss/_octicons.scss */
+.octicon-arrow-small-down:before {
+  content: '\f0a0';
+}
+
+/* line 52, ../scss/_octicons.scss */
+.octicon-arrow-small-left:before {
+  content: '\f0a1';
+}
+
+/* line 53, ../scss/_octicons.scss */
+.octicon-arrow-small-right:before {
+  content: '\f071';
+}
+
+/* line 54, ../scss/_octicons.scss */
+.octicon-arrow-small-up:before {
+  content: '\f09f';
+}
+
+/* line 55, ../scss/_octicons.scss */
+.octicon-arrow-up:before {
+  content: '\f03d';
+}
+
+/* line 56, ../scss/_octicons.scss */
+.octicon-beer:before {
+  content: '\f069';
+}
+
+/* line 57, ../scss/_octicons.scss */
+.octicon-book:before {
+  content: '\f007';
+}
+
+/* line 58, ../scss/_octicons.scss */
+.octicon-bookmark:before {
+  content: '\f07b';
+}
+
+/* line 59, ../scss/_octicons.scss */
+.octicon-briefcase:before {
+  content: '\f0d3';
+}
+
+/* line 60, ../scss/_octicons.scss */
+.octicon-broadcast:before {
+  content: '\f048';
+}
+
+/* line 61, ../scss/_octicons.scss */
+.octicon-browser:before {
+  content: '\f0c5';
+}
+
+/* line 62, ../scss/_octicons.scss */
+.octicon-bug:before {
+  content: '\f091';
+}
+
+/* line 63, ../scss/_octicons.scss */
+.octicon-calendar:before {
+  content: '\f068';
+}
+
+/* line 64, ../scss/_octicons.scss */
+.octicon-check:before {
+  content: '\f03a';
+}
+
+/* line 65, ../scss/_octicons.scss */
+.octicon-checklist:before {
+  content: '\f076';
+}
+
+/* line 66, ../scss/_octicons.scss */
+.octicon-chevron-down:before {
+  content: '\f0a3';
+}
+
+/* line 67, ../scss/_octicons.scss */
+.octicon-chevron-left:before {
+  content: '\f0a4';
+}
+
+/* line 68, ../scss/_octicons.scss */
+.octicon-chevron-right:before {
+  content: '\f078';
+}
+
+/* line 69, ../scss/_octicons.scss */
+.octicon-chevron-up:before {
+  content: '\f0a2';
+}
+
+/* line 70, ../scss/_octicons.scss */
+.octicon-circle-slash:before {
+  content: '\f084';
+}
+
+/* line 71, ../scss/_octicons.scss */
+.octicon-circuit-board:before {
+  content: '\f0d6';
+}
+
+/* line 72, ../scss/_octicons.scss */
+.octicon-clippy:before {
+  content: '\f035';
+}
+
+/* line 73, ../scss/_octicons.scss */
+.octicon-clock:before {
+  content: '\f046';
+}
+
+/* line 74, ../scss/_octicons.scss */
+.octicon-cloud-download:before {
+  content: '\f00b';
+}
+
+/* line 75, ../scss/_octicons.scss */
+.octicon-cloud-upload:before {
+  content: '\f00c';
+}
+
+/* line 76, ../scss/_octicons.scss */
+.octicon-code:before {
+  content: '\f05f';
+}
+
+/* line 77, ../scss/_octicons.scss */
+.octicon-color-mode:before {
+  content: '\f065';
+}
+
+/* line 79, ../scss/_octicons.scss */
+.octicon-comment-add:before,
+.octicon-comment:before {
+  content: '\f02b';
+}
+
+/* line 80, ../scss/_octicons.scss */
+.octicon-comment-discussion:before {
+  content: '\f04f';
+}
+
+/* line 81, ../scss/_octicons.scss */
+.octicon-credit-card:before {
+  content: '\f045';
+}
+
+/* line 82, ../scss/_octicons.scss */
+.octicon-dash:before {
+  content: '\f0ca';
+}
+
+/* line 83, ../scss/_octicons.scss */
+.octicon-dashboard:before {
+  content: '\f07d';
+}
+
+/* line 84, ../scss/_octicons.scss */
+.octicon-database:before {
+  content: '\f096';
+}
+
+/* line 85, ../scss/_octicons.scss */
+.octicon-device-camera:before {
+  content: '\f056';
+}
+
+/* line 86, ../scss/_octicons.scss */
+.octicon-device-camera-video:before {
+  content: '\f057';
+}
+
+/* line 87, ../scss/_octicons.scss */
+.octicon-device-desktop:before {
+  content: '\f27c';
+}
+
+/* line 88, ../scss/_octicons.scss */
+.octicon-device-mobile:before {
+  content: '\f038';
+}
+
+/* line 89, ../scss/_octicons.scss */
+.octicon-diff:before {
+  content: '\f04d';
+}
+
+/* line 90, ../scss/_octicons.scss */
+.octicon-diff-added:before {
+  content: '\f06b';
+}
+
+/* line 91, ../scss/_octicons.scss */
+.octicon-diff-ignored:before {
+  content: '\f099';
+}
+
+/* line 92, ../scss/_octicons.scss */
+.octicon-diff-modified:before {
+  content: '\f06d';
+}
+
+/* line 93, ../scss/_octicons.scss */
+.octicon-diff-removed:before {
+  content: '\f06c';
+}
+
+/* line 94, ../scss/_octicons.scss */
+.octicon-diff-renamed:before {
+  content: '\f06e';
+}
+
+/* line 95, ../scss/_octicons.scss */
+.octicon-ellipsis:before {
+  content: '\f09a';
+}
+
+/* line 98, ../scss/_octicons.scss */
+.octicon-eye-unwatch:before,
+.octicon-eye-watch:before,
+.octicon-eye:before {
+  content: '\f04e';
+}
+
+/* line 99, ../scss/_octicons.scss */
+.octicon-file-binary:before {
+  content: '\f094';
+}
+
+/* line 100, ../scss/_octicons.scss */
+.octicon-file-code:before {
+  content: '\f010';
+}
+
+/* line 101, ../scss/_octicons.scss */
+.octicon-file-directory:before {
+  content: '\f016';
+}
+
+/* line 102, ../scss/_octicons.scss */
+.octicon-file-media:before {
+  content: '\f012';
+}
+
+/* line 103, ../scss/_octicons.scss */
+.octicon-file-pdf:before {
+  content: '\f014';
+}
+
+/* line 104, ../scss/_octicons.scss */
+.octicon-file-submodule:before {
+  content: '\f017';
+}
+
+/* line 105, ../scss/_octicons.scss */
+.octicon-file-symlink-directory:before {
+  content: '\f0b1';
+}
+
+/* line 106, ../scss/_octicons.scss */
+.octicon-file-symlink-file:before {
+  content: '\f0b0';
+}
+
+/* line 107, ../scss/_octicons.scss */
+.octicon-file-text:before {
+  content: '\f011';
+}
+
+/* line 108, ../scss/_octicons.scss */
+.octicon-file-zip:before {
+  content: '\f013';
+}
+
+/* line 109, ../scss/_octicons.scss */
+.octicon-flame:before {
+  content: '\f0d2';
+}
+
+/* line 110, ../scss/_octicons.scss */
+.octicon-fold:before {
+  content: '\f0cc';
+}
+
+/* line 111, ../scss/_octicons.scss */
+.octicon-gear:before {
+  content: '\f02f';
+}
+
+/* line 112, ../scss/_octicons.scss */
+.octicon-gift:before {
+  content: '\f042';
+}
+
+/* line 113, ../scss/_octicons.scss */
+.octicon-gist:before {
+  content: '\f00e';
+}
+
+/* line 114, ../scss/_octicons.scss */
+.octicon-gist-secret:before {
+  content: '\f08c';
+}
+
+/* line 117, ../scss/_octicons.scss */
+.octicon-git-branch-create:before,
+.octicon-git-branch-delete:before,
+.octicon-git-branch:before {
+  content: '\f020';
+}
+
+/* line 118, ../scss/_octicons.scss */
+.octicon-git-commit:before {
+  content: '\f01f';
+}
+
+/* line 119, ../scss/_octicons.scss */
+.octicon-git-compare:before {
+  content: '\f0ac';
+}
+
+/* line 120, ../scss/_octicons.scss */
+.octicon-git-merge:before {
+  content: '\f023';
+}
+
+/* line 122, ../scss/_octicons.scss */
+.octicon-git-pull-request-abandoned:before,
+.octicon-git-pull-request:before {
+  content: '\f009';
+}
+
+/* line 123, ../scss/_octicons.scss */
+.octicon-globe:before {
+  content: '\f0b6';
+}
+
+/* line 124, ../scss/_octicons.scss */
+.octicon-graph:before {
+  content: '\f043';
+}
+
+/* line 125, ../scss/_octicons.scss */
+.octicon-heart:before {
+  content: '\2665';
+}
+
+/* line 126, ../scss/_octicons.scss */
+.octicon-history:before {
+  content: '\f07e';
+}
+
+/* line 127, ../scss/_octicons.scss */
+.octicon-home:before {
+  content: '\f08d';
+}
+
+/* line 128, ../scss/_octicons.scss */
+.octicon-horizontal-rule:before {
+  content: '\f070';
+}
+
+/* line 129, ../scss/_octicons.scss */
+.octicon-hourglass:before {
+  content: '\f09e';
+}
+
+/* line 130, ../scss/_octicons.scss */
+.octicon-hubot:before {
+  content: '\f09d';
+}
+
+/* line 131, ../scss/_octicons.scss */
+.octicon-inbox:before {
+  content: '\f0cf';
+}
+
+/* line 132, ../scss/_octicons.scss */
+.octicon-info:before {
+  content: '\f059';
+}
+
+/* line 133, ../scss/_octicons.scss */
+.octicon-issue-closed:before {
+  content: '\f028';
+}
+
+/* line 134, ../scss/_octicons.scss */
+.octicon-issue-opened:before {
+  content: '\f026';
+}
+
+/* line 135, ../scss/_octicons.scss */
+.octicon-issue-reopened:before {
+  content: '\f027';
+}
+
+/* line 136, ../scss/_octicons.scss */
+.octicon-jersey:before {
+  content: '\f019';
+}
+
+/* line 137, ../scss/_octicons.scss */
+.octicon-jump-down:before {
+  content: '\f072';
+}
+
+/* line 138, ../scss/_octicons.scss */
+.octicon-jump-left:before {
+  content: '\f0a5';
+}
+
+/* line 139, ../scss/_octicons.scss */
+.octicon-jump-right:before {
+  content: '\f0a6';
+}
+
+/* line 140, ../scss/_octicons.scss */
+.octicon-jump-up:before {
+  content: '\f073';
+}
+
+/* line 141, ../scss/_octicons.scss */
+.octicon-key:before {
+  content: '\f049';
+}
+
+/* line 142, ../scss/_octicons.scss */
+.octicon-keyboard:before {
+  content: '\f00d';
+}
+
+/* line 143, ../scss/_octicons.scss */
+.octicon-law:before {
+  content: '\f0d8';
+}
+
+/* line 143, ../scss/_octicons.scss */
+.octicon-light-bulb:before {
+  content: '\f000';
+}
+
+/* line 144, ../scss/_octicons.scss */
+.octicon-link:before {
+  content: '\f05c';
+}
+
+/* line 145, ../scss/_octicons.scss */
+.octicon-link-external:before {
+  content: '\f07f';
+}
+
+/* line 146, ../scss/_octicons.scss */
+.octicon-list-ordered:before {
+  content: '\f062';
+}
+
+/* line 147, ../scss/_octicons.scss */
+.octicon-list-unordered:before {
+  content: '\f061';
+}
+
+/* line 148, ../scss/_octicons.scss */
+.octicon-location:before {
+  content: '\f060';
+}
+
+/* line 152, ../scss/_octicons.scss */
+.octicon-gist-private:before,
+.octicon-mirror-private:before,
+.octicon-git-fork-private:before,
+.octicon-lock:before {
+  content: '\f06a';
+}
+
+/* line 153, ../scss/_octicons.scss */
+.octicon-logo-github:before {
+  content: '\f092';
+}
+
+/* line 154, ../scss/_octicons.scss */
+.octicon-mail:before {
+  content: '\f03b';
+}
+
+/* line 155, ../scss/_octicons.scss */
+.octicon-mail-read:before {
+  content: '\f03c';
+}
+
+/* line 156, ../scss/_octicons.scss */
+.octicon-mail-reply:before {
+  content: '\f051';
+}
+
+/* line 157, ../scss/_octicons.scss */
+.octicon-mark-github:before {
+  content: '\f00a';
+}
+
+/* line 158, ../scss/_octicons.scss */
+.octicon-markdown:before {
+  content: '\f0c9';
+}
+
+/* line 159, ../scss/_octicons.scss */
+.octicon-megaphone:before {
+  content: '\f077';
+}
+
+/* line 160, ../scss/_octicons.scss */
+.octicon-mention:before {
+  content: '\f0be';
+}
+
+/* line 161, ../scss/_octicons.scss */
+.octicon-microscope:before {
+  content: '\f089';
+}
+
+/* line 162, ../scss/_octicons.scss */
+.octicon-milestone:before {
+  content: '\f075';
+}
+
+/* line 164, ../scss/_octicons.scss */
+.octicon-mirror-public:before,
+.octicon-mirror:before {
+  content: '\f024';
+}
+
+/* line 165, ../scss/_octicons.scss */
+.octicon-mortar-board:before {
+  content: '\f0d7';
+}
+
+/* line 165, ../scss/_octicons.scss */
+.octicon-move-down:before {
+  content: '\f0a8';
+}
+
+/* line 166, ../scss/_octicons.scss */
+.octicon-move-left:before {
+  content: '\f074';
+}
+
+/* line 167, ../scss/_octicons.scss */
+.octicon-move-right:before {
+  content: '\f0a9';
+}
+
+/* line 168, ../scss/_octicons.scss */
+.octicon-move-up:before {
+  content: '\f0a7';
+}
+
+/* line 169, ../scss/_octicons.scss */
+.octicon-mute:before {
+  content: '\f080';
+}
+
+/* line 170, ../scss/_octicons.scss */
+.octicon-no-newline:before {
+  content: '\f09c';
+}
+
+/* line 171, ../scss/_octicons.scss */
+.octicon-octoface:before {
+  content: '\f008';
+}
+
+/* line 172, ../scss/_octicons.scss */
+.octicon-organization:before {
+  content: '\f037';
+}
+
+/* line 173, ../scss/_octicons.scss */
+.octicon-package:before {
+  content: '\f0c4';
+}
+
+/* line 174, ../scss/_octicons.scss */
+.octicon-paintcan:before {
+  content: '\f0d1';
+}
+
+/* line 175, ../scss/_octicons.scss */
+.octicon-pencil:before {
+  content: '\f058';
+}
+
+/* line 178, ../scss/_octicons.scss */
+.octicon-person-add:before,
+.octicon-person-follow:before,
+.octicon-person:before {
+  content: '\f018';
+}
+
+/* line 179, ../scss/_octicons.scss */
+.octicon-pin:before {
+  content: '\f041';
+}
+
+/* line 180, ../scss/_octicons.scss */
+.octicon-playback-fast-forward:before {
+  content: '\f0bd';
+}
+
+/* line 181, ../scss/_octicons.scss */
+.octicon-playback-pause:before {
+  content: '\f0bb';
+}
+
+/* line 182, ../scss/_octicons.scss */
+.octicon-playback-play:before {
+  content: '\f0bf';
+}
+
+/* line 183, ../scss/_octicons.scss */
+.octicon-playback-rewind:before {
+  content: '\f0bc';
+}
+
+/* line 184, ../scss/_octicons.scss */
+.octicon-plug:before {
+  content: '\f0d4';
+}
+
+/* line 189, ../scss/_octicons.scss */
+.octicon-repo-create:before,
+.octicon-gist-new:before,
+.octicon-file-directory-create:before,
+.octicon-file-add:before,
+.octicon-plus:before {
+  content: '\f05d';
+}
+
+/* line 190, ../scss/_octicons.scss */
+.octicon-podium:before {
+  content: '\f0af';
+}
+
+/* line 191, ../scss/_octicons.scss */
+.octicon-primitive-dot:before {
+  content: '\f052';
+}
+
+/* line 192, ../scss/_octicons.scss */
+.octicon-primitive-square:before {
+  content: '\f053';
+}
+
+/* line 193, ../scss/_octicons.scss */
+.octicon-pulse:before {
+  content: '\f085';
+}
+
+/* line 194, ../scss/_octicons.scss */
+.octicon-puzzle:before {
+  content: '\f0c0';
+}
+
+/* line 195, ../scss/_octicons.scss */
+.octicon-question:before {
+  content: '\f02c';
+}
+
+/* line 196, ../scss/_octicons.scss */
+.octicon-quote:before {
+  content: '\f063';
+}
+
+/* line 197, ../scss/_octicons.scss */
+.octicon-radio-tower:before {
+  content: '\f030';
+}
+
+/* line 199, ../scss/_octicons.scss */
+.octicon-repo-delete:before,
+.octicon-repo:before {
+  content: '\f001';
+}
+
+/* line 200, ../scss/_octicons.scss */
+.octicon-repo-clone:before {
+  content: '\f04c';
+}
+
+/* line 201, ../scss/_octicons.scss */
+.octicon-repo-force-push:before {
+  content: '\f04a';
+}
+
+/* line 203, ../scss/_octicons.scss */
+.octicon-gist-fork:before,
+.octicon-repo-forked:before {
+  content: '\f002';
+}
+
+/* line 204, ../scss/_octicons.scss */
+.octicon-repo-pull:before {
+  content: '\f006';
+}
+
+/* line 205, ../scss/_octicons.scss */
+.octicon-repo-push:before {
+  content: '\f005';
+}
+
+/* line 206, ../scss/_octicons.scss */
+.octicon-rocket:before {
+  content: '\f033';
+}
+
+/* line 207, ../scss/_octicons.scss */
+.octicon-rss:before {
+  content: '\f034';
+}
+
+/* line 208, ../scss/_octicons.scss */
+.octicon-ruby:before {
+  content: '\f047';
+}
+
+/* line 209, ../scss/_octicons.scss */
+.octicon-screen-full:before {
+  content: '\f066';
+}
+
+/* line 210, ../scss/_octicons.scss */
+.octicon-screen-normal:before {
+  content: '\f067';
+}
+
+/* line 212, ../scss/_octicons.scss */
+.octicon-search-save:before,
+.octicon-search:before {
+  content: '\f02e';
+}
+
+/* line 213, ../scss/_octicons.scss */
+.octicon-server:before {
+  content: '\f097';
+}
+
+/* line 214, ../scss/_octicons.scss */
+.octicon-settings:before {
+  content: '\f07c';
+}
+
+/* line 216, ../scss/_octicons.scss */
+.octicon-log-in:before,
+.octicon-sign-in:before {
+  content: '\f036';
+}
+
+/* line 218, ../scss/_octicons.scss */
+.octicon-log-out:before,
+.octicon-sign-out:before {
+  content: '\f032';
+}
+
+/* line 219, ../scss/_octicons.scss */
+.octicon-split:before {
+  content: '\f0c6';
+}
+
+/* line 220, ../scss/_octicons.scss */
+.octicon-squirrel:before {
+  content: '\f0b2';
+}
+
+/* line 223, ../scss/_octicons.scss */
+.octicon-star-add:before,
+.octicon-star-delete:before,
+.octicon-star:before {
+  content: '\f02a';
+}
+
+/* line 224, ../scss/_octicons.scss */
+.octicon-steps:before {
+  content: '\f0c7';
+}
+
+/* line 225, ../scss/_octicons.scss */
+.octicon-stop:before {
+  content: '\f08f';
+}
+
+/* line 227, ../scss/_octicons.scss */
+.octicon-repo-sync:before,
+.octicon-sync:before {
+  content: '\f087';
+}
+
+/* line 230, ../scss/_octicons.scss */
+.octicon-tag-remove:before,
+.octicon-tag-add:before,
+.octicon-tag:before {
+  content: '\f015';
+}
+
+/* line 231, ../scss/_octicons.scss */
+.octicon-telescope:before {
+  content: '\f088';
+}
+
+/* line 232, ../scss/_octicons.scss */
+.octicon-terminal:before {
+  content: '\f0c8';
+}
+
+/* line 233, ../scss/_octicons.scss */
+.octicon-three-bars:before {
+  content: '\f05e';
+}
+
+/* line 234, ../scss/_octicons.scss */
+.octicon-tools:before {
+  content: '\f031';
+}
+
+/* line 235, ../scss/_octicons.scss */
+.octicon-trashcan:before {
+  content: '\f0d0';
+}
+
+/* line 236, ../scss/_octicons.scss */
+.octicon-triangle-down:before {
+  content: '\f05b';
+}
+
+/* line 237, ../scss/_octicons.scss */
+.octicon-triangle-left:before {
+  content: '\f044';
+}
+
+/* line 238, ../scss/_octicons.scss */
+.octicon-triangle-right:before {
+  content: '\f05a';
+}
+
+/* line 239, ../scss/_octicons.scss */
+.octicon-triangle-up:before {
+  content: '\f0aa';
+}
+
+/* line 240, ../scss/_octicons.scss */
+.octicon-unfold:before {
+  content: '\f039';
+}
+
+/* line 241, ../scss/_octicons.scss */
+.octicon-unmute:before {
+  content: '\f0ba';
+}
+
+/* line 242, ../scss/_octicons.scss */
+.octicon-versions:before {
+  content: '\f064';
+}
+
+/* line 244, ../scss/_octicons.scss */
+.octicon-remove-close:before,
+.octicon-x:before {
+  content: '\f081';
+}
+
+/* line 245, ../scss/_octicons.scss */
+.octicon-zap:before {
+  content: '\26A1';
 }
 
 /* line 1, ../scss/_header.scss */
@@ -51,7 +1006,7 @@ body.login .logo {
   height: 100px;
   margin: 0 auto 40px;
   opacity: .5;
-  background-image: url('../img/logo.png?1397571339');
+  background-image: url('../img/logo.png?1405934452');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -60,8 +1015,8 @@ body.login .logo {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   /* line 8, ../scss/_login.scss */
   body.login .logo {
-    background-image: url('../img/logo@2x.png?1397571339');
-    background-size: 100px 100px;
+    background-image: url('../img/logo@2x.png?1405934435');
+    background-size: 60px 60px;
   }
 }
 /* line 18, ../scss/_login.scss */
@@ -113,7 +1068,7 @@ footer .logo {
   margin: 0 auto;
   opacity: .5;
   background-size: 100% 100%;
-  background-image: url('../img/logo.png?1397571339');
+  background-image: url('../img/logo.png?1405934452');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -122,8 +1077,8 @@ footer .logo {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   /* line 11, ../scss/_footer.scss */
   footer .logo {
-    background-image: url('../img/logo@2x.png?1397571339');
-    background-size: 100px 100px;
+    background-image: url('../img/logo@2x.png?1405934435');
+    background-size: 60px 60px;
   }
 }
 /* line 22, ../scss/_footer.scss */
@@ -231,59 +1186,164 @@ footer a {
   padding: 10px 10px 0 10px;
 }
 
-/* line 26, ../scss/style.scss */
+/* line 86, ../scss/_view-customer.scss */
+.ckc-combination-panel {
+  position: relative;
+  z-index: 50;
+}
+/* line 89, ../scss/_view-customer.scss */
+.ckc-combination-panel .panel-body {
+  background-color: #fff;
+}
+/* line 92, ../scss/_view-customer.scss */
+.ckc-combination-panel .panel-body, .ckc-combination-panel .panel-heading {
+  position: relative;
+  z-index: 49;
+}
+
+/* line 98, ../scss/_view-customer.scss */
+.ckc-panel-footer {
+  font-size: .85em;
+  position: relative;
+}
+/* line 102, ../scss/_view-customer.scss */
+.ckc-panel-footer.is-collapsed {
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+/* line 107, ../scss/_view-customer.scss */
+.ckc-panel-footer.is-collapsed:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: auto;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, transparent), color-stop(80%, #f5f5f5));
+  background-image: -webkit-linear-gradient(left, transparent, #f5f5f5 80%);
+  background-image: -moz-linear-gradient(left, transparent, #f5f5f5 80%);
+  background-image: -o-linear-gradient(left, transparent, #f5f5f5 80%);
+  background-image: linear-gradient(left, transparent, #f5f5f5 80%);
+}
+
+/* line 124, ../scss/_view-customer.scss */
+.ckc-panel-group {
+  position: relative;
+}
+
+/* line 128, ../scss/_view-customer.scss */
+.ckc-combination-tools {
+  position: absolute;
+  left: -22px;
+  top: 38px;
+  z-index: 4;
+  -webkit-transform: translateX(22px);
+  -moz-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  -o-transform: translateX(22px);
+  transform: translateX(22px);
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  -o-transition: -o-transform 0.3s;
+  transition: transform 0.3s;
+}
+/* line 136, ../scss/_view-customer.scss */
+.ckc-panel-group:hover .ckc-combination-tools, .ckc-combination-tools:hover {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+/* line 141, ../scss/_view-customer.scss */
+.ckc-input-group {
+  margin-bottom: 10px;
+  width: 100%;
+}
+/* line 145, ../scss/_view-customer.scss */
+.ckc-input-group:last-of-type {
+  margin-bottom: 0;
+}
+
+/* line 150, ../scss/_view-customer.scss */
+.ckc-read-input {
+  display: table-cell;
+  width: 100%;
+  max-width: 100%;
+  float: left;
+  text-overflow: clip;
+}
+/* line 157, ../scss/_view-customer.scss */
+.ckc-read-input[readonly] {
+  background-color: #fff !important;
+}
+
+/* line 162, ../scss/_view-customer.scss */
+.ckc-button-copy {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+/* line 25, ../scss/style.scss */
 .ckc-panel-dump {
   display: block;
 }
 
-/* line 30, ../scss/style.scss */
+/* line 29, ../scss/style.scss */
 .no-list-style {
   list-style: none;
   margin: 0px;
   padding: 0px;
 }
 
-/* line 36, ../scss/style.scss */
+/* line 35, ../scss/style.scss */
 .table td:last-child {
   max-width: 55px;
   /* breaks at xs-breakpoint */
 }
 
-/* line 40, ../scss/style.scss */
+/* line 39, ../scss/style.scss */
 .align-right {
   text-align: right;
 }
 
 /* REMOVE THIS SHIT IN HERE */
-/* line 45, ../scss/style.scss */
+/* line 44, ../scss/style.scss */
 h1.primary {
   margin-bottom: 30px;
 }
 
-/* line 49, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 section.history {
   width: 400px;
 }
-/* line 52, ../scss/style.scss */
+/* line 51, ../scss/style.scss */
 section.history .subinfo {
   color: #999;
   font-weight: 300;
 }
-/* line 57, ../scss/style.scss */
+/* line 56, ../scss/style.scss */
 section.history .date {
   font-size: 24px;
 }
-/* line 61, ../scss/style.scss */
+/* line 60, ../scss/style.scss */
 section.history .options {
   margin-top: 10px;
   color: #999;
 }
-/* line 66, ../scss/style.scss */
+/* line 65, ../scss/style.scss */
 section.history:after {
   clear: both;
 }
 
-/* line 71, ../scss/style.scss */
+/* line 70, ../scss/style.scss */
 .fade {
   opacity: 1.0;
   -webkit-animation: fadeout 4s;
@@ -293,12 +1353,12 @@ section.history:after {
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeout {
-  /* line 79, ../scss/style.scss */
+  /* line 78, ../scss/style.scss */
   from {
     background: #dff0d8;
   }
 
-  /* line 82, ../scss/style.scss */
+  /* line 81, ../scss/style.scss */
   to {
     background: none;
   }
@@ -306,29 +1366,29 @@ section.history:after {
 
 /* Standard syntax */
 @keyframes fadeout {
-  /* line 89, ../scss/style.scss */
+  /* line 88, ../scss/style.scss */
   from {
     background: #dff0d8;
   }
 
-  /* line 90, ../scss/style.scss */
+  /* line 89, ../scss/style.scss */
   to {
     background: none;
   }
 }
 
 /* Newsticker */
-/* line 94, ../scss/style.scss */
+/* line 93, ../scss/style.scss */
 .newsticker {
   margin-bottom: 20px;
   clear: both;
 }
-/* line 98, ../scss/style.scss */
+/* line 97, ../scss/style.scss */
 .newsticker h3 {
   margin-top: 0;
   font-size: 20px;
 }
-/* line 103, ../scss/style.scss */
+/* line 102, ../scss/style.scss */
 .newsticker ul {
   padding: 0;
   margin: 0 20px 0 0;
@@ -337,19 +1397,19 @@ section.history:after {
   color: #888;
   float: left;
 }
-/* line 111, ../scss/style.scss */
+/* line 110, ../scss/style.scss */
 .newsticker ul li {
   list-style: none;
 }
-/* line 116, ../scss/style.scss */
+/* line 115, ../scss/style.scss */
 .newsticker p {
   min-height: 30px;
 }
-/* line 120, ../scss/style.scss */
+/* line 119, ../scss/style.scss */
 .newsticker a {
   color: #888;
 }
-/* line 124, ../scss/style.scss */
+/* line 123, ../scss/style.scss */
 .newsticker:after {
   clear: both;
 }

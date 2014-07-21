@@ -28,12 +28,11 @@ class Combination extends AppModel {
         
         parent::beforeSave(); 
 
-        // Removes http/https because of link consistency.
-        if(isset($this->data['Combination']['loginurl'])) {
-            $this->data['Combination']['loginurl'] = str_replace('http://', '', $this->data['Combination']['loginurl']);
-            $this->data['Combination']['loginurl'] = str_replace('https://', '', $this->data['Combination']['loginurl']);
+        if(isset($this->data['Combination']['loginurl']) && (strpos($this->data['Combination']['loginurl'], "http://") !== false)) {
+            $this->data['Combination']['loginurl'] = 'http://' . $this->data['Combination']['loginurl'];
         }
 
         return true;
     }
+
 }

@@ -3,7 +3,7 @@
 App::uses('FormHelper', 'View/Helper');
 App::uses('Hash', 'Utility');
 
-class BootstrapFormHelper extends FormHelper {
+class Bs3FormHelper extends FormHelper {
 
 /**
  * Helpers
@@ -73,7 +73,7 @@ class BootstrapFormHelper extends FormHelper {
 			'afterInput' => false,
 			'checkboxLabel' => false,
 			'help' => false,
-			'errorClass' => 'has-error glyphicon-remove',
+			'errorClass' => 'has-error',
 			'showError' => true, // Si mostrar o no error
 			'errorMessage' => false, // Mensaje de error manual
 			'errorsAlwaysAsList' => false,
@@ -158,7 +158,7 @@ class BootstrapFormHelper extends FormHelper {
 		$options = $this->_getFormStyle($options);
 
 		// Generate global input defaults
-		$globalInputDefaults = Hash::merge($this->_predefinedInputDefaults, Configure::read('BootstrapForm.inputDefaults'));
+		$globalInputDefaults = Hash::merge($this->_predefinedInputDefaults, Configure::read('Bs3Form.inputDefaults'));
 		// Generate form style defaults
 		$styleInputDefaults = Hash::merge($globalInputDefaults['all'], $globalInputDefaults[$this->_formStyle]);
 		// Merge with passed inputDefaults if any
@@ -177,7 +177,7 @@ class BootstrapFormHelper extends FormHelper {
 		$options['inputDefaults'] = $inputDefaults;
 
 		// Process form defaults
-		$formDefaults = Hash::merge($this->_formDefaults, Configure::read('BootstrapForm.formDefaults'));
+		$formDefaults = Hash::merge($this->_formDefaults, Configure::read('Bs3Form.formDefaults'));
 		$options = Hash::merge($formDefaults, $options);
 
 		$out = parent::create($model, $options);
@@ -247,7 +247,7 @@ class BootstrapFormHelper extends FormHelper {
 
 		// TODO: refactor
 		if (empty($this->_formStyle)) {
-			$inputDefaults = Hash::merge($this->_predefinedInputDefaults, Configure::read('BootstrapForm.inputDefaults'));
+			$inputDefaults = Hash::merge($this->_predefinedInputDefaults, Configure::read('Bs3Form.inputDefaults'));
 			$typeInputDefaults = Hash::merge($inputDefaults['all'], $inputDefaults['default']);
 			$passedInputDefaults = $this->_extractOption('inputDefaults', $options, array());
 			$this->_inputDefaults = Hash::merge($typeInputDefaults, $passedInputDefaults);
@@ -600,7 +600,7 @@ class BootstrapFormHelper extends FormHelper {
 			elseif (substr($prepend, 0, 10) == 'glyphicon-') {
 				$append = $this->Html->tag('i', '', array('class' => 'glyphicon ' . $append));
 			}
-			$append = $this->Html->tag('span', $append, array('class' => 'input-group-addon glyphicon'));
+			$append = $this->Html->tag('span', $append, array('class' => 'input-group-addon'));
 		}
 
 		// Generates div and sets beforeInput and afterInput options

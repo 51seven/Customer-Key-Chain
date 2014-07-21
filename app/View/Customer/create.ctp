@@ -1,5 +1,4 @@
-<div class="input-group">
-<h2 class="primary">Neuen Kunden anlegen</h2>
+<h2>Neuen Kunden anlegen</h2>
 <?php
 echo $this->Form->create('Customer', array(
 	'type' => 'post',
@@ -33,7 +32,6 @@ echo $this->Form->input('city', array(
 ));
 echo $this->Form->end(array(
 	'label' => 'Kunde anlegen',
-	'class' => 'btn btn-default',
+	'class' => 'btn btn-success',
 )); 
 ?>
-</div>

@@ -71,12 +71,43 @@ class CustomerController extends AppController {
             }
     		$combinations = $this->Combination->findAllByCustomer_id($cid);
             $combos = array();
+
             foreach($combinations as $combination) {
                 $type = $combination['Type']['name'];
                 if(!array_key_exists($type, $combos)) {
                     $combos[$type] = array();
                 }
                 $combos[$type][] = $combination['Combination'];
+            }
+
+            /* Sorting combos for better appereance in frontend.
+             * Basically we take this:
+             * +---+---+---+
+             * | 1 | 2 | 3 |
+             * +---+---+---+
+             * | 4 | 5 | 6 |
+             * +---+---+---+
+             *
+             * And make this:
+             * +---+---+---+
+             * | 1 | 3 | 5 |
+             * +---+---+---+
+             * | 2 | 4 | 6 |
+             * +---+---+---+
+             *
+             * ... but this will just change the array order (1-3-5-2-4-6). The visual order will look
+             * like the first figure.
+             * Just trust me.
+             */
+            
+            $sortedCombos = array();
+            
+            foreach($combos as $type => $onetypecombos) {
+                foreach($onetypecombos as $key => $combo) {
+                    $chunkkey = $key%3;
+                    if($chunkkey == 3) $chunkkey = 0;
+                    $sortedCombos[$type][$chunkkey][] = $combo;
+                }
             }
 
             $this->Contactperson->recursive = -1;
@@ -95,7 +126,7 @@ class CustomerController extends AppController {
             $this->set('histories', $histories);
             $this->set('contactpersons', $contactpersons);
             $this->set('isfav', $isfav);
-    		$this->set('combinations', $combos);
+    		$this->set('combinations', $sortedCombos);
     		$this->set('customer', $customer);
     	}
     }
