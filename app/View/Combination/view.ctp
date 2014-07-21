@@ -1,6 +1,6 @@
 <div class="panel panel-default ckc-combination-panel">
 			<div class="panel-heading">
-          		<h2 class="panel-title"><?php echo $combination['Type']['name']." von ".$combination['Customer']['name']; ?></h2>
+          		<h2 class="panel-title"><?= $combination['Type']['name']." von ".$combination['Customer']['name']; ?></h2>
           	</div>
           <div class="panel-body">
             <div class="input-group ckc-input-group">
@@ -29,13 +29,13 @@
             </div>
 <?php if(!in_array($combination['Type']['name'], array('FTP', 'Datenbank', 'Root-Server'))): ?>
             <div class="ckc-input-group">
-              <a href="<?php echo $combination['Combination']['loginurl']; ?>" target="_blank" class="btn btn-primary ckc-read-input">Login</a>
+              <a href="<?= $combination['Combination']['loginurl']; ?>" target="_blank" class="btn btn-primary ckc-read-input">Login</a>
             </div>
 <?php endif; ?>
             
           </div>
           <?php if($combination['Combination']['comment']): ?>
-          <div class="panel-footer ckc-panel-footer"><?= $combination['Combination']['comment']; ?></div>
+          <div class="panel-footer ckc-panel-footer"><?= nl2br($combination['Combination']['comment']); ?></div>
           <?php endif; ?>
         </div>
 		<div class="btn-group">

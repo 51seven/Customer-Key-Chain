@@ -8,11 +8,11 @@ body.login {
 	.logo {
 		display: block;
 		text-indent: -9999px;
-		width: 100px;
-		height: 100px;
+		width: 120px;
+		height: 120px;
 		margin: 0 auto 40px;
 		opacity: .5;
-		@include retina-background(logo, png);
+		background-image: image-url("logo@2x.png");
 		@include transition(opacity .3s);
 
 		&:hover {

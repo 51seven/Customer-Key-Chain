@@ -160,7 +160,7 @@ if(sizeof($combinations) > 0):
             
           </div>
           <?php if($combination['comment']): ?>
-          <div class="panel-footer ckc-panel-footer is-clickable is-collapsed"><?= $combination['comment']; ?></div>
+          <div class="panel-footer ckc-panel-footer is-clickable is-collapsed"><?= nl2br($combination['comment']); ?></div>
           <?php endif; ?>
         </div>
         <div class='btn-group btn-group-vertical ckc-combination-tools'>

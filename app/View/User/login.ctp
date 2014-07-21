@@ -16,14 +16,19 @@
       echo $this->Form->input('password', array(
         'type' => 'password',
         'label' => 'Passwort',
-      ));
-      echo $this->Form->input('stay', array(
-        'div' => array(
-          'class' => 'checkbox'
-        ),
-        'type' => 'checkbox',
-        'label' => 'Keep me logged in'
-      ));
+      )); ?>
+      <div class="checkbox">
+        <label>
+        <?php // This markup is from bootstrap, don't judge me
+        echo $this->Form->input('stay', array(
+          'div' => false,
+          'type' => 'checkbox',
+          'label' => false
+        )); ?>
+        Keep me logged in
+        </label>
+      </div>
+      <?php
       echo $this->Form->button('Login', array(
         'type' => 'submit', 'class' => 'btn btn-primary ckc-btn-login'));
       echo $this->Form->end();

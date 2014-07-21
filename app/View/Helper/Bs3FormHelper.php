@@ -23,7 +23,7 @@ class Bs3FormHelper extends FormHelper {
 	protected $_availableCustomOptions = array(
 		'wrap',
 		'externalWrap',
-		'checkboxLabel',
+		//'checkboxLabel', // NOTE: I deactivated checkbox because it renders incorrect, see lines 47 and 313
 		'beforeInput',
 		'afterInput',
 		'help',
@@ -71,7 +71,7 @@ class Bs3FormHelper extends FormHelper {
 			'wrap' => false,
 			'beforeInput' => false,
 			'afterInput' => false,
-			'checkboxLabel' => false,
+			//'checkboxLabel' => false,
 			'help' => false,
 			'errorClass' => 'has-error',
 			'showError' => true, // Si mostrar o no error
@@ -309,12 +309,12 @@ class Bs3FormHelper extends FormHelper {
 		$inputHtml = $beforeInput . $input . $afterInput;
 
 		// Checkbox label rendering
-		if ($args['type'] == 'checkbox') {
+		/*if ($args['type'] == 'checkbox') {
 			if ($customOptions['checkboxLabel']) {
 				$inputHtml = $this->Html->tag('label', $inputHtml . ' ' . $customOptions['checkboxLabel']);
 			}
 			$inputHtml = $this->Html->tag('div', $inputHtml, array('class' => 'checkbox'));
-		}
+		}*/
 
 		// Error rendering, overwrites parent rendering
 		$errorHtml = null;
