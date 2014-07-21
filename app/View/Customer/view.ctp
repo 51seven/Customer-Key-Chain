@@ -190,6 +190,7 @@ if(sizeof($combinations) > 0):
       </div>
     <?php endforeach; // End for panel-col ?>
     </div>
+    <hr class="ckc-hr-between">
   <?php endforeach;
   else:
   ?>

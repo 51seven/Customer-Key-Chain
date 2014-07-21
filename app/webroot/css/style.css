@@ -1293,6 +1293,11 @@ footer a {
   width: 40px;
 }
 
+/* line 176, ../scss/_view-customer.scss */
+.ckc-hr-between {
+  border-top-width: 3px;
+}
+
 /* line 25, ../scss/style.scss */
 .ckc-panel-dump {
   display: block;
