@@ -10,7 +10,7 @@
     echo $this->Html->meta('icon', $this->Html->url('/app/webroot/favicon.ico'))."\n";
 
     echo $this->Html->css('bootstrap.min');
-    //echo $this->Html->css('bootstrap-theme.min');
+    echo $this->Html->css('bootstrap-theme.min');
 
     echo $this->Html->css('style');
 
