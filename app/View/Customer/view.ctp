@@ -122,12 +122,13 @@ if(sizeof($combinations) > 0):
       <div class="ckc-panel-group">
         <div class="panel panel-default ckc-combination-panel">
           <div class="panel-heading">
-            <?php $title = $combination['comment']; ?>
+            <?php $title = strtok($combination['comment'], "\n"); ?>
             <?php if(strlen($title) > 26) $title = substr($title, 0, 20) . '...'; ?>
             <?php if(empty($title)) $title = $combination['username']; ?>
             <h4 class="panel-title"><?= $title; ?></h4>
           </div>
           <div class="panel-body">
+            <?php if($combination['username']): ?>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['username']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
@@ -136,6 +137,8 @@ if(sizeof($combinations) > 0):
                 </button>
               </span>
             </div>
+            <?php endif; ?>
+            <?php if($combination['password']): ?>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['password']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
@@ -144,6 +147,8 @@ if(sizeof($combinations) > 0):
                 </button>
               </span>
             </div>
+          <?php endif; ?>
+          <?php if($combination['loginurl']): ?>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['loginurl']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
@@ -157,9 +162,10 @@ if(sizeof($combinations) > 0):
               <a href="<?php echo $combination['loginurl']; ?>" target="_blank" class="btn btn-primary ckc-read-input">Login</a>
             </div>
 <?php endif; ?>
+<?php endif; ?>
             
           </div>
-          <?php if($combination['comment']): ?>
+          <?php if($combination['comment'] && (substr_count($combination['comment'], "\n") > 0 && strlen($combination['comment']) > 26)): ?>
           <div class="panel-footer ckc-panel-footer is-clickable is-collapsed"><?= nl2br($combination['comment']); ?></div>
           <?php endif; ?>
         </div>

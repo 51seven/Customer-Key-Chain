@@ -3,6 +3,7 @@
           		<h2 class="panel-title"><?= $combination['Type']['name']." von ".$combination['Customer']['name']; ?></h2>
           	</div>
           <div class="panel-body">
+            <label>Username</label>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['username']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
@@ -11,6 +12,7 @@
                 </button>
               </span>
             </div>
+            <label>Password</label>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['password']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
@@ -19,6 +21,7 @@
                 </button>
               </span>
             </div>
+            <label>Login</label>
             <div class="input-group ckc-input-group">
               <input type="text" readonly value="<?= $combination['Combination']['loginurl']; ?>" class="form-control ckc-read-input">
               <span class="input-group-btn">
