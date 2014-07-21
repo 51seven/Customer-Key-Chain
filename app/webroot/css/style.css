@@ -1006,7 +1006,7 @@ body.login .logo {
   height: 120px;
   margin: 0 auto 40px;
   opacity: .5;
-  background-image: url('../img/logo@2x.png?1405934435');
+  background-image: url('../img/logo@2x.png?1405950272');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -1061,7 +1061,7 @@ footer .logo {
   margin: 0 auto;
   opacity: .5;
   background-size: 100% 100%;
-  background-image: url('../img/logo.png?1405934452');
+  background-image: url('../img/logo.png?1405950272');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -1070,7 +1070,7 @@ footer .logo {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   /* line 11, ../scss/_footer.scss */
   footer .logo {
-    background-image: url('../img/logo@2x.png?1405934435');
+    background-image: url('../img/logo@2x.png?1405950272');
     background-size: 60px 60px;
   }
 }
@@ -1290,12 +1290,7 @@ footer a {
 
 /* line 172, ../scss/_view-customer.scss */
 .ckc-button-copy {
-  position: relative;
-  font-size: 0;
-  white-space: nowrap;
-  width: 1%;
-  vertical-align: middle;
-  display: table-cell;
+  width: 40px;
 }
 
 /* line 25, ../scss/style.scss */
