@@ -111,39 +111,79 @@
 // Liste alle Kundenkombinationen auf
 if(sizeof($combinations) > 0):
 
-  echo "<table class='table table-striped table-responsive table-hover'>";
-      echo "<tr>";
-        echo "<th>Type</th>";
-        echo "<th>Username</th>";
-        echo "<th>Password</th>";
-        echo "<th>LoginURL</th>";
-        echo "<th></th>";
-      echo "</tr>";
-  foreach ($combinations as $key => $combinationtype) {
-    foreach ($combinationtype as $key2 => $combination) {
-      echo "<tr>";
-        echo "<td>".$key."</td>";
-        echo "<td>".$combination['username']."</td>";
-        echo "<td>".$combination['password']."</td>";
-        ?><td><a href="//<?php echo $combination['loginurl']; ?>" target="_blank"><?php echo $combination['loginurl']; ?></a></td><?php
-        echo "<td><div class='btn-group'>";
+  foreach ($combinations as $key => $combinationtype): ?>
+    <h3><?= $key; ?></h3>
+    <div class="row">
+
+    <?php foreach ($combinationtype as $col): ?>
+    <div class="col-md-4">
+    <?php foreach ($col as $combination): ?>
+
+      <div class="ckc-panel-group">
+        <div class="panel panel-default ckc-combination-panel">
+          <div class="panel-heading">
+            <?php $title = $combination['comment']; ?>
+            <?php if(strlen($title) > 26) $title = substr($title, 0, 20) . '...'; ?>
+            <?php if(empty($title)) $title = $combination['username']; ?>
+            <h4 class="panel-title"><?= $title; ?></h4>
+          </div>
+          <div class="panel-body">
+            <div class="input-group ckc-input-group">
+              <input type="text" readonly value="<?= $combination['username']; ?>" class="form-control ckc-read-input">
+              <span class="input-group-btn">
+                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['username']; ?>" type="button">
+                  <span class="octicon octicon-clippy"></span>
+                </button>
+              </span>
+            </div>
+            <div class="input-group ckc-input-group">
+              <input type="text" readonly value="<?= $combination['password']; ?>" class="form-control ckc-read-input">
+              <span class="input-group-btn">
+                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['password']; ?>" type="button">
+                  <span class="octicon octicon-clippy"></span>
+                </button>
+              </span>
+            </div>
+            <div class="input-group ckc-input-group">
+              <input type="text" readonly value="<?= $combination['loginurl']; ?>" class="form-control ckc-read-input">
+              <span class="input-group-btn">
+                <button class="btn btn-default copy-clipboard" data-clipboard-text="<?= $combination['loginurl']; ?>" type="button">
+                  <span class="octicon octicon-clippy"></span>
+                </button>
+              </span>
+            </div>
+<?php if(!in_array($key, array('FTP', 'Datenbank', 'Root-Server'))): ?>
+            <div class="ckc-input-group">
+              <a href="<?php echo $combination['loginurl']; ?>" target="_blank" class="btn btn-primary ckc-read-input">Login</a>
+            </div>
+<?php endif; ?>
+            
+          </div>
+          <?php if($combination['comment']): ?>
+          <div class="panel-footer ckc-panel-footer is-clickable is-collapsed"><?= $combination['comment']; ?></div>
+          <?php endif; ?>
+        </div>
+        <div class='btn-group btn-group-vertical ckc-combination-tools'>
+        <?php
           // Anzeigen
           echo $this->Html->link('<span class="glyphicon glyphicon-eye-open"></span>', 
                 array('controller' => 'combination', 'action' => 'view', $combination['combination_id']), 
-                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'));
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-primary btn-xs'));
           // Bearbeiten
           echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', 
                 array('controller' => 'combination', 'action' => 'edit', $combination['combination_id']), 
-                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'));
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-warning btn-xs'));
           // Löschen
           echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>', 
                 array('controller' => 'combination', 'action' => 'delete', $combination['combination_id']), 
-                array('escape' => false, 'class' => 'ckc-action-btn btn btn-default btn-xs'), "Willst du diesen Account wirklich entfernen?");
-        echo "</div></td>";
-      echo "</tr>";
-    }
-  }
-  echo "</table>";
+                array('escape' => false, 'class' => 'ckc-action-btn btn btn-danger btn-xs'), "Willst du diesen Account wirklich entfernen?"); ?>
+          </div>
+        </div>
+      <?php endforeach; // End for every panel ?>
+      </div>
+    <?php endforeach; // End for panel-col ?>
+    </div>
+  <?php endforeach;
   else:
   ?>
   <div class="alert alert-info">Für diesen Kunden sind noch keine Accounts gespeichert.</div>

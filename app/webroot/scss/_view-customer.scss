@@ -82,3 +82,88 @@
 .ckc-comment {
 	padding: 10px 10px 0 10px;
 }
+
+.ckc-combination-panel {
+	position: relative;
+	z-index: 50;
+	.panel-body {
+		background-color: #fff;
+	}
+	.panel-body, .panel-heading {
+		position: relative;
+		z-index: 49;
+	}
+}
+
+.ckc-panel-footer {
+	font-size: .85em;
+	position: relative;
+
+	&.is-collapsed {
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+
+		&:before {
+			content: '';
+			position: absolute;
+			right: 0;
+			left: auto;
+			top: 0;
+			bottom: 0;
+			width: 60px;
+			@include background-image(linear-gradient(left, transparent, #f5f5f5 80%));
+		}
+	}
+
+	&.is-expanded {
+
+	}
+}
+
+.ckc-panel-group {
+	position: relative;
+}
+
+.ckc-combination-tools {
+	position: absolute;
+	left: -22px;
+	top: 38px;
+	z-index: 4;
+	@include transform(translateX(22px));
+	@include transition(transform .3s);
+
+	.ckc-panel-group:hover &, &:hover {
+		@include transform(translateX(0px));
+	}
+}
+
+.ckc-input-group {
+	margin-bottom: 10px;
+	width: 100%;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.ckc-read-input {
+	display: table-cell;
+	width: 100%;
+	max-width: 100%;
+	float: left;
+	text-overflow: clip;
+
+	&[readonly] {
+		background-color: #fff !important;
+	}
+}
+
+.ckc-button-copy {
+	position: relative;
+	font-size: 0;
+	white-space: nowrap;
+	width: 1%;
+	vertical-align: middle;
+	display: table-cell;
+}

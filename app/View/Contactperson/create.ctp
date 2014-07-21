@@ -1,5 +1,4 @@
-<div class="input-group">
-<h1 class="primary">Neue Kontaktperson anlegen</h1>
+<h2>Neue Kontaktperson anlegen</h2>
 <?php
 echo $this->Form->create('Contactperson', array(
 	'type' => 'post',
@@ -43,7 +42,6 @@ echo $this->Form->input('mail', array(
 ));
 echo $this->Form->end(array(
 	'label' => 'Kontaktperson anlegen',
-	'class' => 'btn btn-default',
+	'class' => 'btn btn-success',
 )); 
 ?>
-</div>

@@ -89,11 +89,5 @@ class CombinationController extends AppController {
             $this->redirect('/');
         }
 
-    }
-
-
-
-
-
-    
+    }    
 }

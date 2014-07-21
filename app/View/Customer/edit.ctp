@@ -1,5 +1,4 @@
-<div class="input-group">
-<h1 class="primary"><?php echo $this->request->data['Customer']['name']; ?> bearbeiten</h1>
+<h2><?php echo $this->request->data['Customer']['name']; ?> bearbeiten</h2>
 <?php
 echo $this->Form->create('Customer', array(
 	'type' => 'post',
@@ -34,7 +33,6 @@ echo $this->Form->input('city', array(
 ));
 echo $this->Form->end(array(
 	'label' => 'Speichern',
-	'class' => 'btn btn-default',
+	'class' => 'btn btn-success',
 )); 
 ?>
-</div>

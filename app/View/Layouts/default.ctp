@@ -9,6 +9,7 @@
 
     echo $this->Html->css(array(
       'bootstrap.min',
+      'bootstrap-theme.min',
       'style',
       '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
       'jquery.simple-dtpicker'
@@ -53,6 +54,7 @@
     
   </div>
   <?php echo $this->element('footer'); ?>
+  <?php echo $this->Html->script('ZeroClipboard'); ?>
   <?php echo $this->Html->script('ux'); ?>
 </body>
 </html>
