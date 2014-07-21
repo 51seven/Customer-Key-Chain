@@ -28,7 +28,11 @@ class Combination extends AppModel {
         
         parent::beforeSave(); 
 
-        if(isset($this->data['Combination']['loginurl']) && (!preg_match('/(http|https):\/\//', $this->data['Combination']['loginurl']))) {
+        if(!empty($this->data['Combination']['loginurl'])
+            &&
+        !preg_match('/(http|https):\/\//', $this->data['Combination']['loginurl'])
+            &&
+        !preg_match('/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/', $this->data['Combination']['loginurl'])) {
             $this->data['Combination']['loginurl'] = 'http://' . $this->data['Combination']['loginurl'];
         }
 
