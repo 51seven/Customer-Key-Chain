@@ -11,27 +11,26 @@
       'bootstrap.min',
       'bootstrap-theme.min',
       'style',
-      '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
-      'jquery.simple-dtpicker'
-    ));
-
-    echo $this->Html->script(array(
-      '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 
-      '//code.jquery.com/ui/1.10.4/jquery-ui.js',
       'jquery.simple-dtpicker',
-      'bootstrap.min',
+      '//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css',
+      'jquery.tagit',
+      'tagit.ui-zendesk'
     ));
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
-    echo $this->fetch('script');
+
+    echo $this->Html->script(array(
+      '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 
+      '//code.jquery.com/ui/1.11.0/jquery-ui.js',
+      'jquery.simple-dtpicker',
+      'bootstrap.min',
+      'ZeroClipboard',
+      'ux',
+      'tagger'
+    )); 
   ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    $(function(){
-      $("#datepicker").appendDtpicker({"inline": true});
-    });
-  </script>
 </head>
 <body>
   <?php echo $this->element('navigation'); ?>
@@ -54,7 +53,10 @@
     
   </div>
   <?php echo $this->element('footer'); ?>
-  <?php echo $this->Html->script('ZeroClipboard'); ?>
-  <?php echo $this->Html->script('ux'); ?>
+  <script>
+    $(function(){
+      $("#datepicker").appendDtpicker({"inline": true});
+    });
+  </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ class CustomerController extends AppController {
         'History',
         'Funfact',
         'User',
+        'Tag'
     );
     public $helpers = array(
         'Markdown.Markdown',
@@ -210,6 +211,15 @@ class CustomerController extends AppController {
                 'conditions' => array('Customer.name LIKE' => '%'.$string.'%'),
             ));
 
+            $tags_results = $this->Tag->find('first', array(
+                'conditions' => array(
+                    'Tag.name LIKE' => '%'.$string.'%'
+                ),
+                'recursive' => 2
+            ));
+
+            if($tags_results) $tags_results = $tags_results['Combination']; // consistent data
+
             // Suchergebnisse filtern
             if(!$this->Auth->user('isadmin')) {
                 $permissions = $this->Permission->find('list', array(
@@ -222,29 +232,37 @@ class CustomerController extends AppController {
 
                 foreach ($customer_results as $key => $result) {
                     if(in_array($key, $permissions)) {
-                        $filtered_results[$key] = $result;
+                        array_push($filtered_results, $result);
                     }    
                 }
                 $customer_results = $filtered_results;
 
                 // Kontakte filtern
                 $filtered_results = array();
-                debug($contact_results);
 
                 foreach ($contact_results as $key => $result) {
-                    debug($result);
-                    debug($key);
-
                     if(in_array($key['Customer']['customer_id'], $permissions)) {
-                        $filtered_results[$key] = $result;
+                        array_push($filtered_results, $result);
                     }    
                 }
                 $contact_results = $filtered_results;
 
+                // Tags filtern
+                $filtered_results = array();
+
+                if(isset($tags_results)) {
+                    foreach ($tags_results as $key => $result) {
+                        if(!in_array($result['customer_id'], $permissions)) {
+                            array_push($filtered_results, $result);
+                        } 
+                    }
+                    $tags_results = $filtered_results;
+                }
             }
 
             $this->set('customer_results', $customer_results);
             $this->set('contact_results', $contact_results);
+            $this->set('tags_results', $tags_results);
             $this->set('string', $string);
         }
     }

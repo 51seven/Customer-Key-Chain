@@ -1,4 +1,4 @@
-<h3>Kunden mit <i>'<?php echo $string; ?>'</i></h3>
+<h3>Kunden namens <i>'<?= $string ?>'</i></h3>
 <?php
 if($customer_results) {
 	foreach ($customer_results as $customer => $result) {
@@ -13,7 +13,7 @@ else {
 	echo "Keine Kunden gefunden.";
 }
 ?>
-<h3>Kontakte mit <i>'<?php echo $string; ?>'</i></h3>
+<h3>Kontakte namens <i>'<?= $string ?>'</i></h3>
 <?php
 if($contact_results) {
 	foreach ($contact_results as $contact => $result) {
@@ -28,5 +28,19 @@ else {
 	echo "Keine Kontakte gefunden.";
 }
 ?>
-
-
+<h3>Kombinationen die mit <i>'<?= $string ?>'</i> getagged wurden</h3>
+<?php
+if($tags_results) {
+	foreach ($tags_results as $key => $tag) {
+		echo $tag['Customer']['name']." mit ";
+		echo $this->Html->link($tag['username'], array(
+			'controller' => 'combination', 
+			'action' => 'view', $tag['combination_id']
+			)
+		)."<br>";
+	}
+}
+else {
+	echo "Keine Tags gefunden.";
+}
+?>
