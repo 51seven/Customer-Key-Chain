@@ -31,22 +31,17 @@ class CustomerController extends AppController {
         $history_count = $this->History->find('count');
 
         // Anzahl aller Tags
-        $tags_used_count = $this->Tag->CombinationTag->find('count');
+        $tags_used_count = $this->Tag->CombinationTag->find('count', array('group' => 'CombinationTag.tag_id'));
         $tags_count = $this->Tag->find('count');
 
         // Most Popular Tag
         $most_popular_tag = $this->Tag->CombinationTag->find('first', array(
-            'conditions' => array(
-
+            'fields' => array(
+                'MAX(CombinationTag.tag_id) as max_tag_id',
             ),
-            'recursive' => 10,
-            'fields' => array('COUNT(CombinationTag.tag_id) as count, CombinationTag.tag_id'),
-            'group' => 'CombinationTag.tag_id',
-            'order' => 'CombinationTag.tag_id ASC',
         ));
-        
-        $this->Tag->recursive = -1;
-        $most_popular_tag = $this->Tag->findByTag_id($most_popular_tag['CombinationTag']['tag_id']);
+
+        $most_popular_tag_count = $this->Tag->CombinationTag->find('count', array('conditions' => array('CombinationTag.tag_id' => $most_popular_tag[0]['max_tag_id'])));
 
         // Kunden bei denen der letzte Eintrag länger als 30 Tage her ist
         $onemonth = date('Y-m-d', strtotime('-1 month'));
@@ -69,7 +64,8 @@ class CustomerController extends AppController {
         $this->set('frozen_customers', $frozen_customers);
         $this->set('tags_used_count', $tags_used_count);
         $this->set('tags_count', $tags_count);
-        $this->set('most_popular_tag', $most_popular_tag['Tag']['name']);
+        $this->set('most_popular_tag', $this->Tag->field('name', array('tag_id = ' => $most_popular_tag[0]['max_tag_id'])));
+        $this->set('most_popular_tag_count', $most_popular_tag_count);
         $this->set('news', $news);
     }
 

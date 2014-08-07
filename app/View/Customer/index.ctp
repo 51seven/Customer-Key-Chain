@@ -10,7 +10,8 @@
 	History <span class="badge"><?= $history_count ?></span><br><br>
 
 	Tags used <span class="badge"><?= $tags_used_count ?></span> von <span class="badge"><?= $tags_count ?></span><br>
-	Beliebtestes Tag <span class="badge"><?= $most_popular_tag ?></span><br>
+	Beliebtestes Tag <span class="badge"><?= $most_popular_tag ?></span>
+					 <span class="badge"><?= $most_popular_tag_count ?></span><br>
 	</p>
 	</div>
 	<div class="col-xs-6">
