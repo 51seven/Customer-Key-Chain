@@ -7,7 +7,10 @@
 	Du bist als <strong><?= $role[$user['isadmin']] ?></strong> eingeloggt.<br><br>
 	Kombinationen <span class="badge"><?= $combination_count ?></span><br>
 	Kunden <span class="badge"><?= $customer_count ?></span><br>
-	History <span class="badge"><?= $history_count ?></span><br>
+	History <span class="badge"><?= $history_count ?></span><br><br>
+
+	Tags used <span class="badge"><?= $tags_used_count ?></span> von <span class="badge"><?= $tags_count ?></span><br>
+	Beliebtestes Tag <span class="badge"><?= $most_popular_tag ?></span><br>
 	</p>
 	</div>
 	<div class="col-xs-6">

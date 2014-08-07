@@ -21,6 +21,7 @@ body {
 @import "sidebar";
 @import "footer";
 @import "view-customer";
+@import "tagger";
 
 .ckc-panel-dump {
 	display: block;
@@ -96,6 +97,7 @@ section.history {
 
 	h3 {
 		margin-top: 0;
+		padding-top: 0;
 		font-size: 20px;
 	}
 

@@ -1006,7 +1006,7 @@ body.login .logo {
   height: 120px;
   margin: 0 auto 40px;
   opacity: .5;
-  background-image: url('../img/logo@2x.png?1405950272');
+  background-image: url('../img/logo@2x.png?1406796797');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -1061,7 +1061,7 @@ footer .logo {
   margin: 0 auto;
   opacity: .5;
   background-size: 100% 100%;
-  background-image: url('../img/logo.png?1405950272');
+  background-image: url('../img/logo.png?1406796797');
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -1070,7 +1070,7 @@ footer .logo {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   /* line 11, ../scss/_footer.scss */
   footer .logo {
-    background-image: url('../img/logo@2x.png?1405950272');
+    background-image: url('../img/logo@2x.png?1406796797');
     background-size: 60px 60px;
   }
 }
@@ -1298,59 +1298,117 @@ footer a {
   border-top-width: 3px;
 }
 
-/* line 25, ../scss/style.scss */
+/* line 1, ../scss/_tagger.scss */
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  line-height: 22px;
+}
+/* line 14, ../scss/_tagger.scss */
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: auto !important;
+  max-width: inherit;
+}
+/* line 24, ../scss/_tagger.scss */
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+/* line 30, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+}
+/* line 34, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+/* line 37, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+/* line 41, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+/* line 43, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+/* line 50, ../scss/_tagger.scss */
+.bootstrap-tagsinput .tag-label {
+  background-color: #666;
+}
+
+/* line 26, ../scss/style.scss */
 .ckc-panel-dump {
   display: block;
 }
 
-/* line 29, ../scss/style.scss */
+/* line 30, ../scss/style.scss */
 .no-list-style {
   list-style: none;
   margin: 0px;
   padding: 0px;
 }
 
-/* line 35, ../scss/style.scss */
+/* line 36, ../scss/style.scss */
 .table td:last-child {
   max-width: 55px;
   /* breaks at xs-breakpoint */
 }
 
-/* line 39, ../scss/style.scss */
+/* line 40, ../scss/style.scss */
 .align-right {
   text-align: right;
 }
 
 /* REMOVE THIS SHIT IN HERE */
-/* line 44, ../scss/style.scss */
+/* line 45, ../scss/style.scss */
 h1.primary {
   margin-bottom: 30px;
 }
 
-/* line 48, ../scss/style.scss */
+/* line 49, ../scss/style.scss */
 section.history {
   width: 400px;
 }
-/* line 51, ../scss/style.scss */
+/* line 52, ../scss/style.scss */
 section.history .subinfo {
   color: #999;
   font-weight: 300;
 }
-/* line 56, ../scss/style.scss */
+/* line 57, ../scss/style.scss */
 section.history .date {
   font-size: 24px;
 }
-/* line 60, ../scss/style.scss */
+/* line 61, ../scss/style.scss */
 section.history .options {
   margin-top: 10px;
   color: #999;
 }
-/* line 65, ../scss/style.scss */
+/* line 66, ../scss/style.scss */
 section.history:after {
   clear: both;
 }
 
-/* line 70, ../scss/style.scss */
+/* line 71, ../scss/style.scss */
 .fade {
   opacity: 1.0;
   -webkit-animation: fadeout 4s;
@@ -1360,12 +1418,12 @@ section.history:after {
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeout {
-  /* line 78, ../scss/style.scss */
+  /* line 79, ../scss/style.scss */
   from {
     background: #dff0d8;
   }
 
-  /* line 81, ../scss/style.scss */
+  /* line 82, ../scss/style.scss */
   to {
     background: none;
   }
@@ -1373,29 +1431,30 @@ section.history:after {
 
 /* Standard syntax */
 @keyframes fadeout {
-  /* line 88, ../scss/style.scss */
+  /* line 89, ../scss/style.scss */
   from {
     background: #dff0d8;
   }
 
-  /* line 89, ../scss/style.scss */
+  /* line 90, ../scss/style.scss */
   to {
     background: none;
   }
 }
 
 /* Newsticker */
-/* line 93, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 .newsticker {
   margin-bottom: 20px;
   clear: both;
 }
-/* line 97, ../scss/style.scss */
+/* line 98, ../scss/style.scss */
 .newsticker h3 {
   margin-top: 0;
+  padding-top: 0;
   font-size: 20px;
 }
-/* line 102, ../scss/style.scss */
+/* line 104, ../scss/style.scss */
 .newsticker ul {
   padding: 0;
   margin: 0 20px 0 0;
@@ -1404,19 +1463,19 @@ section.history:after {
   color: #888;
   float: left;
 }
-/* line 110, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 .newsticker ul li {
   list-style: none;
 }
-/* line 115, ../scss/style.scss */
+/* line 117, ../scss/style.scss */
 .newsticker p {
   min-height: 30px;
 }
-/* line 119, ../scss/style.scss */
+/* line 121, ../scss/style.scss */
 .newsticker a {
   color: #888;
 }
-/* line 123, ../scss/style.scss */
+/* line 125, ../scss/style.scss */
 .newsticker:after {
   clear: both;
 }

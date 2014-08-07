@@ -18,6 +18,15 @@ class Combination extends AppModel {
         ),
     );
 
+    public $hasAndBelongsToMany = array(
+        'Tag' => array(
+            'className' => 'Tag',
+            'joinTable' => 'combination_tags',
+            'foreignKey' => 'combination_id',
+            'associationForeignKey' => 'tag_id',
+            //'unique' => true,
+        )
+    );
 
     // Varlidation Rules for this Model
     public $validate = array(
