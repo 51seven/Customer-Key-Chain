@@ -36,12 +36,10 @@ class CustomerController extends AppController {
 
         // Most Popular Tag
         $most_popular_tag = $this->Tag->CombinationTag->find('first', array(
-            'fields' => array(
-                'MAX(CombinationTag.tag_id) as max_tag_id',
-            ),
+            'fields' => array('COUNT(CombinationTag.tag_id) as count', 'CombinationTag.tag_id'),
+            'order' => 'count DESC',
+            'group' => 'CombinationTag.tag_id',
         ));
-
-        $most_popular_tag_count = $this->Tag->CombinationTag->find('count', array('conditions' => array('CombinationTag.tag_id' => $most_popular_tag[0]['max_tag_id'])));
 
         // Kunden bei denen der letzte Eintrag länger als 30 Tage her ist
         $onemonth = date('Y-m-d', strtotime('-1 month'));
@@ -64,19 +62,19 @@ class CustomerController extends AppController {
         $this->set('frozen_customers', $frozen_customers);
         $this->set('tags_used_count', $tags_used_count);
         $this->set('tags_count', $tags_count);
-        $this->set('most_popular_tag', $this->Tag->field('name', array('tag_id = ' => $most_popular_tag[0]['max_tag_id'])));
-        $this->set('most_popular_tag_count', $most_popular_tag_count);
+        $this->set('most_popular_tag', $this->Tag->field('name', array('tag_id = ' => $most_popular_tag['CombinationTag']['tag_id'])));
+        $this->set('most_popular_tag_count', $most_popular_tag[0]['count']);
         $this->set('news', $news);
     }
 
     public function view($cid = null) {
-    	$customer = $this->Customer->findByCustomer_id($cid);
+        $customer = $this->Customer->findByCustomer_id($cid);
 
-    	if(!$customer) {
-    		$this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
-    		$this->redirect('index');
-    	}
-    	else {
+        if(!$customer) {
+            $this->Session->setFlash('Kunde wurde nicht gefunden.', 'flash_bt_warning');
+            $this->redirect('index');
+        }
+        else {
             $favorites = $this->Favorite->find('list', array(
                 'conditions' => array(
                     'user_id' => $this->Auth->user('user_id')
@@ -87,7 +85,7 @@ class CustomerController extends AppController {
             foreach($favorites as $favorite) {
                 if($favorite == $cid) $isfav = true;
             }
-    		$combinations = $this->Combination->findAllByCustomer_id($cid);
+            $combinations = $this->Combination->findAllByCustomer_id($cid);
             $combos = array();
 
             foreach($combinations as $combination) {
@@ -144,13 +142,13 @@ class CustomerController extends AppController {
             $this->set('histories', $histories);
             $this->set('contactpersons', $contactpersons);
             $this->set('isfav', $isfav);
-    		$this->set('combinations', $sortedCombos);
-    		$this->set('customer', $customer);
-    	}
+            $this->set('combinations', $sortedCombos);
+            $this->set('customer', $customer);
+        }
     }
 
     public function create() {
-		if($this->request->is('post')) {
+        if($this->request->is('post')) {
             if($this->Customer->save($this->request->data)) {
                 $this->Session->setFlash('Kunde erfolgreich erstellt.', 'flash_bt_good');
                 $this->redirect(array('controller' => 'customer', 'action' => 'view/'.$this->Customer->getLastInsertId()));
@@ -300,6 +298,4 @@ class CustomerController extends AppController {
             $this->redirect('/');
         }
     }
-
-
 }
