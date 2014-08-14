@@ -57,6 +57,28 @@
     $(function(){
       $("#datepicker").appendDtpicker({"inline": true});
     });
+
+    $.fn.affix = function(time) {
+      var eTop = $(this).offset().top;
+      var eWidth = $(this).outerWidth();
+      var $e = $(this);
+
+      setInterval(refresh, time);
+
+      function refresh() {
+        if($(window).outerWidth() > 991) {
+          if($(window).scrollTop()+20 > eTop && $e.css('position') != 'fixed') {
+            $e.css({position: 'fixed', top: '80px', width: eWidth });
+          } else if($(window).scrollTop()+20 <= eTop && $e.css('position') == 'fixed') {
+            $e.css({position: '', top: '', width: '' });
+          }
+        } else {
+          $e.css({position: '', top: '', width: '' });
+        }
+      }
+    }
+
+    $('#sidebarAccordion').affix(30);
   </script>
 </body>
 </html>
